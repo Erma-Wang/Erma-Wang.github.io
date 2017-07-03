@@ -1,0 +1,909 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="AR/VR,见得多·想得多·胡思乱想~," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="欢迎转载~转载请注明Erma的博客 http://iamyaojie.wang/ 都说2016是VR/AR的元年，上半年我随着新技术的潮流进入了VR/AR的领域，本文算是半年来对工作和所经历AR/VR技术行业变化的一个技术类的总结~">
+<meta name="keywords" content="AR&#x2F;VR,见得多·想得多·胡思乱想~">
+<meta property="og:type" content="article">
+<meta property="og:title" content="VR&#x2F;AR 非技术总结">
+<meta property="og:url" content="http://iamyaojie.wang/2016/VR-AR-not-code-summary/index.html">
+<meta property="og:site_name" content="iamYaoJie.Blog">
+<meta property="og:description" content="欢迎转载~转载请注明Erma的博客 http://iamyaojie.wang/ 都说2016是VR/AR的元年，上半年我随着新技术的潮流进入了VR/AR的领域，本文算是半年来对工作和所经历AR/VR技术行业变化的一个技术类的总结~">
+<meta property="og:image" content="http://ww3.sinaimg.cn/large/7305b707jw1f898pho889j218m17utjr.jpg">
+<meta property="og:image" content="http://ww3.sinaimg.cn/large/7305b707jw1f899o5kbcjj20b40iggmn.jpg">
+<meta property="og:image" content="http://ww4.sinaimg.cn/large/7305b707jw1f899wm1xfgj20ku1127at.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/7305b707jw1f89bao4vdpj20ku112dp9.jpg">
+<meta property="og:updated_time" content="2017-06-28T08:01:47.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="VR&#x2F;AR 非技术总结">
+<meta name="twitter:description" content="欢迎转载~转载请注明Erma的博客 http://iamyaojie.wang/ 都说2016是VR/AR的元年，上半年我随着新技术的潮流进入了VR/AR的领域，本文算是半年来对工作和所经历AR/VR技术行业变化的一个技术类的总结~">
+<meta name="twitter:image" content="http://ww3.sinaimg.cn/large/7305b707jw1f898pho889j218m17utjr.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '9E75IEGIJ7',
+      apiKey: 'bc3270a26f73a83c84dd5a2520a3bbca',
+      indexName: 'index',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"键入您需要搜索的关键字~","hits_empty":"很抱歉，没有找到您需要搜索的内容: ${query}","hits_stats":"${hits} 条搜索记录 ~· 耗时 ${time} 毫秒 ~·"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://iamyaojie.wang/2016/VR-AR-not-code-summary/"/>
+
+
+
+
+
+  <title>VR/AR 非技术总结 | iamYaoJie.Blog</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-98802769-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?8fb2996831997da6ea3871e646c11808";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">iamYaoJie.Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Keep Blogging</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://iamyaojie.wang/2016/VR-AR-not-code-summary/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YaoJie">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="iamYaoJie.Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">VR/AR 非技术总结</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-09-28T00:00:00+08:00">
+                2016-09-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/锤炼产品思维/" itemprop="url" rel="index">
+                    <span itemprop="name">锤炼产品思维</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/VR-AR-not-code-summary/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2016/VR-AR-not-code-summary/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><strong>欢迎转载~转载请注明<a href="http://iamyaojie.wang/">Erma的博客</a> <a href="http://iamyaojie.wang/">http://iamyaojie.wang/</a></strong></p>
+<p>都说2016是VR/AR的元年，上半年我随着新技术的潮流进入了VR/AR的领域，本文算是半年来对工作和所经历AR/VR技术行业变化的一个技术类的总结~</p>
+<a id="more"></a>
+<h2 id="软硬区分"><a href="#软硬区分" class="headerlink" title="软硬区分"></a>软硬区分</h2><p>大半年的时间，市面上出现了各式各样的 AR/VR 软件和硬件设备。。</p>
+<h3 id="软件：任天堂-VR和LBS结合的-Pokemon-GO、国内基于AR和LBS做时空相册的-我的天、-被FaceBook收购可以出现魔兽头的-MSQRD、AR和大量数据结合做机器学习AI方向的-Blippar、据说淘宝上源代码被卖到500RMB-做儿童画册的-涂涂乐。。。"><a href="#软件：任天堂-VR和LBS结合的-Pokemon-GO、国内基于AR和LBS做时空相册的-我的天、-被FaceBook收购可以出现魔兽头的-MSQRD、AR和大量数据结合做机器学习AI方向的-Blippar、据说淘宝上源代码被卖到500RMB-做儿童画册的-涂涂乐。。。" class="headerlink" title="软件：任天堂 VR和LBS结合的 Pokémon GO、国内基于AR和LBS做时空相册的 我的天、 被FaceBook收购可以出现魔兽头的 MSQRD、AR和大量数据结合做机器学习AI方向的 Blippar、据说淘宝上源代码被卖到500RMB 做儿童画册的 涂涂乐。。。"></a><strong>软件</strong>：任天堂 VR和LBS结合的 <a href="http://baike.baidu.com/link?url=T8PdSW7U2zj43b6Cpysn6ynsyJ-_yrpFsC8BS5e9z6DcmpEnlcD1TlKvoWjOCx3utOMLLmKD8MnUYU8PuyghkBzc66Py2N1PfsKJLRzblxpRUMPSf1E-Q8zEnQRoeL36RgJdD9wJkPoA9kydhAt9kpxPr5cS97BG4zqkuYOXHuOEZw3hurGTNTSt8-Fazw0A" target="_blank" rel="external">Pokémon GO</a>、国内基于AR和LBS做时空相册的 <a href="http://baike.baidu.com/item/我的天/19648490#viewPageContent" target="_blank" rel="external">我的天</a>、 被FaceBook收购可以出现魔兽头的 <a href="http://baike.baidu.com/link?url=DAUS-ESmqT0iC18KdTT0Fjhck_p_lm6UyUvqTKVPeBM9-gLDdcBvzMum5GpEpOpiORloNSvu-XG5xPI9pq-Riq" target="_blank" rel="external">MSQRD</a>、AR和大量数据结合做机器学习AI方向的 <a href="http://baike.baidu.com/link?url=5Kq9Z8Tq0UPmuAFxlAC6UoSRUWYt-EcxfkSLpaUwvs-i7c-u6B6hV9QaMuyYhpn76wG8BBfJ62XwI0VRj4xKa_" target="_blank" rel="external">Blippar</a>、据说淘宝上源代码被卖到500RMB 做儿童画册的 <a href="http://baike.baidu.com/link?url=NA-HgYlunhEePV3EvO67ufwrctG1kNp3oEcAWTexYb9nZbmEFrtePnL5IgTsKYA7fS3g2iESNSgOKGpMe_PauZhGbHx_J13LiIVdDmgUcUa" target="_blank" rel="external">涂涂乐</a>。。。</h3><h3 id="硬件设备"><a href="#硬件设备" class="headerlink" title="硬件设备:"></a><strong>硬件设备</strong>:</h3><p>（<em>做AR/VR目前市面上的硬件设备大概分为三种</em>）</p>
+<p>1、手机+<a href="http://baike.baidu.com/link?url=dDkuwRmvxjgO2F-4mLDefIRe-pP7AUr7GJjcS4PgQmAy81CpLf3jKsDLDvYt7K1OVvqTIn3qNsHVKqF-E2ilDq" target="_blank" rel="external">Cardboard</a>(其中包括<a href="http://baike.baidu.com/link?url=ph1AXRuxGe-hmZOTAEkG233P2Oy0bjRlPcQ-5IVKnbFfJhUfNFKdUTfyjb9G9QE_IurKuiWnrPcU7ecqW0sDXFAC4cFOj-M70v-Rqa1Np9Dx2sx0auk54yif2JHQsJhN" target="_blank" rel="external">暴风魔镜</a>，<a href="http://baike.baidu.com/link?url=7HfaczRLGOPgy1TVTpj0FwbmfBdcYZu_UZQ0R7xpht10sv3TswZvqho1fuUovM9rtGDsI8jF3R37l1MTeMns6hS6WFGyVU8dTudJ6IfWBL3" target="_blank" rel="external">Gear VR</a> , 还有淘宝上几十元就能买到的眼镜设备) 或者 直接就是手机，手机作为AR/VR设备其实是一个挺不错的选择，处理器性能也不错，现在手机的设备RAM几乎都是大于2GB 四核心，对比Hololens的配置也才2GB , 数据运算能力应该是够用了，现在市面上手机处理器 安卓高通骁龙，iPhone A8(iPhone5s)处理器也足够跑起来，再对比Hololens处理器 英特尔Atom x5-Z8100，这类型的处理器之前并没有怎么听说过，不过看主频1.04 GHz，，对比手机处理能力足够用了~再看GPU ，没法对比了~ HoloLens Graphics，，这样的GPU之前市面上也并没有所闻，笔者不太懂得GPU硬件实际的工作流程，不过从实际开发的角度来看，手机的GPU处理能力应该足够够用了。再看屏幕帧数，手机FPS值一般能达到60FPS，而Hololens官方公布参数才只有30FPS。。参数对比。手机看上去有一个挺不错的性能~用于跑AR\VR应该是足够用了吧~如果没有特殊要求的话，不过往往人的需求总是比技术领先好几十年~</p>
+<p>2、非独立处理头显设备。这样的设备会通过一根数据线连接身后的主机，主机处理和运算图像数据，再到头显设备上展示，这样的设备像雨后春笋一样多得数不过来，下面是列举的几个典型设备。</p>
+<p><strong>2015年3月</strong> 火腿肠HTC孤注一掷的<strong><a href="http://baike.baidu.com/link?url=XDqEVK05bioJ9OE4gny1h9S_Toh-D4pzeRYe5_VRUFR4epycObHdweL49AWC3JvK8eQQLXu27RkjW3xcohi0Yq" target="_blank" rel="external">Vive</a></strong>上市，和笔者最喜欢的Valve的Steam技术团队练手开发的，之后Steam和Alienware联手又开发了主机游戏机，Vive设备随着Alienware的设备通过Steam平台销售，我估计Steam看着主机游戏市场想走 xbox 和 ps4的路吧~ 都是把VR设备和体感集合在一起。。。</p>
+<p><strong>2016年第一季度</strong>   <a href="http://baike.baidu.com/link?url=FP-5-aKBt-poLuPTAKk-Rw4fJcC1yeDd5UdyFb4vBSVxcDhJM0NOza4PC9JPXklDRzbQLgVqz2UOF9Rie_W8dei7m-mhSGow3JqxBzEv7L7" target="_blank" rel="external">Oculus Rift</a>上市，Oculus是2012年成立的一家公司，Oculus Rift 算的上 虚拟现实设备里面一款不错的产品，头显设备通过一根数据线连接身后的主机做运算处理。</p>
+<p><strong>2016年10月13日国内上市</strong>  索尼推出的<a href="http://baike.baidu.com/link?url=jgurCkYITspEe8dpCte8dqS4WbmVcOVQLwIg0ipoAMyOk6sHu8WlTU2Xm2RupvpAQZ5hFeFCQTAorZym317pSQxVvFAaJyxe_OhMs7I0wja" target="_blank" rel="external">PlayStation VR</a>是作为PS4的外设，，为什么叻？我家有一台PS4，今年8月港服打开PS4内置store就是PlayStation VR 的广告，这也是上文中提到火腿肠联合Steam想走索尼的路一样，游戏外设上加入VR设备，而且在这款产品没有上市之前一些游戏厂商已经在制作游戏了，我想是等着这款产品上市后大赚一笔吧~ O(∩_∩)O哈哈~</p>
+<p>3、独立处理头显设备。也就是说完全就是一个设备，一个眼镜，不需要连接任何的主机做任何的处理。能做这样的设备的公司地球上并不多，巨头型的科技公司就这么几家，谷歌，微软，苹果。。谷歌glass已经宣布取消，微软今年发布了Hololens(我最喜欢的设备也是最看好的方向，羞于囊中无米，价格太高，舍不得买，下面会大量的介绍Hololens的一些看法，虽然没有硬件支持，软件开发官方提供了模拟器的支持，我已经尝试过了，以后再写hololens模拟器的体验)，还有最后就是苹果公司一直在憋着。据说苹果早在很久以前就注册了这样的专利，现在市场上都没有任何风声，这就是苹果吧~</p>
+<p><strong>2012年4月</strong> 谷歌发布<a href="http://baike.baidu.com/link?url=6gVgKHcuKzoi1xi4xTyfSuYrGkvNYRdYjLLdnqLfi28TAuueQJE0s-sGsTb8r7ATxUCry7FoHfIC9M7CbvDfoK" target="_blank" rel="external">Project Glass</a> , 这个项目在2015年谷歌宣布取消。失败原因有很多，成本过高，缺少应用，侵犯隐私。这算是AR最初最早的设备吧~</p>
+<p><strong>2015年</strong> 微软的<a href="http://baike.baidu.com/link?url=M9jTTkpMj1LirVeUbIr-i0e2HLmwIS6n7B2tppYK5fTRJ_hH_DqHerwbvWyePj0vUcshu2dbdMkggMzMTgQn2S8hmgWw2MrxdMp06yaOoHK" target="_blank" rel="external">Hololens</a>发布，2016年开售~ 下面是一张Hololens的参数表。<br><img src="http://ww3.sinaimg.cn/large/7305b707jw1f898pho889j218m17utjr.jpg" alt=""></p>
+<p>上文也介绍了，Hololens的配置参数并不是太高，But，售价高，买不起。。。这很类似第一代Mac一样，第一代Mac一个破机器为啥能买这么鬼？我猜~ 乔布斯需要钱来制造4s，接着拿苹果改变了世界··哈哈~ 瞎猜。。。</p>
+<h2 id="技术区分"><a href="#技术区分" class="headerlink" title="技术区分"></a>技术区分</h2><p>我之前一直是一名iOSer，对技术充满着对宇宙般的好奇，因为好奇接触过各种各样的技术，(iOS是我吃饭的本领，挣钱多嘛)，上半年进入AR行业，至今成功转型Unity开发。。。各方面的技术笔者只能谈的上是拙见吧~拙见~技术上有说的不恰当的，欢迎你的指出~</p>
+<h3 id="iOS-amp-Android-原生AR开发，其实原生里面开发AR早在很早已经就有了，记得几年前有一款app叫做Ghost-Observer，这款APP能看到在你的家里，在身边有各种各样的妖魔鬼怪飘来飘去。其实这就是虚拟加上现实的结合，也就是AR，现实增强。。"><a href="#iOS-amp-Android-原生AR开发，其实原生里面开发AR早在很早已经就有了，记得几年前有一款app叫做Ghost-Observer，这款APP能看到在你的家里，在身边有各种各样的妖魔鬼怪飘来飘去。其实这就是虚拟加上现实的结合，也就是AR，现实增强。。" class="headerlink" title="iOS&amp;Android 原生AR开发，其实原生里面开发AR早在很早已经就有了，记得几年前有一款app叫做Ghost Observer，这款APP能看到在你的家里，在身边有各种各样的妖魔鬼怪飘来飘去。其实这就是虚拟加上现实的结合，也就是AR，现实增强。。"></a><strong>iOS&amp;Android</strong> 原生AR开发，其实原生里面开发AR早在很早已经就有了，记得几年前有一款app叫做<a href="http://baike.baidu.com/link?url=eMhA3yc-etN_573WTAZWs_N9DWa0MwpztiIyJJkCz1c-dYnJAmXsnUYhWQ-apvXffEvSBxqlQGAeuzLH4GMEWr4l3ZVHrbLtbADrLW4wSve" target="_blank" rel="external">Ghost Observer</a>，这款APP能看到在你的家里，在身边有各种各样的妖魔鬼怪飘来飘去。其实这就是虚拟加上现实的结合，也就是AR，现实增强。。</h3><p><img src="http://ww3.sinaimg.cn/large/7305b707jw1f899o5kbcjj20b40iggmn.jpg" alt=""><br>还有iOS和安卓在之前也有一些尝试，最典型的就是人脸识别后绘制上去一个虚拟的画面。其中做的最好的应该算的上是 MSQRD 吧 ~ 国内的自拍热也像这个方向发展去了~ 类似毁图秀秀呀什么的 ~ 北京天桥上一大堆女孩拿着手机自拍天空，，厦门的毁图秀秀，你也改变了中国，，哈哈~下面是MSQRD 的一个截图~<br><img src="http://ww4.sinaimg.cn/large/7305b707jw1f899wm1xfgj20ku1127at.jpg" alt="">  </p>
+<p>这里在提一下，图像识别技术，人脸识别技术大多都是基于OpenCV做的，当识别人脸后通过核心绘图，OpenGL等技术绘制上去虚拟的东西，产生了虚拟和现实的结合，也就是现实争抢。。这类软件国内也有很多，这里再提一下，识别技术的SDK国内国外也有很多，国外高通的Vuforia，我们公司项目采用的，国外还有metaio,这个是德国汽车品牌大众衍生出来的一个创业公司，在2015年的时候被苹果收购了，Metaio官网上也宣布不对外服务了，所以我们公司最后也采用了Vuforia，国内有EasyAR，没有体验过，不过据说还是挺不错的，国内识别技术还有人脸识别的<a href="http://baike.baidu.com/link?url=U_WpHH3IfPL2Tz4-MbKFQsfHYYDrGyLoewgQ9RFs8br98lQ9daubCwolj0XtRR6PEHMAAMNlYfDLiASePPEVfdP2ND_KdQUS-i8y-fQ3_nK" target="_blank" rel="external">Face++</a>，我挺喜欢这个项目的，之前体验了他们家的SDK，还不错。。在国内人脸识别算的上不错的~</p>
+<p>以上提到的这些SDK，都可以直接基于原生开发，不过有的基于原生的iOS和Android平台开发难度不小，是非常不小。。。为什么叻？应为最简单最简单的一个3D图形都是基于三维空间的，为什么不用专业的三维变成软件来写 叻？ 所以，就有了Unity 5.0版本之后AR/VR的应用级别开发，Unity再也不是做游戏了！我才有机会转型~</p>
+<h3 id="Unity-UE4-UE4这里不多谈，没有接触太多，因为之前也不是做游戏的，不过接触Unity半年来，Unity给我最大的感觉就是-引擎挺不错的，里面的坑也不少，之前一直做iOS开发，对XCode和NSFoundation-对比UnityEditor-和-Mono-库的对比，unity在技术代码方面相对苹果微软等公司的差距还是有一定差距，作为一个开发者给我的体验是-Unity开发更像是用C语言用了MVC模式开发出一款软件一样，Unity的组件事项是一个挺不错的思想，，，上面谈到了一些技术方面的东西，仅代表本人的一些拙见，转型Unity也才半年而已，发展的空间还挺大的-好了，题目说了谈一些非技术的东西，接着写。。Unity在5-0版本之后明显相对于UE4偏向AR和VR方向的发展，，据了解UE4相对于Unity对游戏渲染Shader变成更好，不过我看Unity官方给的Demo渲染和材质也挺不错的呀，我猜是功力的原因，，不得不说-Unity相对于UE4在这场AR-VR竞争的战场上领先了一步，，，"><a href="#Unity-UE4-UE4这里不多谈，没有接触太多，因为之前也不是做游戏的，不过接触Unity半年来，Unity给我最大的感觉就是-引擎挺不错的，里面的坑也不少，之前一直做iOS开发，对XCode和NSFoundation-对比UnityEditor-和-Mono-库的对比，unity在技术代码方面相对苹果微软等公司的差距还是有一定差距，作为一个开发者给我的体验是-Unity开发更像是用C语言用了MVC模式开发出一款软件一样，Unity的组件事项是一个挺不错的思想，，，上面谈到了一些技术方面的东西，仅代表本人的一些拙见，转型Unity也才半年而已，发展的空间还挺大的-好了，题目说了谈一些非技术的东西，接着写。。Unity在5-0版本之后明显相对于UE4偏向AR和VR方向的发展，，据了解UE4相对于Unity对游戏渲染Shader变成更好，不过我看Unity官方给的Demo渲染和材质也挺不错的呀，我猜是功力的原因，，不得不说-Unity相对于UE4在这场AR-VR竞争的战场上领先了一步，，，" class="headerlink" title="Unity||UE4   UE4这里不多谈，没有接触太多，因为之前也不是做游戏的，不过接触Unity半年来，Unity给我最大的感觉就是 引擎挺不错的，里面的坑也不少，之前一直做iOS开发，对XCode和NSFoundation 对比UnityEditor 和 Mono 库的对比，unity在技术代码方面相对苹果微软等公司的差距还是有一定差距，作为一个开发者给我的体验是 Unity开发更像是用C语言用了MVC模式开发出一款软件一样，Unity的组件事项是一个挺不错的思想，，，上面谈到了一些技术方面的东西，仅代表本人的一些拙见，转型Unity也才半年而已，发展的空间还挺大的~ 好了，题目说了谈一些非技术的东西，接着写。。Unity在5.0版本之后明显相对于UE4偏向AR和VR方向的发展，，据了解UE4相对于Unity对游戏渲染Shader变成更好，不过我看Unity官方给的Demo渲染和材质也挺不错的呀，我猜是功力的原因，，不得不说,Unity相对于UE4在这场AR/VR竞争的战场上领先了一步，，，"></a><strong>Unity||UE4</strong>   UE4这里不多谈，没有接触太多，因为之前也不是做游戏的，不过接触Unity半年来，Unity给我最大的感觉就是 引擎挺不错的，里面的坑也不少，之前一直做iOS开发，对XCode和NSFoundation 对比UnityEditor 和 Mono 库的对比，unity在技术代码方面相对苹果微软等公司的差距还是有一定差距，作为一个开发者给我的体验是 Unity开发更像是用C语言用了MVC模式开发出一款软件一样，Unity的组件事项是一个挺不错的思想，，，上面谈到了一些技术方面的东西，仅代表本人的一些拙见，转型Unity也才半年而已，发展的空间还挺大的~ 好了，题目说了谈一些非技术的东西，接着写。。Unity在5.0版本之后明显相对于UE4偏向AR和VR方向的发展，，据了解UE4相对于Unity对游戏渲染Shader变成更好，不过我看Unity官方给的Demo渲染和材质也挺不错的呀，我猜是功力的原因，，不得不说,Unity相对于UE4在这场AR/VR竞争的战场上领先了一步，，，</h3><h3 id="Unity和原生混合开发-我们公司的项目采用的就是这种方式，这种方式有一个什么好处叻？他可以做成一款应用级别的APP，原生做擅长原生做的事儿，Unity做擅长Unity做的事儿。。。用其所长，原生不擅长3D图形化的编程，当然你非得要说你能用OpenGL-写出一个3D东西来那肯定能办到，不过小公司要考虑人力财力等，Unity对口的就是小公司。。Unity在移动端不擅长界面的编程，这时候有原生来写界面，当让你非得说要用Unity的UGUI或NGUI写一个界面，那肯定能办得到，但是iOS或者安卓的开发苹果谷歌已经封装好了界面编程的库，为什么还要用Unity来写叻？-就像怎么一回事儿叻-其实你也可以用OC写一太服务器在iPhone手机上跑，我相信完全能办到的，不过应该没有公司用一台iPhone作为服务器吧-下面上两张我们项目的两张截图。。"><a href="#Unity和原生混合开发-我们公司的项目采用的就是这种方式，这种方式有一个什么好处叻？他可以做成一款应用级别的APP，原生做擅长原生做的事儿，Unity做擅长Unity做的事儿。。。用其所长，原生不擅长3D图形化的编程，当然你非得要说你能用OpenGL-写出一个3D东西来那肯定能办到，不过小公司要考虑人力财力等，Unity对口的就是小公司。。Unity在移动端不擅长界面的编程，这时候有原生来写界面，当让你非得说要用Unity的UGUI或NGUI写一个界面，那肯定能办得到，但是iOS或者安卓的开发苹果谷歌已经封装好了界面编程的库，为什么还要用Unity来写叻？-就像怎么一回事儿叻-其实你也可以用OC写一太服务器在iPhone手机上跑，我相信完全能办到的，不过应该没有公司用一台iPhone作为服务器吧-下面上两张我们项目的两张截图。。" class="headerlink" title="Unity和原生混合开发 我们公司的项目采用的就是这种方式，这种方式有一个什么好处叻？他可以做成一款应用级别的APP，原生做擅长原生做的事儿，Unity做擅长Unity做的事儿。。。用其所长，原生不擅长3D图形化的编程，当然你非得要说你能用OpenGL 写出一个3D东西来那肯定能办到，不过小公司要考虑人力财力等，Unity对口的就是小公司。。Unity在移动端不擅长界面的编程，这时候有原生来写界面，当让你非得说要用Unity的UGUI或NGUI写一个界面，那肯定能办得到，但是iOS或者安卓的开发苹果谷歌已经封装好了界面编程的库，为什么还要用Unity来写叻？ 就像怎么一回事儿叻~其实你也可以用OC写一太服务器在iPhone手机上跑，我相信完全能办到的，不过应该没有公司用一台iPhone作为服务器吧~下面上两张我们项目的两张截图。。"></a><strong>Unity和原生混合开发</strong> 我们公司的项目采用的就是这种方式，这种方式有一个什么好处叻？他可以做成一款应用级别的APP，原生做擅长原生做的事儿，Unity做擅长Unity做的事儿。。。用其所长，原生不擅长3D图形化的编程，当然你非得要说你能用OpenGL 写出一个3D东西来那肯定能办到，不过小公司要考虑人力财力等，Unity对口的就是小公司。。Unity在移动端不擅长界面的编程，这时候有原生来写界面，当让你非得说要用Unity的UGUI或NGUI写一个界面，那肯定能办得到，但是iOS或者安卓的开发苹果谷歌已经封装好了界面编程的库，为什么还要用Unity来写叻？ 就像怎么一回事儿叻~其实你也可以用OC写一太服务器在iPhone手机上跑，我相信完全能办到的，不过应该没有公司用一台iPhone作为服务器吧~下面上两张我们项目的两张截图。。</h3><p><img src="http://ww1.sinaimg.cn/large/7305b707jw1f89bao4vdpj20ku112dp9.jpg" alt=""></p>
+<p>中间的播放的是一个视屏，识别海报之后在海报中播放一段视频~ 让一张只能传递文字和图像的海报能传递视频~ 小小应用，我亲手搭建起来的前端架构，对自己的成果还比较满意，Unity和原生混合开发~ 我也很想和对AR/VR感性却的小伙伴一起讨论讨论技术~</p>
+<h3 id="Unity和Windows混合开发-这就是Hololens，也是我最看好的方向，之后我会写一篇关于Hololens开发环境搭建以及模拟器的文章，，微软在AR和VR这条道路上找了一个神一样的队友，也就是Unity，使用的编程语言都一样，C-节省了对编程语言开发交互中的一些不必要的麻烦，，Winform的开发处理界面编程，Unity处理3D编程，在强大的Win平台下提供Store。。Hololens也在组建一个类似iPhone一样的业态，规避了Project-Glass失败的没有应用的缺点，不过看win-store的软件斌不是太火-估计是-天朝-的缘故吧。。。Hololens头盔（现在姑且只能叫头盔吧，叫眼镜实在过意不去呀，毕竟这么大一坨-）集成了处理器，这点很不错，不过看了真机测评说视野范围太小。（穷屌，没钱，只能看测评-），说说关于技术开发的事儿呀。。相当于是Unity和原生混合开发的升级，而且微软想完完全全效仿现在市场的业态，用户体验，Store应用的，微软一向都是一家闭源的公司，而且个人感觉相对于苹果来说，不太注重用于习惯，，to-B-应该是一个不错的选择，再说现在Hololens-3000刀，到了中国不得30000RMB-呀？哎-看看就好，现在先用着模拟器开发，等哪天降价了再入手一个"><a href="#Unity和Windows混合开发-这就是Hololens，也是我最看好的方向，之后我会写一篇关于Hololens开发环境搭建以及模拟器的文章，，微软在AR和VR这条道路上找了一个神一样的队友，也就是Unity，使用的编程语言都一样，C-节省了对编程语言开发交互中的一些不必要的麻烦，，Winform的开发处理界面编程，Unity处理3D编程，在强大的Win平台下提供Store。。Hololens也在组建一个类似iPhone一样的业态，规避了Project-Glass失败的没有应用的缺点，不过看win-store的软件斌不是太火-估计是-天朝-的缘故吧。。。Hololens头盔（现在姑且只能叫头盔吧，叫眼镜实在过意不去呀，毕竟这么大一坨-）集成了处理器，这点很不错，不过看了真机测评说视野范围太小。（穷屌，没钱，只能看测评-），说说关于技术开发的事儿呀。。相当于是Unity和原生混合开发的升级，而且微软想完完全全效仿现在市场的业态，用户体验，Store应用的，微软一向都是一家闭源的公司，而且个人感觉相对于苹果来说，不太注重用于习惯，，to-B-应该是一个不错的选择，再说现在Hololens-3000刀，到了中国不得30000RMB-呀？哎-看看就好，现在先用着模拟器开发，等哪天降价了再入手一个" class="headerlink" title="Unity和Windows混合开发  这就是Hololens，也是我最看好的方向，之后我会写一篇关于Hololens开发环境搭建以及模拟器的文章，，微软在AR和VR这条道路上找了一个神一样的队友，也就是Unity，使用的编程语言都一样，C# 节省了对编程语言开发交互中的一些不必要的麻烦，，Winform的开发处理界面编程，Unity处理3D编程，在强大的Win平台下提供Store。。Hololens也在组建一个类似iPhone一样的业态，规避了Project Glass失败的没有应用的缺点，不过看win store的软件斌不是太火~估计是 天朝 的缘故吧。。。Hololens头盔（现在姑且只能叫头盔吧，叫眼镜实在过意不去呀，毕竟这么大一坨~）集成了处理器，这点很不错，不过看了真机测评说视野范围太小。（穷屌，没钱，只能看测评~），说说关于技术开发的事儿呀。。相当于是Unity和原生混合开发的升级，而且微软想完完全全效仿现在市场的业态，用户体验，Store应用的，微软一向都是一家闭源的公司，而且个人感觉相对于苹果来说，不太注重用于习惯，，to B 应该是一个不错的选择，再说现在Hololens 3000刀，到了中国不得30000RMB 呀？哎~ 看看就好，现在先用着模拟器开发，等哪天降价了再入手一个~"></a><strong>Unity和Windows混合开发</strong>  这就是Hololens，也是我最看好的方向，之后我会写一篇关于Hololens开发环境搭建以及模拟器的文章，，微软在AR和VR这条道路上找了一个神一样的队友，也就是Unity，使用的编程语言都一样，C# 节省了对编程语言开发交互中的一些不必要的麻烦，，Winform的开发处理界面编程，Unity处理3D编程，在强大的Win平台下提供Store。。Hololens也在组建一个类似iPhone一样的业态，规避了Project Glass失败的没有应用的缺点，不过看win store的软件斌不是太火~估计是 天朝 的缘故吧。。。Hololens头盔（现在姑且只能叫头盔吧，叫眼镜实在过意不去呀，毕竟这么大一坨~）集成了处理器，这点很不错，不过看了真机测评说视野范围太小。（穷屌，没钱，只能看测评~），说说关于技术开发的事儿呀。。相当于是Unity和原生混合开发的升级，而且微软想完完全全效仿现在市场的业态，用户体验，Store应用的，微软一向都是一家闭源的公司，而且个人感觉相对于苹果来说，不太注重用于习惯，，to B 应该是一个不错的选择，再说现在Hololens 3000刀，到了中国不得30000RMB 呀？哎~ 看看就好，现在先用着模拟器开发，等哪天降价了再入手一个~</h3><p>这篇文章相当于半年来在AR/VR行业对 非纯技术方面的一个总结吧。。上面纯属个人观点，其中涉及到一些技术的见解也纯属拙见。。哦，对了，，这文章是非技术方面的总结么、？</p>
+<p><strong>欢迎转载~转载请注明<a href="http://iamyaojie.wang/">iamyaojie的博客</a> <a href="http://iamyaojie.wang/">http://iamyaojie.wang/</a></strong></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/wechat-reward-image.jpeg" alt="YaoJie WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/alipay-reward-image.jpeg" alt="YaoJie Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/AR-VR/" rel="tag"># AR/VR</a>
+          
+            <a href="/tags/见得多·想得多·胡思乱想/" rel="tag"># 见得多·想得多·胡思乱想~</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/Unity-Camera-Full-Screen/" rel="next" title="Unity打开摄像头占满全屏">
+                <i class="fa fa-chevron-left"></i> Unity打开摄像头占满全屏
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/iOS-Unity-Mixed-Development/" rel="prev" title="Unity iOS混合开发界面切换思路">
+                Unity iOS混合开发界面切换思路 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="YaoJie" />
+          <p class="site-author-name" itemprop="name">YaoJie</p>
+           
+              <p class="site-description motion-element" itemprop="description">放下,是一种修行  拿起,是一种历练</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/iamyaojie" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/1929754375" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#软硬区分"><span class="nav-number">1.</span> <span class="nav-text">软硬区分</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#软件：任天堂-VR和LBS结合的-Pokemon-GO、国内基于AR和LBS做时空相册的-我的天、-被FaceBook收购可以出现魔兽头的-MSQRD、AR和大量数据结合做机器学习AI方向的-Blippar、据说淘宝上源代码被卖到500RMB-做儿童画册的-涂涂乐。。。"><span class="nav-number">1.1.</span> <span class="nav-text">软件：任天堂 VR和LBS结合的 Pokémon GO、国内基于AR和LBS做时空相册的 我的天、 被FaceBook收购可以出现魔兽头的 MSQRD、AR和大量数据结合做机器学习AI方向的 Blippar、据说淘宝上源代码被卖到500RMB 做儿童画册的 涂涂乐。。。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#硬件设备"><span class="nav-number">1.2.</span> <span class="nav-text">硬件设备:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#技术区分"><span class="nav-number">2.</span> <span class="nav-text">技术区分</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#iOS-amp-Android-原生AR开发，其实原生里面开发AR早在很早已经就有了，记得几年前有一款app叫做Ghost-Observer，这款APP能看到在你的家里，在身边有各种各样的妖魔鬼怪飘来飘去。其实这就是虚拟加上现实的结合，也就是AR，现实增强。。"><span class="nav-number">2.1.</span> <span class="nav-text">iOS&Android 原生AR开发，其实原生里面开发AR早在很早已经就有了，记得几年前有一款app叫做Ghost Observer，这款APP能看到在你的家里，在身边有各种各样的妖魔鬼怪飘来飘去。其实这就是虚拟加上现实的结合，也就是AR，现实增强。。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Unity-UE4-UE4这里不多谈，没有接触太多，因为之前也不是做游戏的，不过接触Unity半年来，Unity给我最大的感觉就是-引擎挺不错的，里面的坑也不少，之前一直做iOS开发，对XCode和NSFoundation-对比UnityEditor-和-Mono-库的对比，unity在技术代码方面相对苹果微软等公司的差距还是有一定差距，作为一个开发者给我的体验是-Unity开发更像是用C语言用了MVC模式开发出一款软件一样，Unity的组件事项是一个挺不错的思想，，，上面谈到了一些技术方面的东西，仅代表本人的一些拙见，转型Unity也才半年而已，发展的空间还挺大的-好了，题目说了谈一些非技术的东西，接着写。。Unity在5-0版本之后明显相对于UE4偏向AR和VR方向的发展，，据了解UE4相对于Unity对游戏渲染Shader变成更好，不过我看Unity官方给的Demo渲染和材质也挺不错的呀，我猜是功力的原因，，不得不说-Unity相对于UE4在这场AR-VR竞争的战场上领先了一步，，，"><span class="nav-number">2.2.</span> <span class="nav-text">Unity||UE4   UE4这里不多谈，没有接触太多，因为之前也不是做游戏的，不过接触Unity半年来，Unity给我最大的感觉就是 引擎挺不错的，里面的坑也不少，之前一直做iOS开发，对XCode和NSFoundation 对比UnityEditor 和 Mono 库的对比，unity在技术代码方面相对苹果微软等公司的差距还是有一定差距，作为一个开发者给我的体验是 Unity开发更像是用C语言用了MVC模式开发出一款软件一样，Unity的组件事项是一个挺不错的思想，，，上面谈到了一些技术方面的东西，仅代表本人的一些拙见，转型Unity也才半年而已，发展的空间还挺大的~ 好了，题目说了谈一些非技术的东西，接着写。。Unity在5.0版本之后明显相对于UE4偏向AR和VR方向的发展，，据了解UE4相对于Unity对游戏渲染Shader变成更好，不过我看Unity官方给的Demo渲染和材质也挺不错的呀，我猜是功力的原因，，不得不说,Unity相对于UE4在这场AR/VR竞争的战场上领先了一步，，，</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Unity和原生混合开发-我们公司的项目采用的就是这种方式，这种方式有一个什么好处叻？他可以做成一款应用级别的APP，原生做擅长原生做的事儿，Unity做擅长Unity做的事儿。。。用其所长，原生不擅长3D图形化的编程，当然你非得要说你能用OpenGL-写出一个3D东西来那肯定能办到，不过小公司要考虑人力财力等，Unity对口的就是小公司。。Unity在移动端不擅长界面的编程，这时候有原生来写界面，当让你非得说要用Unity的UGUI或NGUI写一个界面，那肯定能办得到，但是iOS或者安卓的开发苹果谷歌已经封装好了界面编程的库，为什么还要用Unity来写叻？-就像怎么一回事儿叻-其实你也可以用OC写一太服务器在iPhone手机上跑，我相信完全能办到的，不过应该没有公司用一台iPhone作为服务器吧-下面上两张我们项目的两张截图。。"><span class="nav-number">2.3.</span> <span class="nav-text">Unity和原生混合开发 我们公司的项目采用的就是这种方式，这种方式有一个什么好处叻？他可以做成一款应用级别的APP，原生做擅长原生做的事儿，Unity做擅长Unity做的事儿。。。用其所长，原生不擅长3D图形化的编程，当然你非得要说你能用OpenGL 写出一个3D东西来那肯定能办到，不过小公司要考虑人力财力等，Unity对口的就是小公司。。Unity在移动端不擅长界面的编程，这时候有原生来写界面，当让你非得说要用Unity的UGUI或NGUI写一个界面，那肯定能办得到，但是iOS或者安卓的开发苹果谷歌已经封装好了界面编程的库，为什么还要用Unity来写叻？ 就像怎么一回事儿叻~其实你也可以用OC写一太服务器在iPhone手机上跑，我相信完全能办到的，不过应该没有公司用一台iPhone作为服务器吧~下面上两张我们项目的两张截图。。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Unity和Windows混合开发-这就是Hololens，也是我最看好的方向，之后我会写一篇关于Hololens开发环境搭建以及模拟器的文章，，微软在AR和VR这条道路上找了一个神一样的队友，也就是Unity，使用的编程语言都一样，C-节省了对编程语言开发交互中的一些不必要的麻烦，，Winform的开发处理界面编程，Unity处理3D编程，在强大的Win平台下提供Store。。Hololens也在组建一个类似iPhone一样的业态，规避了Project-Glass失败的没有应用的缺点，不过看win-store的软件斌不是太火-估计是-天朝-的缘故吧。。。Hololens头盔（现在姑且只能叫头盔吧，叫眼镜实在过意不去呀，毕竟这么大一坨-）集成了处理器，这点很不错，不过看了真机测评说视野范围太小。（穷屌，没钱，只能看测评-），说说关于技术开发的事儿呀。。相当于是Unity和原生混合开发的升级，而且微软想完完全全效仿现在市场的业态，用户体验，Store应用的，微软一向都是一家闭源的公司，而且个人感觉相对于苹果来说，不太注重用于习惯，，to-B-应该是一个不错的选择，再说现在Hololens-3000刀，到了中国不得30000RMB-呀？哎-看看就好，现在先用着模拟器开发，等哪天降价了再入手一个"><span class="nav-number">2.4.</span> <span class="nav-text">Unity和Windows混合开发  这就是Hololens，也是我最看好的方向，之后我会写一篇关于Hololens开发环境搭建以及模拟器的文章，，微软在AR和VR这条道路上找了一个神一样的队友，也就是Unity，使用的编程语言都一样，C# 节省了对编程语言开发交互中的一些不必要的麻烦，，Winform的开发处理界面编程，Unity处理3D编程，在强大的Win平台下提供Store。。Hololens也在组建一个类似iPhone一样的业态，规避了Project Glass失败的没有应用的缺点，不过看win store的软件斌不是太火~估计是 天朝 的缘故吧。。。Hololens头盔（现在姑且只能叫头盔吧，叫眼镜实在过意不去呀，毕竟这么大一坨~）集成了处理器，这点很不错，不过看了真机测评说视野范围太小。（穷屌，没钱，只能看测评~），说说关于技术开发的事儿呀。。相当于是Unity和原生混合开发的升级，而且微软想完完全全效仿现在市场的业态，用户体验，Store应用的，微软一向都是一家闭源的公司，而且个人感觉相对于苹果来说，不太注重用于习惯，，to B 应该是一个不错的选择，再说现在Hololens 3000刀，到了中国不得30000RMB 呀？哎~ 看看就好，现在先用着模拟器开发，等哪天降价了再入手一个~</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">YaoJie</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://http-iamyaojie-wang.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://iamyaojie.wang/2016/VR-AR-not-code-summary/';
+          this.page.identifier = '2016/VR-AR-not-code-summary/';
+          this.page.title = 'VR/AR 非技术总结';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://http-iamyaojie-wang.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

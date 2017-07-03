@@ -1,0 +1,509 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+
+    
+    
+  <url>
+    <loc>http://iamyaojie.wang/2017/Sitemesh3/</loc>
+    <lastmod>2017-06-28T08:01:47.000Z</lastmod>
+    <data>
+        <display>
+        <title>Sitemesh 3 配置和使用</title>
+        <pubTime>2017-01-12T16:00:00.000Z</pubTime>
+        
+        <tag>Java</tag>
+         
+        <tag>JEE</tag>
+         
+        <tag>Mybatis</tag>
+         
+         
+           
+             
+              <breadCrumb title="漫漫抓娃(Java)路" url="http://iamyaojie.wang/categories/%E6%BC%AB%E6%BC%AB%E6%8A%93%E5%A8%83-Java-%E8%B7%AF/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://iamyaojie.wang/2017/Hololens-Five/</loc>
+    <lastmod>2017-06-28T08:01:47.000Z</lastmod>
+    <data>
+        <display>
+        <title>（五）Hololens Unity 开发之 手势识别</title>
+        <pubTime>2017-02-04T16:00:00.000Z</pubTime>
+        
+        <tag>AR/VR</tag>
+         
+        <tag>Hololens</tag>
+         
+        <tag>Unity</tag>
+         
+         
+           
+             
+              <breadCrumb title="AR/VR技术篇章" url="http://iamyaojie.wang/categories/AR-VR%E6%8A%80%E6%9C%AF%E7%AF%87%E7%AB%A0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://iamyaojie.wang/2017/Hololens-Four/</loc>
+    <lastmod>2017-06-28T08:01:47.000Z</lastmod>
+    <data>
+        <display>
+        <title>（四）Hololens Unity 开发之 凝视系统</title>
+        <pubTime>2017-01-25T16:00:00.000Z</pubTime>
+        
+        <tag>AR/VR</tag>
+         
+        <tag>Hololens</tag>
+         
+        <tag>Unity</tag>
+         
+         
+           
+             
+              <breadCrumb title="AR/VR技术篇章" url="http://iamyaojie.wang/categories/AR-VR%E6%8A%80%E6%9C%AF%E7%AF%87%E7%AB%A0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://iamyaojie.wang/2017/Hololens-one/</loc>
+    <lastmod>2017-06-28T08:01:47.000Z</lastmod>
+    <data>
+        <display>
+        <title>（一）Hololens Unity 开发环境搭建(Mac BOOTCAMP WIN10)</title>
+        <pubTime>2017-01-19T16:00:00.000Z</pubTime>
+        
+        <tag>AR/VR</tag>
+         
+        <tag>Hololens</tag>
+         
+        <tag>Unity</tag>
+         
+         
+           
+             
+              <breadCrumb title="AR/VR技术篇章" url="http://iamyaojie.wang/categories/AR-VR%E6%8A%80%E6%9C%AF%E7%AF%87%E7%AB%A0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://iamyaojie.wang/2017/Hololens-thress/</loc>
+    <lastmod>2017-06-28T08:01:47.000Z</lastmod>
+    <data>
+        <display>
+        <title>（三）Hololens Unity 开发之 语音识别</title>
+        <pubTime>2017-01-24T16:00:00.000Z</pubTime>
+        
+        <tag>AR/VR</tag>
+         
+        <tag>Hololens</tag>
+         
+        <tag>Unity</tag>
+         
+         
+           
+             
+              <breadCrumb title="AR/VR技术篇章" url="http://iamyaojie.wang/categories/AR-VR%E6%8A%80%E6%9C%AF%E7%AF%87%E7%AB%A0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://iamyaojie.wang/2017/Hololens-two/</loc>
+    <lastmod>2017-06-28T08:01:47.000Z</lastmod>
+    <data>
+        <display>
+        <title>（二）Hololens Unity 开发入门 之 Hello HoloLens~</title>
+        <pubTime>2017-01-23T16:00:00.000Z</pubTime>
+        
+        <tag>AR/VR</tag>
+         
+        <tag>Hololens</tag>
+         
+        <tag>Unity</tag>
+         
+         
+           
+             
+              <breadCrumb title="AR/VR技术篇章" url="http://iamyaojie.wang/categories/AR-VR%E6%8A%80%E6%9C%AF%E7%AF%87%E7%AB%A0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://iamyaojie.wang/2016/Jingdong-Orienteering/</loc>
+    <lastmod>2017-06-28T08:01:47.000Z</lastmod>
+    <data>
+        <display>
+        <title>放养的小爬虫--京东定向爬虫(AJAX获取价格数据)</title>
+        <pubTime>2016-03-15T16:00:00.000Z</pubTime>
+        
+        <tag>Python小爬虫</tag>
+         
+        <tag>爬虫</tag>
+         
+        <tag>Python</tag>
+         
+         
+           
+             
+              <breadCrumb title="人生苦短，我用Python" url="http://iamyaojie.wang/categories/%E4%BA%BA%E7%94%9F%E8%8B%A6%E7%9F%AD%EF%BC%8C%E6%88%91%E7%94%A8Python/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://iamyaojie.wang/2016/LaGou-Intelligent-crawler/</loc>
+    <lastmod>2017-06-28T08:01:47.000Z</lastmod>
+    <data>
+        <display>
+        <title>放养的小爬虫--拉钩网智能小爬虫</title>
+        <pubTime>2016-03-12T16:00:00.000Z</pubTime>
+        
+        <tag>Python小爬虫</tag>
+         
+        <tag>爬虫</tag>
+         
+        <tag>Python</tag>
+         
+         
+           
+             
+              <breadCrumb title="人生苦短，我用Python" url="http://iamyaojie.wang/categories/%E4%BA%BA%E7%94%9F%E8%8B%A6%E7%9F%AD%EF%BC%8C%E6%88%91%E7%94%A8Python/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://iamyaojie.wang/2016/NSTimer-CADisplayLink-GCD/</loc>
+    <lastmod>2017-06-28T08:01:47.000Z</lastmod>
+    <data>
+        <display>
+        <title>NSTimer CADisplayLink GCD</title>
+        <pubTime>2016-01-23T16:00:00.000Z</pubTime>
+        
+        <tag>iOS入门到懵逼</tag>
+         
+         
+           
+             
+              <breadCrumb title="iOS入门到懵逼" url="http://iamyaojie.wang/categories/iOS%E5%85%A5%E9%97%A8%E5%88%B0%E6%87%B5%E9%80%BC/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://iamyaojie.wang/2015/OpenSSL-RSA/</loc>
+    <lastmod>2017-06-28T08:01:47.000Z</lastmod>
+    <data>
+        <display>
+        <title>基于OpenSSL的RSA加密应用(非算法)</title>
+        <pubTime>2015-11-10T16:00:00.000Z</pubTime>
+        
+        <tag>iOS入门到懵逼</tag>
+         
+         
+           
+             
+              <breadCrumb title="iOS入门到懵逼" url="http://iamyaojie.wang/categories/iOS%E5%85%A5%E9%97%A8%E5%88%B0%E6%87%B5%E9%80%BC/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://iamyaojie.wang/2017/Swift-try/</loc>
+    <lastmod>2017-06-28T08:01:47.000Z</lastmod>
+    <data>
+        <display>
+        <title>Swift try try! try?使用和区别</title>
+        <pubTime>2017-01-23T16:00:00.000Z</pubTime>
+        
+        <tag>iOS入门到懵逼</tag>
+         
+         
+           
+             
+              <breadCrumb title="iOS入门到懵逼" url="http://iamyaojie.wang/categories/iOS%E5%85%A5%E9%97%A8%E5%88%B0%E6%87%B5%E9%80%BC/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://iamyaojie.wang/2016/Unity-Camera-Full-Screen/</loc>
+    <lastmod>2017-06-28T08:01:47.000Z</lastmod>
+    <data>
+        <display>
+        <title>Unity打开摄像头占满全屏</title>
+        <pubTime>2016-09-12T16:00:00.000Z</pubTime>
+        
+        <tag>Unity</tag>
+         
+         
+           
+             
+              <breadCrumb title="AR/VR技术篇章" url="http://iamyaojie.wang/categories/AR-VR%E6%8A%80%E6%9C%AF%E7%AF%87%E7%AB%A0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://iamyaojie.wang/2016/DouBan-Crawler/</loc>
+    <lastmod>2017-06-28T08:01:47.000Z</lastmod>
+    <data>
+        <display>
+        <title>放养的小爬虫--豆瓣电影入门级爬虫(mongodb使用教程~)</title>
+        <pubTime>2016-03-23T16:00:00.000Z</pubTime>
+        
+        <tag>Python小爬虫</tag>
+         
+        <tag>爬虫</tag>
+         
+        <tag>Python</tag>
+         
+         
+           
+             
+              <breadCrumb title="人生苦短，我用Python" url="http://iamyaojie.wang/categories/%E4%BA%BA%E7%94%9F%E8%8B%A6%E7%9F%AD%EF%BC%8C%E6%88%91%E7%94%A8Python/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://iamyaojie.wang/2016/Unity-Vuforia-Camera/</loc>
+    <lastmod>2017-06-28T08:01:47.000Z</lastmod>
+    <data>
+        <display>
+        <title>Vuforia unity开发摄像头问题</title>
+        <pubTime>2016-07-05T16:00:00.000Z</pubTime>
+        
+        <tag>Unity</tag>
+         
+        <tag>Vuforia</tag>
+         
+        <tag>iOS</tag>
+         
+         
+           
+             
+              <breadCrumb title="AR/VR技术篇章" url="http://iamyaojie.wang/categories/AR-VR%E6%8A%80%E6%9C%AF%E7%AF%87%E7%AB%A0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://iamyaojie.wang/2016/VR-AR-not-code-summary/</loc>
+    <lastmod>2017-06-28T08:01:47.000Z</lastmod>
+    <data>
+        <display>
+        <title>VR/AR 非技术总结</title>
+        <pubTime>2016-09-27T16:00:00.000Z</pubTime>
+        
+        <tag>AR/VR</tag>
+         
+        <tag>见得多·想得多·胡思乱想~</tag>
+         
+         
+           
+             
+              <breadCrumb title="锤炼产品思维" url="http://iamyaojie.wang/categories/%E9%94%A4%E7%82%BC%E4%BA%A7%E5%93%81%E6%80%9D%E7%BB%B4/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://iamyaojie.wang/2017/faceu-snapchat-anlist/</loc>
+    <lastmod>2017-06-28T08:01:47.000Z</lastmod>
+    <data>
+        <display>
+        <title>Faceu产品分析</title>
+        <pubTime>2017-06-12T14:00:26.000Z</pubTime>
+        
+        <tag>AR/VR</tag>
+         
+        <tag>见得多·想得多·胡思乱想~</tag>
+         
+        <tag>移动端AR</tag>
+         
+        <tag>AR社交</tag>
+         
+         
+           
+             
+              <breadCrumb title="锤炼产品思维" url="http://iamyaojie.wang/categories/%E9%94%A4%E7%82%BC%E4%BA%A7%E5%93%81%E6%80%9D%E7%BB%B4/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://iamyaojie.wang/2016/iOS-Multithread/</loc>
+    <lastmod>2017-06-28T08:01:47.000Z</lastmod>
+    <data>
+        <display>
+        <title>iOS多线程技术方案</title>
+        <pubTime>2016-02-29T16:00:00.000Z</pubTime>
+        
+        <tag>iOS入门到懵逼</tag>
+         
+         
+           
+             
+              <breadCrumb title="iOS入门到懵逼" url="http://iamyaojie.wang/categories/iOS%E5%85%A5%E9%97%A8%E5%88%B0%E6%87%B5%E9%80%BC/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://iamyaojie.wang/2015/iOS-Sandbox/</loc>
+    <lastmod>2017-06-28T08:01:47.000Z</lastmod>
+    <data>
+        <display>
+        <title>iOS开发之应用储存（沙盒机制）</title>
+        <pubTime>2015-11-30T16:00:00.000Z</pubTime>
+        
+        <tag>iOS入门到懵逼</tag>
+         
+         
+           
+             
+              <breadCrumb title="iOS入门到懵逼" url="http://iamyaojie.wang/categories/iOS%E5%85%A5%E9%97%A8%E5%88%B0%E6%87%B5%E9%80%BC/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://iamyaojie.wang/2016/iOS-Unity-Engineering-integration/</loc>
+    <lastmod>2017-06-28T08:01:47.000Z</lastmod>
+    <data>
+        <display>
+        <title>unity3D-iOS工程整合爬过的坑~</title>
+        <pubTime>2016-05-30T16:00:00.000Z</pubTime>
+        
+        <tag>Unity</tag>
+         
+        <tag>iOS</tag>
+         
+         
+           
+             
+              <breadCrumb title="AR/VR技术篇章" url="http://iamyaojie.wang/categories/AR-VR%E6%8A%80%E6%9C%AF%E7%AF%87%E7%AB%A0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://iamyaojie.wang/2016/iOS-Unity-Mixed-Development/</loc>
+    <lastmod>2017-06-28T08:01:47.000Z</lastmod>
+    <data>
+        <display>
+        <title>Unity iOS混合开发界面切换思路</title>
+        <pubTime>2016-09-28T16:00:00.000Z</pubTime>
+        
+        <tag>Unity</tag>
+         
+        <tag>iOS</tag>
+         
+         
+           
+             
+              <breadCrumb title="iOS入门到懵逼" url="http://iamyaojie.wang/categories/iOS%E5%85%A5%E9%97%A8%E5%88%B0%E6%87%B5%E9%80%BC/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://iamyaojie.wang/2017/idea-mybatisGenerator-maven/</loc>
+    <lastmod>2017-06-28T08:01:47.000Z</lastmod>
+    <data>
+        <display>
+        <title>idea + mybatis generator + maven 插件使用</title>
+        <pubTime>2017-01-10T16:00:00.000Z</pubTime>
+        
+        <tag>Java</tag>
+         
+        <tag>JEE</tag>
+         
+        <tag>Mybatis</tag>
+         
+         
+           
+             
+              <breadCrumb title="漫漫抓娃(Java)路" url="http://iamyaojie.wang/categories/%E6%BC%AB%E6%BC%AB%E6%8A%93%E5%A8%83-Java-%E8%B7%AF/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+    
+    
+    
+  <url>
+    <loc>http://iamyaojie.wang/2017/AR-VR-Status-Analysis/</loc>
+    <lastmod>2017-06-28T08:01:46.000Z</lastmod>
+    <data>
+        <display>
+        <title>VR/AR市场现状分析与思考</title>
+        <pubTime>2017-05-10T07:59:45.000Z</pubTime>
+        
+        <tag>AR/VR</tag>
+         
+        <tag>见得多·想得多·胡思乱想~</tag>
+         
+        <tag>Hololens</tag>
+         
+         
+           
+             
+              <breadCrumb title="锤炼产品思维" url="http://iamyaojie.wang/categories/%E9%94%A4%E7%82%BC%E4%BA%A7%E5%93%81%E6%80%9D%E7%BB%B4/"/>
+          
+        </display>
+    </data>
+    </url>
+
+</urlset>

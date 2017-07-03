@@ -89,7 +89,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="AR/VR,Hololens,Unity," />
 
 
 
@@ -105,13 +105,22 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="iamYaoJie.Blog">
-<meta property="og:url" content="http://iamyaojie.wang/404.html">
+<meta name="description" content="系统要求 64位 Windows 10 除了家庭版的 都支持 ~ 64位CPU CPU至少是四核心以上~ 至少需要 8 GB 内存， 这个不够自己可以加~ GPU 最低支持DirectX 11.0 或者更高 最低WDDM 1.2   Hardware-assisted virtualization 一个基于主板的虚拟服务（这个就是MAC本上需要手动启动的了~）">
+<meta name="keywords" content="AR&#x2F;VR,Hololens,Unity">
+<meta property="og:type" content="article">
+<meta property="og:title" content="（一）Hololens Unity 开发环境搭建(Mac BOOTCAMP WIN10)">
+<meta property="og:url" content="http://iamyaojie.wang/2017/Hololens-one/index.html">
 <meta property="og:site_name" content="iamYaoJie.Blog">
-<meta property="og:updated_time" content="2017-06-28T08:01:46.000Z">
+<meta property="og:description" content="系统要求 64位 Windows 10 除了家庭版的 都支持 ~ 64位CPU CPU至少是四核心以上~ 至少需要 8 GB 内存， 这个不够自己可以加~ GPU 最低支持DirectX 11.0 或者更高 最低WDDM 1.2   Hardware-assisted virtualization 一个基于主板的虚拟服务（这个就是MAC本上需要手动启动的了~）">
+<meta property="og:image" content="http://ww4.sinaimg.cn/large/7305b707jw1f8o65bzrwij217c0smwkk.jpg">
+<meta property="og:image" content="http://wx2.sinaimg.cn/large/7305b707ly1fbx7qvtclvj20jb0jodj1.jpg">
+<meta property="og:image" content="http://wx4.sinaimg.cn/large/7305b707ly1fbzjo9k2roj20ps19mwja.jpg">
+<meta property="og:image" content="http://wx2.sinaimg.cn/large/7305b707ly1fbzjo2oz0tj21b90kqgrf.jpg">
+<meta property="og:updated_time" content="2017-06-28T08:01:47.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="iamYaoJie.Blog">
+<meta name="twitter:title" content="（一）Hololens Unity 开发环境搭建(Mac BOOTCAMP WIN10)">
+<meta name="twitter:description" content="系统要求 64位 Windows 10 除了家庭版的 都支持 ~ 64位CPU CPU至少是四核心以上~ 至少需要 8 GB 内存， 这个不够自己可以加~ GPU 最低支持DirectX 11.0 或者更高 最低WDDM 1.2   Hardware-assisted virtualization 一个基于主板的虚拟服务（这个就是MAC本上需要手动启动的了~）">
+<meta name="twitter:image" content="http://ww4.sinaimg.cn/large/7305b707jw1f8o65bzrwij217c0smwkk.jpg">
 
 
 
@@ -139,13 +148,13 @@
 
 
 
-  <link rel="canonical" href="http://iamyaojie.wang/404.html"/>
+  <link rel="canonical" href="http://iamyaojie.wang/2017/Hololens-one/"/>
 
 
 
 
 
-  <title> | iamYaoJie.Blog</title>
+  <title>（一）Hololens Unity 开发环境搭建(Mac BOOTCAMP WIN10) | iamYaoJie.Blog</title>
   
 
 
@@ -312,33 +321,230 @@
             
 
   <div id="posts" class="posts-expand">
-  <header class="post-header">
+    
 
-	<h1 class="post-title" itemprop="name headline"></h1>
+  
 
+  
+  
+  
 
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://iamyaojie.wang/2017/Hololens-one/">
 
-</header>
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YaoJie">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="iamYaoJie.Blog">
+    </span>
 
     
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">（一）Hololens Unity 开发环境搭建(Mac BOOTCAMP WIN10)</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-01-20T00:00:00+08:00">
+                2017-01-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/AR-VR技术篇章/" itemprop="url" rel="index">
+                    <span itemprop="name">AR/VR技术篇章</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/Hololens-one/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/Hololens-one/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
     
-      <!DOCTYPE HTML>
-<html>
-<head>
-  <meta http-equiv="content-type" content="text/html;charset=utf-8;">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <meta name="robots" content="all">
-  <meta name="robots" content="index,follow">
-  <link rel="stylesheet" type="text/css" href="https://qzone.qq.com/gy/404/style/404style.css">
-</head>
-<body>
-  <script type="text/plain" src="http://www.qq.com/404/search_children.js" charset="utf-8" homepageurl="/" homepagename="回到我的主页">
-  </script>
-  <script src="https://qzone.qq.com/gy/404/data.js" charset="utf-8"></script>
-  <script src="https://qzone.qq.com/gy/404/page.js" charset="utf-8"></script>
-</body>
-</html>
-    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="系统要求"><a href="#系统要求" class="headerlink" title="系统要求"></a>系统要求</h1><ul>
+<li>64位 Windows 10 除了家庭版的 都支持 ~</li>
+<li>64位CPU</li>
+<li>CPU至少是四核心以上~</li>
+<li>至少需要 8 GB 内存， 这个不够自己可以加~</li>
+<li>GPU<ol>
+<li>最低支持DirectX 11.0 或者更高</li>
+<li>最低WDDM 1.2</li>
+</ol>
+</li>
+<li>Hardware-assisted virtualization 一个基于主板的虚拟服务（这个就是MAC本上需要手动启动的了~）</li>
+</ul>
+<a id="more"></a>
+<p>  接着上面的说，这个在mac本上就没有BIOS主板系统，但是昂贵的Mac肯定也是有虚拟化服务的~只不过Mac本不是手动启动，而是每次启动完OSX系统自动启动~ 但是如果 第一次启动的是 bootcamp的Windows 系统 那么 这个 虚拟化是启动不了的。。。这时候有一个解决办法就是先启动OSX系统，再更具目标磁盘重启到bootcamp的Windows系统~ 参考下图~</p>
+<p><img src="http://ww4.sinaimg.cn/large/7305b707jw1f8o65bzrwij217c0smwkk.jpg" alt=""></p>
+<p>  通过这个启动盘重启的Windows虚拟化是 打开的状态~ 如下图</p>
+<p><img src="http://wx2.sinaimg.cn/large/7305b707ly1fbx7qvtclvj20jb0jodj1.jpg" alt=""></p>
+<p>虚拟化状态打开后就可以下载安装 HoloLens 的模拟器了 ~ <strong>而且在开发调试中 也一定要把虚拟化打开(切记注意~)</strong></p>
+<h1 id="软件安装"><a href="#软件安装" class="headerlink" title="软件安装 ~"></a>软件安装 ~</h1><p>这个按照下面安装下一步下一步就好~</p>
+<p><a href="https://developer.microsoft.com/en-us/windows/downloads" target="_blank" rel="external">Visual Studio 安装</a><br><a href="http://go.microsoft.com/fwlink/?LinkID=823018" target="_blank" rel="external">Hololens模拟器安装</a><br><a href="https://store.unity.com/download" target="_blank" rel="external">Unity 5.5 安装</a></p>
+<p>基本环境搭建完成~</p>
+<h1 id="HoloLens模拟器网络连接"><a href="#HoloLens模拟器网络连接" class="headerlink" title="HoloLens模拟器网络连接"></a>HoloLens模拟器网络连接</h1><p>在任务栏搜索框输入H，打开hyper-管理器，然后选择交换机管理器，选择外部网络，并选择自己的网卡。如果无效请顺便将windows phone emulator也改了</p>
+<p><img src="http://wx4.sinaimg.cn/large/7305b707ly1fbzjo9k2roj20ps19mwja.jpg" alt=""><br><img src="http://wx2.sinaimg.cn/large/7305b707ly1fbzjo2oz0tj21b90kqgrf.jpg" alt=""></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/wechat-reward-image.jpeg" alt="YaoJie WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/alipay-reward-image.jpeg" alt="YaoJie Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/AR-VR/" rel="tag"># AR/VR</a>
+          
+            <a href="/tags/Hololens/" rel="tag"># Hololens</a>
+          
+            <a href="/tags/Unity/" rel="tag"># Unity</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/Sitemesh3/" rel="next" title="Sitemesh 3 配置和使用">
+                <i class="fa fa-chevron-left"></i> Sitemesh 3 配置和使用
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/Hololens-two/" rel="prev" title="（二）Hololens Unity 开发入门 之 Hello HoloLens~">
+                （二）Hololens Unity 开发入门 之 Hello HoloLens~ <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
   </div>
 
 
@@ -377,8 +583,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.png"
@@ -460,6 +675,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#系统要求"><span class="nav-number">1.</span> <span class="nav-text">系统要求</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#软件安装"><span class="nav-number">2.</span> <span class="nav-text">软件安装 ~</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#HoloLens模拟器网络连接"><span class="nav-number">3.</span> <span class="nav-text">HoloLens模拟器网络连接</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -585,10 +816,10 @@
 
 
   
-    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
 <script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
 
-  
+
 
   
 
@@ -609,9 +840,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://iamyaojie.wang/404.html';
-          this.page.identifier = '404.html';
-          this.page.title = '';
+          this.page.url = 'http://iamyaojie.wang/2017/Hololens-one/';
+          this.page.identifier = '2017/Hololens-one/';
+          this.page.title = '（一）Hololens Unity 开发环境搭建(Mac BOOTCAMP WIN10)';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://http-iamyaojie-wang.disqus.com/embed.js';

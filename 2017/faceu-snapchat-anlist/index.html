@@ -1,0 +1,909 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="AR/VR,见得多·想得多·胡思乱想~,移动端AR,AR社交," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="前言从事AR/VR行业一年有余，如果说HoloLens代表AR的未来，那么移动端AR就是现在进行时 ~ 在移动端AR中一款以人脸识别技术虚拟与现实叠加以及对现实部分美化处理的强社交类App – SnapChat 在去年9月闯入了我的视线中。(Ps:当时我们项目也正在做AR社交的产品，SnapChat的产品功能，技术实现算得上是No.1，不过当时中国你懂得，有长城 ~需要VPN) 同时，在太平洋这边">
+<meta name="keywords" content="AR&#x2F;VR,见得多·想得多·胡思乱想~,移动端AR,AR社交">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Faceu产品分析">
+<meta property="og:url" content="http://iamyaojie.wang/2017/faceu-snapchat-anlist/index.html">
+<meta property="og:site_name" content="iamYaoJie.Blog">
+<meta property="og:description" content="前言从事AR/VR行业一年有余，如果说HoloLens代表AR的未来，那么移动端AR就是现在进行时 ~ 在移动端AR中一款以人脸识别技术虚拟与现实叠加以及对现实部分美化处理的强社交类App – SnapChat 在去年9月闯入了我的视线中。(Ps:当时我们项目也正在做AR社交的产品，SnapChat的产品功能，技术实现算得上是No.1，不过当时中国你懂得，有长城 ~需要VPN) 同时，在太平洋这边">
+<meta property="og:image" content="http://iamyaojie.wang/2017/faceu-snapchat-anlist/aso100.png">
+<meta property="og:image" content="http://iamyaojie.wang/2017/faceu-snapchat-anlist/Faceu.png">
+<meta property="og:image" content="http://iamyaojie.wang/2017/faceu-snapchat-anlist/FaceuFunc.png">
+<meta property="og:image" content="http://iamyaojie.wang/2017/faceu-snapchat-anlist/model.jpg">
+<meta property="og:updated_time" content="2017-06-28T08:01:47.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Faceu产品分析">
+<meta name="twitter:description" content="前言从事AR/VR行业一年有余，如果说HoloLens代表AR的未来，那么移动端AR就是现在进行时 ~ 在移动端AR中一款以人脸识别技术虚拟与现实叠加以及对现实部分美化处理的强社交类App – SnapChat 在去年9月闯入了我的视线中。(Ps:当时我们项目也正在做AR社交的产品，SnapChat的产品功能，技术实现算得上是No.1，不过当时中国你懂得，有长城 ~需要VPN) 同时，在太平洋这边">
+<meta name="twitter:image" content="http://iamyaojie.wang/2017/faceu-snapchat-anlist/aso100.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '9E75IEGIJ7',
+      apiKey: 'bc3270a26f73a83c84dd5a2520a3bbca',
+      indexName: 'index',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"键入您需要搜索的关键字~","hits_empty":"很抱歉，没有找到您需要搜索的内容: ${query}","hits_stats":"${hits} 条搜索记录 ~· 耗时 ${time} 毫秒 ~·"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://iamyaojie.wang/2017/faceu-snapchat-anlist/"/>
+
+
+
+
+
+  <title>Faceu产品分析 | iamYaoJie.Blog</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-98802769-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?8fb2996831997da6ea3871e646c11808";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">iamYaoJie.Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Keep Blogging</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://iamyaojie.wang/2017/faceu-snapchat-anlist/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YaoJie">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="iamYaoJie.Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Faceu产品分析</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-12T22:00:26+08:00">
+                2017-06-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/锤炼产品思维/" itemprop="url" rel="index">
+                    <span itemprop="name">锤炼产品思维</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/faceu-snapchat-anlist/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/faceu-snapchat-anlist/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>从事AR/VR行业一年有余，如果说HoloLens代表AR的未来，那么移动端AR就是现在进行时 ~ 在移动端AR中一款以人脸识别技术虚拟与现实叠加以及对现实部分美化处理的强社交类App – SnapChat 在去年9月闯入了我的视线中。(Ps:当时我们项目也正在做AR社交的产品，SnapChat的产品功能，技术实现算得上是No.1，不过当时中国你懂得，有长城 ~需要VPN) 同时，在太平洋这边中国的创业者(我们的小团队也算其中一员~)c2c(copy to china)，做中国版的SnapChat。以Faceu为代表，当然还有 now直播，blink等 ~ 本文主要以Faceu为产品分析对象。</p>
+<a id="more"></a>
+<h1 id="产品"><a href="#产品" class="headerlink" title="产品"></a>产品</h1><h2 id="产品概述"><a href="#产品概述" class="headerlink" title="产品概述"></a>产品概述</h2><p>Faceu的团队是和几年前的爆款APP脸萌的团队是同一个。脸萌是一款不用露脸，通过用户自己动手制作萌头像的小游戏类App，主要抓住用户“萌”的心理。而Faceu一款基于脸，在脸上美颜、加特效、“美化”部分的社交类APP，同时也可以做视频分享，图片分享。</p>
+<h2 id="版本概况"><a href="#版本概况" class="headerlink" title="版本概况"></a>版本概况</h2><p>这里概述Faceu几个比较重要的版本。15年9月1.0版本上线，随后在16年年初通过与明星、大V、网红合作，以“彩虹吐”独特有趣的小功能瞬间引爆攀升AppStore总榜榜首。16年10月，随着SnapChat在国外的火爆，Faceu发布2.0版本，新增1V1特效视频通话功能。17年2月推出陌生人视频社交功能“激萌传送门”，又让Faceu重回首榜的位置。17年3月，Faceu推出表情包模式，用户可以自己制作表情包。</p>
+<p><img src="/2017/faceu-snapchat-anlist/aso100.png" alt=""><br>(数据来源于ASO100)</p>
+<h2 id="产品描述"><a href="#产品描述" class="headerlink" title="产品描述"></a>产品描述</h2><p>这里将从产品的用户体验五要素出发分析Faceu的五个层面。</p>
+<h3 id="战略层"><a href="#战略层" class="headerlink" title="战略层"></a>战略层</h3><h4 id="目标用户"><a href="#目标用户" class="headerlink" title="目标用户"></a>目标用户</h4><p>Faceu的核心用户应为15-35岁的活跃在各社交平台上的年轻用户，其中喜欢自拍的女性用户为最主要群体。</p>
+<h4 id="核心需求"><a href="#核心需求" class="headerlink" title="核心需求"></a>核心需求</h4><ul>
+<li>高质量的社交内容制作 贴图、美颜、特效短视频等 ~</li>
+<li>有趣的社交方式 ~</li>
+</ul>
+<h4 id="产品定位与特色"><a href="#产品定位与特色" class="headerlink" title="产品定位与特色"></a>产品定位与特色</h4><p>通过美颜、特效后的图片、视频以及表情包的制作分享，融合社交元素，</p>
+<h3 id="范围层"><a href="#范围层" class="headerlink" title="范围层"></a>范围层</h3><p><img src="/2017/faceu-snapchat-anlist/Faceu.png" alt=""></p>
+<p>Faceu中的几个大功能是其独有的卖点。自拍美颜特效，满足了现代年轻人忙碌的生活工作中增添了乐趣，美颜特效后制作成的小视频、图片、大头贴分享功能加速了Faceu在用户之间的传播，阅后即焚更是成功的抄袭了SnapChat，激萌传送门大胆的满足了用户之间陌生人交友的心理。</p>
+<h3 id="结构层"><a href="#结构层" class="headerlink" title="结构层"></a>结构层</h3><p><img src="/2017/faceu-snapchat-anlist/FaceuFunc.png" alt=""></p>
+<h3 id="框架层"><a href="#框架层" class="headerlink" title="框架层"></a>框架层</h3><p>不再是传统的iOS Tabbar / Navgation 框架结构，完完全全Copy SnapChat，底部三大模块构成App。简洁 漂亮 美观 ~ 符合相机类APP 可用性的特征，目前Faceu加入了左右滑动切换模块的手势，相信之后会加入上下滑动的手势，Copy SnapChat ~</p>
+<p><img src="/2017/faceu-snapchat-anlist/model.jpg" alt=""></p>
+<h3 id="表现层"><a href="#表现层" class="headerlink" title="表现层"></a>表现层</h3><p>黑、白、青为主要色调，卡通带有萌萌的风格。</p>
+<h1 id="if-i-am-Faceu’s-PM"><a href="#if-i-am-Faceu’s-PM" class="headerlink" title="if i am Faceu’s PM"></a>if i am Faceu’s PM</h1><p>这里说说我观察到Faceu的一些可优化的点，以及如果我是Faceu的PM我会怎么做，当然，我不是Faceu的重度用户，有可能我说的全都是错的 ~ 😝</p>
+<h2 id="优化-产品粘性低"><a href="#优化-产品粘性低" class="headerlink" title="[优化]产品粘性低"></a>[优化]产品粘性低</h2><p>这是Faceu以及第一代产品脸萌共同的特点，对于一款类似Faceu这样的产品，从马斯洛需求层次理论来看，用户卖萌、视频分享社交的需求并不是用户的刚需，如果我是Faceu的PM，我会抓住用户的一点刚需，并且结合Faceu以往一贯的调性以及功能。比如类似“我的天”一样的产品，结合用户需求在去过的地方留下自己的足迹，再多年后回来怀恋的时空相册的产品，时空相册的概念很早以前就有了，不过这也不是根本的解决用户留存的需求，也许，有一种理论，用户留存本来就是伪命题 。 不过根据我的观察与推测，某一款产品真正的成功不在于他能做多大，做到多么挣钱。我认为，一款产品的成功在于最后他是否实现了最初设定的目标，我相信Faceu就是这样一款产品。</p>
+<h2 id="优化-盈利模式"><a href="#优化-盈利模式" class="headerlink" title="[优化]盈利模式"></a>[优化]盈利模式</h2><p>我目前并没有在Faceu里面看到广告和充值等功能，从最后的表象来看Faceu并没有确定其盈利的模式。从社交类的产品来看，如果加入盈利的模式会影响一部分用户体验。如果我是Faceu的PM，我会在自拍视频特效中的特效对其收费，类似微信部分表情包收费的模式，这也许是Faceu这款产品唯一不太影响用户体验的收费模式。同时也可以在启动页植入优质的广告。在中国甚至全球一款社交类产品盈利的渠道并不多，常见的广告、增值服务收费等。</p>
+<h2 id="想做的功能"><a href="#想做的功能" class="headerlink" title="想做的功能"></a>想做的功能</h2><p>由于Faceu本来就是一款基于脸，人脸识别后在脸上动手脚的APP，基于AR下人脸识别功能的APP。我会把AR的技术更加的用到极限。在去年Android推出了Tango，前不久的WWDC推出了ARKit，在这两个技术的加持下，我们可以重新定义人与人之间新的社交方式，Face to Face，既在AR领域的概念中人不到场，FaceToFace交流的概念，现在已有的视频聊天大多是能看到头，背景是对方的背景，也就是说视频聊天的时候完全看到的是对方的人和场景。如果我是Faceu的PM，融合Faceu之前已有的元素和调性，我会开发这样的一个功能，用户拿起手机和朋友开视频聊天，甚至是直播，看到的人是对方，而空间就是我所在的空间，这里有两个名词，一个是人，一个是空间。如果从技术的角度去思考，通过AR的方式空间没必要处理了，打开摄像头就是目前的空间。而人，在技术和产品两个角度需要做大量的处理。如果人是真实的人像成像在现实的空间中，目前根据已有的AR技术、HoloLens技术还办不到，去年我们项目中也有这样一个场景，最后技术验证失败，我们当时想了一个什么办法嘞？抠图！失败。而从技术的角度走不通，那么怎么只能从产品的角度去把人物成像，技术走不通，那么我们做虚拟的3D人像吧，我们可以通过摄像头识别人像，实时的构建3D的卡通人物，和真实的人物模仿度很高，这一点在过去一款仿脸萌的产品3D小偶中以及做过了。那么我们也可以使用同样的技术创造模仿度很高的3D卡通人偶，有了3D的卡通人偶，再通过ARKit和Tango等技术把3D的人偶传送到用户所在的空间里，这时候构建了人不到场FaceToFace的功能。当然这只是核心功能，同时还可以在此基础上加入次核心功能，比如手势识别，通过某个手势触发了一系列的功能，还比如用户面部表情实时捕捉反应到3D人偶上，更加的还原反映了用户在聊天时候的表情以及肢体形态。在开发此功能上，因为也是我们去年项目计划做的功能，评价一句，有时候技术的不可行度甚至是公司自身资源的不完整会导致一款产品在用户体验中部分完美的丢失，当然，这是产品与商业之间权衡的策略。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/wechat-reward-image.jpeg" alt="YaoJie WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/alipay-reward-image.jpeg" alt="YaoJie Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/AR-VR/" rel="tag"># AR/VR</a>
+          
+            <a href="/tags/见得多·想得多·胡思乱想/" rel="tag"># 见得多·想得多·胡思乱想~</a>
+          
+            <a href="/tags/移动端AR/" rel="tag"># 移动端AR</a>
+          
+            <a href="/tags/AR社交/" rel="tag"># AR社交</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/AR-VR-Status-Analysis/" rel="next" title="VR/AR市场现状分析与思考">
+                <i class="fa fa-chevron-left"></i> VR/AR市场现状分析与思考
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="YaoJie" />
+          <p class="site-author-name" itemprop="name">YaoJie</p>
+           
+              <p class="site-description motion-element" itemprop="description">放下,是一种修行  拿起,是一种历练</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/iamyaojie" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/1929754375" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#产品"><span class="nav-number">2.</span> <span class="nav-text">产品</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#产品概述"><span class="nav-number">2.1.</span> <span class="nav-text">产品概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#版本概况"><span class="nav-number">2.2.</span> <span class="nav-text">版本概况</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#产品描述"><span class="nav-number">2.3.</span> <span class="nav-text">产品描述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#战略层"><span class="nav-number">2.3.1.</span> <span class="nav-text">战略层</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#目标用户"><span class="nav-number">2.3.1.1.</span> <span class="nav-text">目标用户</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#核心需求"><span class="nav-number">2.3.1.2.</span> <span class="nav-text">核心需求</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#产品定位与特色"><span class="nav-number">2.3.1.3.</span> <span class="nav-text">产品定位与特色</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#范围层"><span class="nav-number">2.3.2.</span> <span class="nav-text">范围层</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#结构层"><span class="nav-number">2.3.3.</span> <span class="nav-text">结构层</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#框架层"><span class="nav-number">2.3.4.</span> <span class="nav-text">框架层</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#表现层"><span class="nav-number">2.3.5.</span> <span class="nav-text">表现层</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#if-i-am-Faceu’s-PM"><span class="nav-number">3.</span> <span class="nav-text">if i am Faceu’s PM</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#优化-产品粘性低"><span class="nav-number">3.1.</span> <span class="nav-text">[优化]产品粘性低</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#优化-盈利模式"><span class="nav-number">3.2.</span> <span class="nav-text">[优化]盈利模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#想做的功能"><span class="nav-number">3.3.</span> <span class="nav-text">想做的功能</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">YaoJie</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://http-iamyaojie-wang.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://iamyaojie.wang/2017/faceu-snapchat-anlist/';
+          this.page.identifier = '2017/faceu-snapchat-anlist/';
+          this.page.title = 'Faceu产品分析';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://http-iamyaojie-wang.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

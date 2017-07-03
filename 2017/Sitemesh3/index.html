@@ -1,0 +1,1062 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Java,JEE,Mybatis," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="Sitemesh简介 Sitemesh是一个页面装饰器,可以快速的创建有统一外观Web应用 – 导航 加 布局 的统一方案~ Sitemesh可以拦截任何动态或则静态的HTML页面的请求,Sitemesh处理后把一个或多个装饰器组装成最后结果返回 Sitemesh可以把一个大页面分成很多小的页面来布局">
+<meta name="keywords" content="Java,JEE,Mybatis">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Sitemesh 3 配置和使用">
+<meta property="og:url" content="http://iamyaojie.wang/2017/Sitemesh3/index.html">
+<meta property="og:site_name" content="iamYaoJie.Blog">
+<meta property="og:description" content="Sitemesh简介 Sitemesh是一个页面装饰器,可以快速的创建有统一外观Web应用 – 导航 加 布局 的统一方案~ Sitemesh可以拦截任何动态或则静态的HTML页面的请求,Sitemesh处理后把一个或多个装饰器组装成最后结果返回 Sitemesh可以把一个大页面分成很多小的页面来布局">
+<meta property="og:image" content="http://wx2.sinaimg.cn/large/7305b707ly1fejrizon88g20g90mxt9g.gif">
+<meta property="og:image" content="http://wx4.sinaimg.cn/large/7305b707ly1fel51fxfkkj20yy0lojx2.jpg">
+<meta property="og:updated_time" content="2017-06-28T08:01:47.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Sitemesh 3 配置和使用">
+<meta name="twitter:description" content="Sitemesh简介 Sitemesh是一个页面装饰器,可以快速的创建有统一外观Web应用 – 导航 加 布局 的统一方案~ Sitemesh可以拦截任何动态或则静态的HTML页面的请求,Sitemesh处理后把一个或多个装饰器组装成最后结果返回 Sitemesh可以把一个大页面分成很多小的页面来布局">
+<meta name="twitter:image" content="http://wx2.sinaimg.cn/large/7305b707ly1fejrizon88g20g90mxt9g.gif">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '9E75IEGIJ7',
+      apiKey: 'bc3270a26f73a83c84dd5a2520a3bbca',
+      indexName: 'index',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"键入您需要搜索的关键字~","hits_empty":"很抱歉，没有找到您需要搜索的内容: ${query}","hits_stats":"${hits} 条搜索记录 ~· 耗时 ${time} 毫秒 ~·"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://iamyaojie.wang/2017/Sitemesh3/"/>
+
+
+
+
+
+  <title>Sitemesh 3 配置和使用 | iamYaoJie.Blog</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-98802769-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?8fb2996831997da6ea3871e646c11808";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">iamYaoJie.Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Keep Blogging</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://iamyaojie.wang/2017/Sitemesh3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YaoJie">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="iamYaoJie.Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Sitemesh 3 配置和使用</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-01-13T00:00:00+08:00">
+                2017-01-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/漫漫抓娃-Java-路/" itemprop="url" rel="index">
+                    <span itemprop="name">漫漫抓娃(Java)路</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/Sitemesh3/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/Sitemesh3/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Sitemesh简介"><a href="#Sitemesh简介" class="headerlink" title="Sitemesh简介"></a>Sitemesh简介</h1><ul>
+<li>Sitemesh是一个页面装饰器,可以快速的创建有统一外观Web应用 – 导航 加 布局 的统一方案~</li>
+<li>Sitemesh可以拦截任何动态或则静态的HTML页面的请求,Sitemesh处理后把一个或多个装饰器组装成最后结果返回</li>
+<li>Sitemesh可以把一个大页面分成很多小的页面来布局</li>
+</ul>
+<p><img src="http://wx2.sinaimg.cn/large/7305b707ly1fejrizon88g20g90mxt9g.gif" alt=""></p>
+<a id="more"></a>
+<p>Sitemesh官网简介图片简单明了,一目了然 .. welcome Page和search Page包含两部分 Meta-Data 和 Body-Content , 通过装饰器后被装饰返回一个最终的页面 final pages.</p>
+<p>官网 : <a href="http://wiki.sitemesh.org/wiki/display/sitemesh3/Home" target="_blank" rel="external">http://wiki.sitemesh.org/wiki/display/sitemesh3/Home</a></p>
+<h1 id="Maven中使用Sitemesh-3"><a href="#Maven中使用Sitemesh-3" class="headerlink" title="Maven中使用Sitemesh 3"></a>Maven中使用Sitemesh 3</h1><p>在Maven工程的Pom中添加依赖 ~</p>
+<pre><code>&lt;dependency&gt;
+    &lt;groupId&gt;org.sitemesh&lt;/groupId&gt;
+    &lt;artifactId&gt;sitemesh&lt;/artifactId&gt;
+    &lt;version&gt;3.0.0&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre><h1 id="在web-xml中配置Sitemesh-3-拦截器"><a href="#在web-xml中配置Sitemesh-3-拦截器" class="headerlink" title="在web.xml中配置Sitemesh 3 拦截器"></a>在web.xml中配置Sitemesh 3 拦截器</h1><pre><code>&lt;web-app&gt;
+
+  ...
+
+  &lt;filter&gt;
+    &lt;filter-name&gt;sitemesh&lt;/filter-name&gt;
+    &lt;filter-class&gt;org.sitemesh.config.ConfigurableSiteMeshFilter&lt;/filter-class&gt;
+  &lt;/filter&gt;
+  &lt;filter-mapping&gt;
+    &lt;filter-name&gt;sitemesh&lt;/filter-name&gt;
+    &lt;url-pattern&gt;/*&lt;/url-pattern&gt;
+  &lt;/filter-mapping&gt;
+
+&lt;/web-app&gt;
+</code></pre><h1 id="sitemesh-3-的配置"><a href="#sitemesh-3-的配置" class="headerlink" title="sitemesh 3 的配置"></a>sitemesh 3 的配置</h1><p>sitemesh 3 有两种配置方式 XML和Java</p>
+<h2 id="XML配置详解"><a href="#XML配置详解" class="headerlink" title="XML配置详解"></a>XML配置详解</h2><p>添加一个 ~  /WEB-INF/sitemesh3.xml</p>
+<pre><code>&lt;sitemesh&gt;
+
+    &lt;!-- 默认的装饰路径。如果没有配置其他的路径将启用默认路径,这个可以适用于所有路径 --&gt;
+    &lt;!-- Map default decorator. This shall be applied to all paths if no other paths match. --&gt;
+    &lt;mapping decorator=&quot;/default-decorator.html&quot;/&gt;
+
+    &lt;!-- 配置装饰器的路径 --&gt;
+    &lt;!-- Map decorators to path patterns. --&gt;
+    &lt;mapping path=&quot;/admin/*&quot; decorator=&quot;/another-decorator.html&quot;/&gt;
+    &lt;mapping path=&quot;/*.special.jsp&quot; decorator=&quot;/special-decorator.html&quot;/&gt;
+
+    &lt;!-- 对同一路径配置多个装饰器 --&gt;
+    &lt;!-- Alternative convention. This is more verbose but allows multiple decorators
+         to be applied to a single path. --&gt;
+    &lt;mapping&gt;
+        &lt;path&gt;/articles/*&lt;/path&gt;
+        &lt;decorator&gt;/decorators/article.html&lt;/decorator&gt;
+        &lt;decorator&gt;/decorators/two-page-layout.html&lt;/decorator&gt;
+        &lt;decorator&gt;/decorators/common.html&lt;/decorator&gt;
+    &lt;/mapping&gt;
+
+    &lt;!-- 配置 不被装饰 的路径 --&gt;
+    &lt;!-- Exclude path from decoration. --&gt;
+    &lt;mapping path=&quot;/javadoc/*&quot; exclue=&quot;true&quot;/&gt;
+    &lt;mapping path=&quot;/brochures/*&quot; exclue=&quot;true&quot;/&gt;
+
+    &lt;!-- 默认情况下，
+         sitemesh 只对 HTTP 响应头中 Content-Type 为 text/html 的类型进行拦截和装饰，
+         我们也可以添加更多的 mime 类型 --&gt;
+    &lt;mime-type&gt;text/html&lt;/mime-type&gt;
+    &lt;mime-type&gt;application/vnd.wap.xhtml+xml&lt;/mime-type&gt;
+    &lt;mime-type&gt;application/xhtml+xml&lt;/mime-type&gt;
+
+    &lt;!--
+    Sitemesh 3 默认只提供了 body，title，head 种 tag 类型
+    我们可以添加自定义的tag规则 --&gt;
+    &lt;content-processor&gt;
+        &lt;tag-rule-bundle class=&quot;com.something.CssCompressingBundle&quot; /&gt;
+        &lt;tag-rule-bundle class=&quot;com.something.LinkRewritingBundle&quot;/&gt;
+    &lt;/content-processor&gt;
+
+&lt;/sitemesh&gt;
+</code></pre><h2 id="Java的配置方式"><a href="#Java的配置方式" class="headerlink" title="Java的配置方式"></a>Java的配置方式</h2><pre><code>package com.erma.common;
+
+import org.sitemesh.builder.SiteMeshFilterBuilder;
+import org.sitemesh.config.ConfigurableSiteMeshFilter;
+
+/**
+ * Created by Erma on 2017/4/13.
+ */
+public class MySiteMeshFilter extends ConfigurableSiteMeshFilter {
+
+    @Override
+    protected void applyCustomConfiguration(SiteMeshFilterBuilder builder) {
+        // 默认的装饰器
+        // Map default decorator. This shall be applied to all paths if no other paths match.
+        builder.addDecoratorPath(&quot;/*&quot;, &quot;/default-decorator.html&quot;)
+                // 配合 自己 的 路径对应的装饰器
+                // Map decorators to path patterns.
+                .addDecoratorPath(&quot;/admin/*&quot;, &quot;/another-decorator.html&quot;)
+                .addDecoratorPath(&quot;/*.special.jsp&quot;, &quot;/special-decorator.html&quot;)
+                //一个路径多个装饰器
+                // Map multiple decorators to the a single path.
+                .addDecoratorPaths(&quot;/articles/*&quot;, &quot;/decorators/article.html&quot;,
+                        &quot;/decoratos/two-page-layout.html&quot;,
+                        &quot;/decorators/common.html&quot;)
+                // 配置不被装饰的路径
+                // Exclude path from decoration.
+                .addExcludedPath(&quot;/javadoc/*&quot;)
+                .addExcludedPath(&quot;/brochures/*&quot;);
+
+        // 配置自己的MineType
+        builder.setMimeTypes(&quot;text/html&quot;, &quot;application/xhtml+xml&quot;, &quot;application/vnd.wap.xhtml+xml&quot;);
+        // 配置自己的tag
+        builder.addTagRuleBundles(new CssCompressingBundle(), new LinkRewritingBundle());
+    }
+}
+</code></pre><h1 id="Sitemesh-3-的使用"><a href="#Sitemesh-3-的使用" class="headerlink" title="Sitemesh 3 的使用"></a>Sitemesh 3 的使用</h1><p>下面是使用 intellij + Maven + Sitemsehxml的配置方式的一个使用</p>
+<h2 id="配置Maven的pom-和web-xml按照上面的方式"><a href="#配置Maven的pom-和web-xml按照上面的方式" class="headerlink" title="配置Maven的pom 和web.xml按照上面的方式"></a>配置Maven的pom 和web.xml按照上面的方式</h2><h2 id="配置sitemseh-xml"><a href="#配置sitemseh-xml" class="headerlink" title="配置sitemseh.xml"></a>配置sitemseh.xml</h2><pre><code>&lt;sitemesh&gt;
+
+    &lt;!-- 拦截任何路径配置装饰器 --&gt;
+    &lt;mapping path=&quot;/*&quot; decorator=&quot;/WEB-INF/jsp/layouts/decorator.jsp&quot;/&gt;
+
+    &lt;!-- 这里配置自定义的tag --&gt;
+    &lt;content-processor&gt;
+        &lt;tag-rule-bundle class=&quot;com.erma.common.MySiteMeshFilter&quot;/&gt;
+    &lt;/content-processor&gt;
+
+&lt;/sitemesh&gt;
+</code></pre><h2 id="配置自定义的tag"><a href="#配置自定义的tag" class="headerlink" title="配置自定义的tag"></a>配置自定义的tag</h2><pre><code>package com.erma.common;
+
+import org.sitemesh.SiteMeshContext;
+import org.sitemesh.content.ContentProperty;
+import org.sitemesh.content.tagrules.TagRuleBundle;
+import org.sitemesh.content.tagrules.html.ExportTagToContentRule;
+import org.sitemesh.tagprocessor.State;
+
+/**
+ * Created by Erma on 2017/4/13.
+ */
+public class MySiteMeshFilter implements TagRuleBundle {
+
+
+    public void install(State state, ContentProperty contentProperty, SiteMeshContext siteMeshContext) {
+        state.addRule(&quot;myTag&quot;, new ExportTagToContentRule(siteMeshContext,contentProperty.getChild(&quot;myTag&quot;),false));
+    }
+
+    public void cleanUp(State state, ContentProperty contentProperty, SiteMeshContext siteMeshContext) {
+
+    }
+}
+</code></pre><h2 id="配置模板"><a href="#配置模板" class="headerlink" title="配置模板"></a>配置模板</h2><pre><code>&lt;%@ page contentType=&quot;text/html;charset=UTF-8&quot; language=&quot;java&quot; %&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;
+        &lt;sitemesh:write property=&apos;title&apos;/&gt;
+    &lt;/title&gt;
+    &lt;sitemesh:write property=&apos;head&apos;/&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+我是装饰器 : title的内容在这里 ~ &lt;sitemesh:write property=&apos;title&apos;/&gt;&lt;br/&gt;
+
+我是装饰器 : body的内容在这里 ~ &lt;sitemesh:write property=&apos;body&apos;/&gt;&lt;br/&gt;
+
+我是装饰器 : myTag的内容在这里 ~ &lt;sitemesh:write property=&apos;myTag&apos;/&gt;&lt;br/&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><h2 id="home-jsp"><a href="#home-jsp" class="headerlink" title="home.jsp"></a>home.jsp</h2><pre><code>&lt;%@ page contentType=&quot;text/html;charset=UTF-8&quot; language=&quot;java&quot; %&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;我是标题~&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;myTag&gt;
+    我是自定义的tag
+&lt;/myTag&gt;
+
+嗨喽嗨喽 ~
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><h2 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h2><p><img src="http://wx4.sinaimg.cn/large/7305b707ly1fel51fxfkkj20yy0lojx2.jpg" alt=""></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/wechat-reward-image.jpeg" alt="YaoJie WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/alipay-reward-image.jpeg" alt="YaoJie Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Java/" rel="tag"># Java</a>
+          
+            <a href="/tags/JEE/" rel="tag"># JEE</a>
+          
+            <a href="/tags/Mybatis/" rel="tag"># Mybatis</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/idea-mybatisGenerator-maven/" rel="next" title="idea + mybatis generator + maven 插件使用">
+                <i class="fa fa-chevron-left"></i> idea + mybatis generator + maven 插件使用
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/Hololens-one/" rel="prev" title="（一）Hololens Unity 开发环境搭建(Mac BOOTCAMP WIN10)">
+                （一）Hololens Unity 开发环境搭建(Mac BOOTCAMP WIN10) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="YaoJie" />
+          <p class="site-author-name" itemprop="name">YaoJie</p>
+           
+              <p class="site-description motion-element" itemprop="description">放下,是一种修行  拿起,是一种历练</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/iamyaojie" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/1929754375" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Sitemesh简介"><span class="nav-number">1.</span> <span class="nav-text">Sitemesh简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Maven中使用Sitemesh-3"><span class="nav-number">2.</span> <span class="nav-text">Maven中使用Sitemesh 3</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#在web-xml中配置Sitemesh-3-拦截器"><span class="nav-number">3.</span> <span class="nav-text">在web.xml中配置Sitemesh 3 拦截器</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#sitemesh-3-的配置"><span class="nav-number">4.</span> <span class="nav-text">sitemesh 3 的配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#XML配置详解"><span class="nav-number">4.1.</span> <span class="nav-text">XML配置详解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java的配置方式"><span class="nav-number">4.2.</span> <span class="nav-text">Java的配置方式</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Sitemesh-3-的使用"><span class="nav-number">5.</span> <span class="nav-text">Sitemesh 3 的使用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#配置Maven的pom-和web-xml按照上面的方式"><span class="nav-number">5.1.</span> <span class="nav-text">配置Maven的pom 和web.xml按照上面的方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置sitemseh-xml"><span class="nav-number">5.2.</span> <span class="nav-text">配置sitemseh.xml</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置自定义的tag"><span class="nav-number">5.3.</span> <span class="nav-text">配置自定义的tag</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置模板"><span class="nav-number">5.4.</span> <span class="nav-text">配置模板</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#home-jsp"><span class="nav-number">5.5.</span> <span class="nav-text">home.jsp</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#效果"><span class="nav-number">5.6.</span> <span class="nav-text">效果</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">YaoJie</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://http-iamyaojie-wang.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://iamyaojie.wang/2017/Sitemesh3/';
+          this.page.identifier = '2017/Sitemesh3/';
+          this.page.title = 'Sitemesh 3 配置和使用';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://http-iamyaojie-wang.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

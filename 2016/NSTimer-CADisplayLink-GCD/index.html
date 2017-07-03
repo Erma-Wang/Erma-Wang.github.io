@@ -1,0 +1,928 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="iOS入门到懵逼," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="昨天遇到一个问题，把NSTimer设置为0.001秒无效，而且设置为0.001秒最终也不是0.1秒执行一次，隐约记得NSTimer的精度是0.1秒，翻了翻笔记，果然精度是1毫秒，小小的复习了下，下面发表一些个人看法吧。。。非教材，纯属个人看法，说的不好，请指出。。">
+<meta name="keywords" content="iOS入门到懵逼">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NSTimer CADisplayLink GCD">
+<meta property="og:url" content="http://iamyaojie.wang/2016/NSTimer-CADisplayLink-GCD/index.html">
+<meta property="og:site_name" content="iamYaoJie.Blog">
+<meta property="og:description" content="昨天遇到一个问题，把NSTimer设置为0.001秒无效，而且设置为0.001秒最终也不是0.1秒执行一次，隐约记得NSTimer的精度是0.1秒，翻了翻笔记，果然精度是1毫秒，小小的复习了下，下面发表一些个人看法吧。。。非教材，纯属个人看法，说的不好，请指出。。">
+<meta property="og:updated_time" content="2017-06-28T08:01:47.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="NSTimer CADisplayLink GCD">
+<meta name="twitter:description" content="昨天遇到一个问题，把NSTimer设置为0.001秒无效，而且设置为0.001秒最终也不是0.1秒执行一次，隐约记得NSTimer的精度是0.1秒，翻了翻笔记，果然精度是1毫秒，小小的复习了下，下面发表一些个人看法吧。。。非教材，纯属个人看法，说的不好，请指出。。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '9E75IEGIJ7',
+      apiKey: 'bc3270a26f73a83c84dd5a2520a3bbca',
+      indexName: 'index',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"键入您需要搜索的关键字~","hits_empty":"很抱歉，没有找到您需要搜索的内容: ${query}","hits_stats":"${hits} 条搜索记录 ~· 耗时 ${time} 毫秒 ~·"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://iamyaojie.wang/2016/NSTimer-CADisplayLink-GCD/"/>
+
+
+
+
+
+  <title>NSTimer CADisplayLink GCD | iamYaoJie.Blog</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-98802769-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?8fb2996831997da6ea3871e646c11808";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">iamYaoJie.Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Keep Blogging</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://iamyaojie.wang/2016/NSTimer-CADisplayLink-GCD/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YaoJie">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="iamYaoJie.Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">NSTimer CADisplayLink GCD</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-01-24T00:00:00+08:00">
+                2016-01-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS入门到懵逼/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS入门到懵逼</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/NSTimer-CADisplayLink-GCD/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2016/NSTimer-CADisplayLink-GCD/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>昨天遇到一个问题，把NSTimer设置为0.001秒无效，而且设置为0.001秒最终也不是0.1秒执行一次，隐约记得NSTimer的精度是0.1秒，翻了翻笔记，果然精度是1毫秒，小小的复习了下，下面发表一些个人看法吧。。。非教材，纯属个人看法，说的不好，请指出。。</p>
+</blockquote>
+<a id="more"></a>
+<h1 id="NSTimer"><a href="#NSTimer" class="headerlink" title="NSTimer"></a>NSTimer</h1><h2 id="个人看法"><a href="#个人看法" class="headerlink" title="个人看法"></a>个人看法</h2><ul>
+<li>NSTimer是存在延迟的，因为NSTimer是需要加入RunLoop，在RunLoop中执行任务，如果RunLoop正在执行一个连续性的任务，在执行一个任务的时候会计算这执行下一个任务的延迟，一个正在执行的timer，在停止的时候会把本周起的任务执行完，再开启下一个已经计算好的延迟周期的任务，所以停止不一定停止，需要把计算好的任务执行完毕才能停止，个人看法。。。</li>
+</ul>
+<h2 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h2><h3 id="创建方法"><a href="#创建方法" class="headerlink" title="创建方法"></a>创建方法</h3><pre><code>NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(action:) userInfo:nil repeats:NO];
+</code></pre><h3 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h3><pre><code>TimerInterval : 执行之前等待的时间。比如设置成1.0，就代表1秒后执行方法
+target : 需要执行方法的对象。
+selector : 需要执行的方法
+repeats : 是否需要循环
+</code></pre><p>使用上面的方式创建，timer会自动加入MainRunloop的NSDefaultRunLoopMode中。下面的方式创建定时器，就需要手动加入Runloop了<br>    NSTimer *timer = [NSTimer timerWithTimeInterval:5 target:self selector:@selector(timerAction) userInfo:nil repeats:YES];<br>    [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];</p>
+<h3 id="timer停止"><a href="#timer停止" class="headerlink" title="timer停止"></a>timer停止</h3><pre><code>[timer invalidate];
+</code></pre><h1 id="CADisplayLink"><a href="#CADisplayLink" class="headerlink" title="CADisplayLink"></a>CADisplayLink</h1><h2 id="一些个人看法"><a href="#一些个人看法" class="headerlink" title="一些个人看法"></a>一些个人看法</h2><ul>
+<li>CADisplayLink刷新频率非常强大，可以和屏幕的刷新频率同步，这个屌！CADisplayLink会以特定模式注册到runloop后，每当屏幕显示内容刷新结束的时候，runloop就会向CADisplayLink指定的target发送一次指定的selector消息， CADisplayLink类对应的selector就会被调用一次。通常情况下，iOS设备屏幕的刷新率为60次/秒。</li>
+<li>还是有延迟，iOS设备的屏幕刷新频率一般情况下是固定的，CADisplayLink在正常情况下会在每次刷新结束都被调用，精确度相当的高。但如果调用的方法比较耗时，超过了屏幕刷新周期，就会导致跳过若干次回调调用机会。</li>
+</ul>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><h3 id="创建方法-1"><a href="#创建方法-1" class="headerlink" title="创建方法"></a>创建方法</h3><pre><code>displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(handleDisplayLink:)];
+[displayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
+</code></pre><h3 id="停止方法"><a href="#停止方法" class="headerlink" title="停止方法"></a>停止方法</h3><pre><code>[displayLink invalidate];
+
+displayLink = nil;
+</code></pre><h3 id="属性-1"><a href="#属性-1" class="headerlink" title="属性"></a>属性</h3><pre><code>frameInterval
+NSInteger类型的值，用来设置间隔多少帧调用一次selector方法，默认值是1，即每帧都调用一次。
+
+duration
+readOnly的CFTimeInterval值，表示两次屏幕刷新之间的时间间隔。需要注意的是，该属性在target的selector被首次调用以后才会被赋值。selector的调用间隔时间计算方式是：调用间隔时间 = duration × frameInterval。
+</code></pre><h1 id="GCD"><a href="#GCD" class="headerlink" title="GCD"></a>GCD</h1><h2 id="一次性执行"><a href="#一次性执行" class="headerlink" title="一次性执行"></a>一次性执行</h2><pre><code>double delayInSeconds = 2.0;
+
+dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+
+dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+</code></pre><h2 id="重复执行"><a href="#重复执行" class="headerlink" title="重复执行"></a>重复执行</h2><pre><code>NSTimeInterval period = 1.0; //设置时间间隔
+
+dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+
+dispatch_source_t _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);
+
+dispatch_source_set_timer(_timer, dispatch_walltime(NULL, 0), period * NSEC_PER_SEC, 0); //每秒执行
+
+dispatch_source_set_event_handler(_timer, ^{
+
+//在这里执行事件
+
+});
+
+dispatch_resume(_timer);
+</code></pre>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/wechat-reward-image.jpeg" alt="YaoJie WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/alipay-reward-image.jpeg" alt="YaoJie Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS入门到懵逼/" rel="tag"># iOS入门到懵逼</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/iOS-Sandbox/" rel="next" title="iOS开发之应用储存（沙盒机制）">
+                <i class="fa fa-chevron-left"></i> iOS开发之应用储存（沙盒机制）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/iOS-Multithread/" rel="prev" title="iOS多线程技术方案">
+                iOS多线程技术方案 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="YaoJie" />
+          <p class="site-author-name" itemprop="name">YaoJie</p>
+           
+              <p class="site-description motion-element" itemprop="description">放下,是一种修行  拿起,是一种历练</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/iamyaojie" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/1929754375" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#NSTimer"><span class="nav-number">1.</span> <span class="nav-text">NSTimer</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#个人看法"><span class="nav-number">1.1.</span> <span class="nav-text">个人看法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用法"><span class="nav-number">1.2.</span> <span class="nav-text">用法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建方法"><span class="nav-number">1.2.1.</span> <span class="nav-text">创建方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#属性"><span class="nav-number">1.2.2.</span> <span class="nav-text">属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#timer停止"><span class="nav-number">1.2.3.</span> <span class="nav-text">timer停止</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CADisplayLink"><span class="nav-number">2.</span> <span class="nav-text">CADisplayLink</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一些个人看法"><span class="nav-number">2.1.</span> <span class="nav-text">一些个人看法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用"><span class="nav-number">2.2.</span> <span class="nav-text">使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建方法-1"><span class="nav-number">2.2.1.</span> <span class="nav-text">创建方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#停止方法"><span class="nav-number">2.2.2.</span> <span class="nav-text">停止方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#属性-1"><span class="nav-number">2.2.3.</span> <span class="nav-text">属性</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#GCD"><span class="nav-number">3.</span> <span class="nav-text">GCD</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一次性执行"><span class="nav-number">3.1.</span> <span class="nav-text">一次性执行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重复执行"><span class="nav-number">3.2.</span> <span class="nav-text">重复执行</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">YaoJie</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://http-iamyaojie-wang.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://iamyaojie.wang/2016/NSTimer-CADisplayLink-GCD/';
+          this.page.identifier = '2016/NSTimer-CADisplayLink-GCD/';
+          this.page.title = 'NSTimer CADisplayLink GCD';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://http-iamyaojie-wang.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

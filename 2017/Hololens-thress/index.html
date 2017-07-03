@@ -1,0 +1,1102 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="AR/VR,Hololens,Unity," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="学习源于官方文档 Voice input in Unity  笔记一部分是直接翻译官方文档，部分各人理解不一致的和一些比较浅显的保留英文原文  HoloLens 有三大输入系统，凝视点、手势和声音 ~ 本文主要讲解 语音输入 ~ (测试不支持中文语音输入~)">
+<meta name="keywords" content="AR&#x2F;VR,Hololens,Unity">
+<meta property="og:type" content="article">
+<meta property="og:title" content="（三）Hololens Unity 开发之 语音识别">
+<meta property="og:url" content="http://iamyaojie.wang/2017/Hololens-thress/index.html">
+<meta property="og:site_name" content="iamYaoJie.Blog">
+<meta property="og:description" content="学习源于官方文档 Voice input in Unity  笔记一部分是直接翻译官方文档，部分各人理解不一致的和一些比较浅显的保留英文原文  HoloLens 有三大输入系统，凝视点、手势和声音 ~ 本文主要讲解 语音输入 ~ (测试不支持中文语音输入~)">
+<meta property="og:image" content="http://wx2.sinaimg.cn/large/7305b707ly1fbz9xgnt1fj20yh0rpwip.jpg">
+<meta property="og:image" content="http://wx3.sinaimg.cn/large/7305b707ly1fbziazk2scj21kw18tq9x.jpg">
+<meta property="og:updated_time" content="2017-06-28T08:01:47.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="（三）Hololens Unity 开发之 语音识别">
+<meta name="twitter:description" content="学习源于官方文档 Voice input in Unity  笔记一部分是直接翻译官方文档，部分各人理解不一致的和一些比较浅显的保留英文原文  HoloLens 有三大输入系统，凝视点、手势和声音 ~ 本文主要讲解 语音输入 ~ (测试不支持中文语音输入~)">
+<meta name="twitter:image" content="http://wx2.sinaimg.cn/large/7305b707ly1fbz9xgnt1fj20yh0rpwip.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '9E75IEGIJ7',
+      apiKey: 'bc3270a26f73a83c84dd5a2520a3bbca',
+      indexName: 'index',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"键入您需要搜索的关键字~","hits_empty":"很抱歉，没有找到您需要搜索的内容: ${query}","hits_stats":"${hits} 条搜索记录 ~· 耗时 ${time} 毫秒 ~·"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://iamyaojie.wang/2017/Hololens-thress/"/>
+
+
+
+
+
+  <title>（三）Hololens Unity 开发之 语音识别 | iamYaoJie.Blog</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-98802769-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?8fb2996831997da6ea3871e646c11808";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">iamYaoJie.Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Keep Blogging</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://iamyaojie.wang/2017/Hololens-thress/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YaoJie">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="iamYaoJie.Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">（三）Hololens Unity 开发之 语音识别</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-01-25T00:00:00+08:00">
+                2017-01-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/AR-VR技术篇章/" itemprop="url" rel="index">
+                    <span itemprop="name">AR/VR技术篇章</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/Hololens-thress/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/Hololens-thress/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><strong>学习源于官方文档 <a href="https://developer.microsoft.com/en-us/windows/holographic/voice_input_in_unity" target="_blank" rel="external">Voice input in Unity</a> </strong></p>
+<p><strong>笔记一部分是直接翻译官方文档，部分各人理解不一致的和一些比较浅显的保留英文原文</strong></p>
+<blockquote>
+<p>HoloLens 有三大输入系统，凝视点、手势和声音 ~ 本文主要讲解 语音输入 ~ (测试不支持中文语音输入~)</p>
+</blockquote>
+<a id="more"></a>
+<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>HoloToolKit Unity 包提供了三种 语音输入的方式 ：</p>
+<ul>
+<li>Phrase Recognition 短语识别<pre><code>* KeywordRecognizer   单一关键词识别
+* GrammarRecognizer   语法识别
+</code></pre></li>
+</ul>
+<ul>
+<li>Dictation Recognition 听写识别<pre><code>* DictationRecognizer 将声音识别转化为文字
+</code></pre></li>
+</ul>
+<p>Note: KeywordRecognizer 和 GrammarRecognizer 是主动活跃识别的方式~ 也就是说调用开始识别的方法，那么久处于活跃状态开始识别，而DictationRecognizer只要注册了就就在默默的监听语音输入，一旦监听到关键词~那么久触发回调~</p>
+<h1 id="Unity开发打开Microphone权限"><a href="#Unity开发打开Microphone权限" class="headerlink" title="Unity开发打开Microphone权限"></a>Unity开发打开Microphone权限</h1><p>下面是官方文档 讲解 如何打开microphone权限，直接上配图~</p>
+<p>The Microphone capability must be declared for an app to leverage Voice input.</p>
+<ol>
+<li>In the Unity Editor, go to the player settings by navigating to “Edit &gt; Project Settings &gt; Player”</li>
+<li>Click on the “Windows Store” tab</li>
+<li>In the “Publishing Settings &gt; Capabilities” section, check the Microphone capability</li>
+</ol>
+<p><img src="http://wx2.sinaimg.cn/large/7305b707ly1fbz9xgnt1fj20yh0rpwip.jpg" alt=""></p>
+<h1 id="Phrase-Recognition-短语识别"><a href="#Phrase-Recognition-短语识别" class="headerlink" title="Phrase Recognition 短语识别"></a>Phrase Recognition 短语识别</h1><p>To enable your app to listen for specific phrases spoken by the user then take some action, you need to:</p>
+<ol>
+<li>Specify which phrases to listen for using a KeywordRecognizer or GrammarRecognizer</li>
+<li>Handle the OnPhraseRecognized event and take action corresponding to the phrase recognized</li>
+</ol>
+<p>使用短语识别嘞~需要做两个步骤：</p>
+<ol>
+<li>指定需要监听的 短语 或者 关键词</li>
+<li>处理识别到 短语 或者 关键词 之后的事件回调 ~ <strong>OnPhraseRecognized</strong></li>
+</ol>
+<h2 id="关键词识别-直接Demo代码"><a href="#关键词识别-直接Demo代码" class="headerlink" title="关键词识别 (直接Demo代码~)"></a>关键词识别 (直接Demo代码~)</h2><pre><code>using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Windows.Speech;
+using System.Linq;
+
+public class VoiceInputDemo : MonoBehaviour {
+
+    public Material yellow;
+    public Material red;
+    public Material blue;
+    public Material green;
+
+    /// &lt;summary&gt;
+    /// 关键词识别对象
+    /// &lt;/summary&gt;
+    private KeywordRecognizer keywordRecognizer;
+
+    /// &lt;summary&gt;
+    /// 存放关键词的字典
+    /// &lt;/summary&gt;
+    private Dictionary&lt;string, System.Action&gt; keywords = new Dictionary&lt;string, System.Action&gt;();
+    // Use this for initialization
+    void Start () {
+
+        // 向字典中添加关键词，key为关键词， vallue为一个匿名action
+        keywords.Add(&quot;yellow&quot;, () =&gt;
+        {
+            Debug.Log(&quot;听到了 yellow&quot;);
+            transform.GetComponent&lt;MeshRenderer&gt;().material = yellow;
+        });
+
+        keywords.Add(&quot;red&quot;, () =&gt;
+        {
+            Debug.Log(&quot;听到了 red&quot;);
+            transform.GetComponent&lt;MeshRenderer&gt;().material = red;
+        });
+
+        keywords.Add(&quot;green&quot;, () =&gt;
+        {
+            Debug.Log(&quot;听到了 green&quot;);
+            transform.GetComponent&lt;MeshRenderer&gt;().material = green;
+        });
+
+        keywords.Add(&quot;blue&quot;, () =&gt;
+        {
+            Debug.Log(&quot;听到了 blue&quot;);
+            transform.GetComponent&lt;MeshRenderer&gt;().material = blue;
+        });
+
+        // 初始化关键词识别对象
+        keywordRecognizer = new KeywordRecognizer(keywords.Keys.ToArray());
+
+        // 添加关键词代理事件
+        keywordRecognizer.OnPhraseRecognized += KeywordRecognizer_OnPhraseRecognized;
+
+        // 注意： 这方法一定要写，开始执行监听
+        keywordRecognizer.Start();
+    }
+
+    private void KeywordRecognizer_OnPhraseRecognized(PhraseRecognizedEventArgs args)
+    {
+
+        System.Action keywordAction;
+        // if the keyword recognized is in our dictionary, call that Action.
+        // 如果关键字在我们的字典中被识别，调用该action。
+        if (keywords.TryGetValue(args.text, out keywordAction))
+        {
+            Debug.Log(&quot;听到了，进入了事件方法  关键词语 ： &quot; + args.text.ToString());
+
+           // 执行该action
+            keywordAction.Invoke();
+        }
+    }
+
+    // Update is called once per frame
+    void Update () {
+
+    }
+}
+</code></pre><h2 id="2、-语法识别-GrammarRecognizer"><a href="#2、-语法识别-GrammarRecognizer" class="headerlink" title="2、 语法识别 GrammarRecognizer"></a>2、 语法识别 GrammarRecognizer</h2><p>  按照官方文档上来说的 我得 创建一个 SRGS 的XML文件放在 StreamingAssets 文件夹下~不过我没有做到英文语法输入的需求 ~ 感兴趣的点击 <a href="https://msdn.microsoft.com/en-us/library/hh378349(v=office.14).aspx" target="_blank" rel="external">https://msdn.microsoft.com/en-us/library/hh378349(v=office.14).aspx</a> 自己查看官方文段对SRGS的讲解~</p>
+<p>  下面贴的一段官方文档的代码<br>Once you have your SRGS grammar, and it is in your project in a StreamingAssets folder:</p>
+<pre><code>&lt;PROJECT_ROOT&gt;/Assets/StreamingAssets/SRGS/myGrammar.xml
+</code></pre><p>Create a GrammarRecognizer and pass it the path to your SRGS file:</p>
+<pre><code>private GrammarRecognizer grammarRecognizer;
+grammarRecognizer = new GrammarRecognizer(Application.streamingDataPath + &quot;/SRGS/myGrammar.xml&quot;);
+</code></pre><p>Now register for the OnPhraseRecognized event</p>
+<pre><code>grammarRecognizer.OnPhraseRecognized += grammarRecognizer_OnPhraseRecognized;
+</code></pre><p>You will get a callback containing information specified in your SRGS grammar which you can handle appropriately. Most of the important information will be provided in the semanticMeanings array.</p>
+<pre><code>private void Grammar_OnPhraseRecognized(PhraseRecognizedEventArgs args)
+{
+    SemanticMeaning[] meanings = args.semanticMeanings;
+    // do something
+}
+</code></pre><p>Finally, start recognizing!</p>
+<pre><code>grammarRecognizer.Start();
+</code></pre><h1 id="听写"><a href="#听写" class="headerlink" title="听写"></a>听写</h1><h2 id="概述-1"><a href="#概述-1" class="headerlink" title="概述"></a>概述</h2><p>DictationRecognizer 使用这个对象可以识别语音输入转化为文本，使用这个对象有三个步骤~</p>
+<ol>
+<li>创建一个DictationRecognizer对象</li>
+<li>注册Dictation 事件</li>
+<li>开始识别听写</li>
+</ol>
+<h2 id="开启网络客户端权限"><a href="#开启网络客户端权限" class="headerlink" title="开启网络客户端权限"></a>开启网络客户端权限</h2><p>The “Internet Client” capability, in addition to the “Microphone” capability mentioned above, must be declared for an app to leverage dictation.</p>
+<ol>
+<li>In the Unity Editor, go to the player settings by navigating to “Edit &gt; Project Settings &gt; Player” page</li>
+<li>Click on the “Windows Store” tab</li>
+<li>In the “Publishing Settings &gt; Capabilities” section, check the InternetClient capability</li>
+</ol>
+<p>直接上Unity的图吧~<br><img src="http://wx3.sinaimg.cn/large/7305b707ly1fbziazk2scj21kw18tq9x.jpg" alt=""></p>
+<h2 id="Demo代码示例"><a href="#Demo代码示例" class="headerlink" title="Demo代码示例~"></a>Demo代码示例~</h2><pre><code>using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Windows.Speech;
+
+public class VoiceDictationDemo : MonoBehaviour
+{
+
+    private DictationRecognizer dictationRecognizer;
+
+    // Use this for initialization
+    void Start()
+    {
+
+        // 定义一个听写对象
+        dictationRecognizer = new DictationRecognizer();
+
+        // 注册一个 结果回调 事件
+        dictationRecognizer.DictationResult += DictationRecognizer_DictationResult;
+        // 注册一个 完成 事件
+        dictationRecognizer.DictationComplete += DictationRecognizer_DictationComplete;
+        // 注册一个 错误 事件
+        dictationRecognizer.DictationError += DictationRecognizer_DictationError;
+        // 注册一个 识别语句 的 事件
+        dictationRecognizer.DictationHypothesis += DictationRecognizer_DictationHypothesis;
+
+        dictationRecognizer.Start();
+    }
+
+    private void DictationRecognizer_DictationHypothesis(string text)
+    {
+        Debug.Log(&quot;进入了Hypothesis 的 事件 回调 ~ &quot; + text);
+        dictationRecognizer.Start();
+    }
+
+    private void DictationRecognizer_DictationError(string error, int hresult)
+    {
+        Debug.Log(&quot;进入了Error 的 事件 回调 ~ &quot; + error + &quot; 状态码 &quot; + hresult);
+        dictationRecognizer.Start();
+    }
+
+    private void DictationRecognizer_DictationComplete(DictationCompletionCause cause)
+    {
+
+        Debug.Log(&quot;进入了Complete 的 事件 回调 ~ &quot; + cause);
+        dictationRecognizer.Start();
+    }
+
+    private void DictationRecognizer_DictationResult(string text, ConfidenceLevel confidence)
+    {
+        Debug.Log(&quot;进入了Result 的 事件 回调 ~ &quot; + text + &quot; 枚举 &quot; + confidence);
+        dictationRecognizer.Start();
+    }
+
+    void OnDestroy()
+    {
+        // 销毁事件
+        dictationRecognizer.DictationResult -= DictationRecognizer_DictationResult;
+        dictationRecognizer.DictationComplete -= DictationRecognizer_DictationComplete;
+        dictationRecognizer.DictationHypothesis -= DictationRecognizer_DictationHypothesis;
+        dictationRecognizer.DictationError -= DictationRecognizer_DictationError;
+        dictationRecognizer.Dispose();
+    }
+
+}
+</code></pre><p>用有道 里面 的英语短视频 做了下测试~ 几乎能达到百分之九十八 以上的 识别率。。感叹微软做的挺不错的~</p>
+<h1 id="同时使用-语音识别-和-听写-（文档翻译）"><a href="#同时使用-语音识别-和-听写-（文档翻译）" class="headerlink" title="同时使用 语音识别 和 听写 （文档翻译）"></a>同时使用 语音识别 和 听写 （文档翻译）</h1><p>If you want to use both phrase recognition and dictation in your app, you’ll need to fully shut one down before you can start the other. If you have multiple KeywordRecognizers running, you can shut them all down at once with:<br>如果你想同时使用 语音识别 和 听写识别，那么你必须关闭一个再启动另外一个~ 如果你有多个语音识别的对象KeywordRecognizers，那么你可以通过下面的方法把他们全部关闭~</p>
+<pre><code>PhraseRecognitionSystem.Shutdown();
+</code></pre><p>In order to restore all recognizers to their previous state, after the DictationRecognizer has stopped, you can call:<br>当然，你也可以恢复关闭前的所有状态，当在你的听写识别结束的时候，你可以调用下面的方法恢复之前的语音识别~</p>
+<pre><code>PhraseRecognitionSystem.Restart();
+</code></pre><p>You could also just start a KeywordRecognizer, which will restart the PhraseRecognitionSystem as well.<br>当然，你也可以只启动一个KeywordRecognizer语音识别对象~同样的也是用PhraseRecognitionSystem来控制其暂停或者恢复~</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/wechat-reward-image.jpeg" alt="YaoJie WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/alipay-reward-image.jpeg" alt="YaoJie Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/AR-VR/" rel="tag"># AR/VR</a>
+          
+            <a href="/tags/Hololens/" rel="tag"># Hololens</a>
+          
+            <a href="/tags/Unity/" rel="tag"># Unity</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/Swift-try/" rel="next" title="Swift try try! try?使用和区别">
+                <i class="fa fa-chevron-left"></i> Swift try try! try?使用和区别
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/Hololens-Four/" rel="prev" title="（四）Hololens Unity 开发之 凝视系统">
+                （四）Hololens Unity 开发之 凝视系统 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="YaoJie" />
+          <p class="site-author-name" itemprop="name">YaoJie</p>
+           
+              <p class="site-description motion-element" itemprop="description">放下,是一种修行  拿起,是一种历练</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/iamyaojie" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/1929754375" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Unity开发打开Microphone权限"><span class="nav-number">2.</span> <span class="nav-text">Unity开发打开Microphone权限</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Phrase-Recognition-短语识别"><span class="nav-number">3.</span> <span class="nav-text">Phrase Recognition 短语识别</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#关键词识别-直接Demo代码"><span class="nav-number">3.1.</span> <span class="nav-text">关键词识别 (直接Demo代码~)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、-语法识别-GrammarRecognizer"><span class="nav-number">3.2.</span> <span class="nav-text">2、 语法识别 GrammarRecognizer</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#听写"><span class="nav-number">4.</span> <span class="nav-text">听写</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#概述-1"><span class="nav-number">4.1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开启网络客户端权限"><span class="nav-number">4.2.</span> <span class="nav-text">开启网络客户端权限</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Demo代码示例"><span class="nav-number">4.3.</span> <span class="nav-text">Demo代码示例~</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#同时使用-语音识别-和-听写-（文档翻译）"><span class="nav-number">5.</span> <span class="nav-text">同时使用 语音识别 和 听写 （文档翻译）</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">YaoJie</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://http-iamyaojie-wang.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://iamyaojie.wang/2017/Hololens-thress/';
+          this.page.identifier = '2017/Hololens-thress/';
+          this.page.title = '（三）Hololens Unity 开发之 语音识别';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://http-iamyaojie-wang.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

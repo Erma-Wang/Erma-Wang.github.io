@@ -1,0 +1,926 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="AR/VR,Hololens,Unity," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="学习源于官方文档 微软官文~  笔记一部分是直接翻译官方文档，部分各人理解不一致的和一些比较浅显的保留英文原文  本文主要记录 HoloLens Unity 开发入门 ~  说在前面的话Unity 对 VR AR 甚至 将来的 MR 来说，的确是一个相当不错的开发引擎 ~ （这里就不辩论UE4了~） 经过过去一年的Unity和移动设备的混合开发，总结出了下面的一些结论">
+<meta name="keywords" content="AR&#x2F;VR,Hololens,Unity">
+<meta property="og:type" content="article">
+<meta property="og:title" content="（二）Hololens Unity 开发入门 之 Hello HoloLens~">
+<meta property="og:url" content="http://iamyaojie.wang/2017/Hololens-two/index.html">
+<meta property="og:site_name" content="iamYaoJie.Blog">
+<meta property="og:description" content="学习源于官方文档 微软官文~  笔记一部分是直接翻译官方文档，部分各人理解不一致的和一些比较浅显的保留英文原文  本文主要记录 HoloLens Unity 开发入门 ~  说在前面的话Unity 对 VR AR 甚至 将来的 MR 来说，的确是一个相当不错的开发引擎 ~ （这里就不辩论UE4了~） 经过过去一年的Unity和移动设备的混合开发，总结出了下面的一些结论">
+<meta property="og:image" content="http://wx4.sinaimg.cn/large/7305b707ly1fc1k0rv3igj21841cnadp.jpg">
+<meta property="og:image" content="http://wx2.sinaimg.cn/large/7305b707ly1fc1k9o22qqj20t30o0whw.jpg">
+<meta property="og:image" content="http://wx4.sinaimg.cn/large/7305b707ly1fc1kva9m67j20ft17ogno.jpg">
+<meta property="og:image" content="http://wx3.sinaimg.cn/large/7305b707ly1fc1l3qzslpj20hi0gz75c.jpg">
+<meta property="og:image" content="http://wx2.sinaimg.cn/large/7305b707ly1fc1la1jh0zj20hs17pq4t.jpg">
+<meta property="og:image" content="http://wx4.sinaimg.cn/large/7305b707ly1fc1le7w19xj20iq0ep3zv.jpg">
+<meta property="og:image" content="http://wx2.sinaimg.cn/large/7305b707ly1fc1lj4qgjxj20ir0c1q3o.jpg">
+<meta property="og:updated_time" content="2017-06-28T08:01:47.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="（二）Hololens Unity 开发入门 之 Hello HoloLens~">
+<meta name="twitter:description" content="学习源于官方文档 微软官文~  笔记一部分是直接翻译官方文档，部分各人理解不一致的和一些比较浅显的保留英文原文  本文主要记录 HoloLens Unity 开发入门 ~  说在前面的话Unity 对 VR AR 甚至 将来的 MR 来说，的确是一个相当不错的开发引擎 ~ （这里就不辩论UE4了~） 经过过去一年的Unity和移动设备的混合开发，总结出了下面的一些结论">
+<meta name="twitter:image" content="http://wx4.sinaimg.cn/large/7305b707ly1fc1k0rv3igj21841cnadp.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '9E75IEGIJ7',
+      apiKey: 'bc3270a26f73a83c84dd5a2520a3bbca',
+      indexName: 'index',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"键入您需要搜索的关键字~","hits_empty":"很抱歉，没有找到您需要搜索的内容: ${query}","hits_stats":"${hits} 条搜索记录 ~· 耗时 ${time} 毫秒 ~·"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://iamyaojie.wang/2017/Hololens-two/"/>
+
+
+
+
+
+  <title>（二）Hololens Unity 开发入门 之 Hello HoloLens~ | iamYaoJie.Blog</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-98802769-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?8fb2996831997da6ea3871e646c11808";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">iamYaoJie.Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Keep Blogging</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://iamyaojie.wang/2017/Hololens-two/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YaoJie">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="iamYaoJie.Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">（二）Hololens Unity 开发入门 之 Hello HoloLens~</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-01-24T00:00:00+08:00">
+                2017-01-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/AR-VR技术篇章/" itemprop="url" rel="index">
+                    <span itemprop="name">AR/VR技术篇章</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/Hololens-two/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/Hololens-two/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><strong>学习源于官方文档 <a href="https://developer.microsoft.com/en-us/windows/holographic/documentation" target="_blank" rel="external">微软官文~</a> </strong></p>
+<p><strong>笔记一部分是直接翻译官方文档，部分各人理解不一致的和一些比较浅显的保留英文原文</strong></p>
+<blockquote>
+<p>本文主要记录 HoloLens Unity 开发入门 ~</p>
+</blockquote>
+<h1 id="说在前面的话"><a href="#说在前面的话" class="headerlink" title="说在前面的话"></a>说在前面的话</h1><p>Unity 对 VR AR 甚至 将来的 MR 来说，的确是一个相当不错的开发引擎 ~ （这里就不辩论UE4了~） 经过过去一年的Unity和移动设备的混合开发，总结出了下面的一些结论</p>
+<a id="more"></a>
+<h2 id="便捷开发者对3D的处理"><a href="#便捷开发者对3D的处理" class="headerlink" title="便捷开发者对3D的处理"></a>便捷开发者对3D的处理</h2><p>深有感触呀~从最开始接触公司的项目开始的时候，那会用的是Vuforia iOS原生的SDK做的开发，一句一句没有逻辑的 OpenGL 命令行，瞬间让刚刚接触OpenGL的开发者懵逼 ~ Unity作为一个3D引擎，通过底层连接移动端 （OpenGL）或者 HoloLens （D3D）的 显卡接口，向开发者暴露 高度封装的 API，便捷了开发者对图形的处理~</p>
+<h2 id="多平台功能性API规范统一"><a href="#多平台功能性API规范统一" class="headerlink" title="多平台功能性API规范统一"></a>多平台功能性API规范统一</h2><p>刚刚过去的2016年据说是VR元年，这一年中 ~ 除开国产硬件厂商，著名的海外VR硬件产商也比较多， 大量的硬件产商可能对于消费者来说 是 一件好事，多了选择的空间 ~ 可是对于开发者来说 是 一场噩梦呀 ~ 老板的需求永远是希望一套代码任何硬件都能跑，恩~ 这时候Unity在中间起到一层缓冲的作用。。同一个UnityEngine的方法，同一套代码 可以 在不同的设备在跑，当然不能百分之百的说 Unity 能很好的兼容各种设备，但是能起到对开发复杂程度 一定 的缓冲作用。（个人感觉UnityEngine的API还不够规范，希望Unity也继续努力吧~）</p>
+<h2 id="开发者数量"><a href="#开发者数量" class="headerlink" title="开发者数量"></a>开发者数量</h2><p>额 ~ 这个话题官方数据 说 2014年开发者数量 就已经达到全球 330万人~ 额，不过从过去Unity在手游领域来看，数量应该也算是不少了 ~ 就连HoloLens有自己D3D引擎也推荐Unity来开发（至于官文推荐Unity也有可能是微软和Unity的一些合作关系吧~） 相对于如果各种AR设备平台的开发者来说，Unity在应用厂商人才招聘上绝对是一大优势~</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>其实很容易看出 ~ 上面说到的Unity的所优点都是相对于应用产商来说，大大的节省了开发成本 ,分为人力成本和技术成本~ 作为硬件厂商的微软 为 广大的应用产商提供了便捷的开发方式，而应用产商开发出大量的基于HoloLens的产品，这时候实现了双赢 ~ 授人玫瑰，手留余香。。。</p>
+<p><strong>NOTE：对于HoloLens 来说，仅仅只用Unity开发HoloLens并不能很好的开发产品。<br>首先，Unity对于3D图像的处理时相当不错的选择~不过Unity对于界面开发的便捷性无力吐槽~<br>其次，Unity开发HoloLens是用高度封装好的API，至于实现一些复杂的需求，可能还会涉及核心层面的一些接口的调用 !
+</strong></p>
+<hr>
+<h1 id="HoloToolkit-Unity-集成"><a href="#HoloToolkit-Unity-集成" class="headerlink" title="HoloToolkit-Unity 集成"></a>HoloToolkit-Unity 集成</h1><p>使用Unity开发HoloLens的原理和Unity开发移动端游戏一样~ Unity调用了硬件设备提供的API实现一系列功能 ~</p>
+<p><img src="http://wx4.sinaimg.cn/large/7305b707ly1fc1k0rv3igj21841cnadp.jpg" alt=""></p>
+<h2 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h2><p><a href="https://github.com/Microsoft/HoloToolkit-Unity" target="_blank" rel="external">HoloToolkit-Unity GitHub下载地址 ~ 点我</a><br>首先把它download 吧~ 使用Unity打开，能看到分为两个文件夹，一个是HoloToolKit （这个就是我们需要的开发工具了），还有一个是 HoloToolkit-Examples 里面都是一些实例~ 可以参考参考 一些 HoloToolKit 方法的调用 ~</p>
+<h2 id="压包"><a href="#压包" class="headerlink" title="压包"></a>压包</h2><p>选中HoloToolKit 右键 Export Package，再勾选第一个HoloToolKit，，点击Export到处一个Packgage</p>
+<p><img src="http://wx2.sinaimg.cn/large/7305b707ly1fc1k9o22qqj20t30o0whw.jpg" alt=""></p>
+<h2 id="集成HoloToolKit"><a href="#集成HoloToolKit" class="headerlink" title="集成HoloToolKit"></a>集成HoloToolKit</h2><p>新建一个Unity工程 ~ 导入刚刚导处的package 就 OK了~</p>
+<hr>
+<h1 id="Camera-配置"><a href="#Camera-配置" class="headerlink" title="Camera 配置"></a>Camera 配置</h1><p><strong>1. 设置 Camera 的 Tag 为 MainCamera</strong><br><strong>2. 设置 Camera 的 position 为 0,0,0</strong><br><strong>3. 设置 Camera 的 Clear Flags 为 Solid Color</strong><br><strong>4. 设置 Camera 的 Background  RGBA 为 0,0,0,0</strong><br><strong>5. 设置 Camera Clipping Planes 的 Near 值 为 0.3到0.85之间的一个值~</strong>  </p>
+<p><img src="http://wx4.sinaimg.cn/large/7305b707ly1fc1kva9m67j20ft17ogno.jpg" alt=""></p>
+<p>相机需要改变的配置就是以上这些了~ 查阅官文可得~</p>
+<hr>
+<h1 id="Unity工程的配置"><a href="#Unity工程的配置" class="headerlink" title="Unity工程的配置"></a>Unity工程的配置</h1><p><strong>1. 选择 File &gt; Build Settings… 更改为 Windows Store 平台</strong><br><strong>2. 设置 SDK 为Universal 10 </strong><br><strong>3. 设置 Target device 为 HoloLens </strong><br><strong>4. 设置 UWP Build Type 为 D3D </strong><br><strong>5. 勾选Debugging 里面的 Unity C# Projects ~ 这样才能导出VS工程 ~ </strong>  </p>
+<p><img src="http://wx3.sinaimg.cn/large/7305b707ly1fc1l3qzslpj20hi0gz75c.jpg" alt=""></p>
+<p><strong>6. 接着点击Player Settings…选择Windows Store 平台，在Other Settings 找到Virtual Reality Supported 并且勾选上 ，点击加号 添加Virtual Reality Devices设备 Windows Holographic ~ </strong></p>
+<p><img src="http://wx2.sinaimg.cn/large/7305b707ly1fc1la1jh0zj20hs17pq4t.jpg" alt=""></p>
+<p><strong>7. 选择  Edit &gt; Project Settings &gt; Quality ,点击向下 的 按钮 ~ 选择 Fastest ， 最快的~ </strong></p>
+<p><img src="http://wx4.sinaimg.cn/large/7305b707ly1fc1le7w19xj20iq0ep3zv.jpg" alt=""></p>
+<p>以上所有的配置完成~ 在场景里面随便丢一个Cube吧~ 导出，，看看效果 ~</p>
+<hr>
+<h1 id="Hello-HoloLens"><a href="#Hello-HoloLens" class="headerlink" title="Hello HoloLens ~"></a>Hello HoloLens ~</h1><p><img src="http://wx2.sinaimg.cn/large/7305b707ly1fc1lj4qgjxj20ir0c1q3o.jpg" alt=""></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/wechat-reward-image.jpeg" alt="YaoJie WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/alipay-reward-image.jpeg" alt="YaoJie Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/AR-VR/" rel="tag"># AR/VR</a>
+          
+            <a href="/tags/Hololens/" rel="tag"># Hololens</a>
+          
+            <a href="/tags/Unity/" rel="tag"># Unity</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/Hololens-one/" rel="next" title="（一）Hololens Unity 开发环境搭建(Mac BOOTCAMP WIN10)">
+                <i class="fa fa-chevron-left"></i> （一）Hololens Unity 开发环境搭建(Mac BOOTCAMP WIN10)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/Swift-try/" rel="prev" title="Swift try try! try?使用和区别">
+                Swift try try! try?使用和区别 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="YaoJie" />
+          <p class="site-author-name" itemprop="name">YaoJie</p>
+           
+              <p class="site-description motion-element" itemprop="description">放下,是一种修行  拿起,是一种历练</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/iamyaojie" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/1929754375" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#说在前面的话"><span class="nav-number">1.</span> <span class="nav-text">说在前面的话</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#便捷开发者对3D的处理"><span class="nav-number">1.1.</span> <span class="nav-text">便捷开发者对3D的处理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多平台功能性API规范统一"><span class="nav-number">1.2.</span> <span class="nav-text">多平台功能性API规范统一</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开发者数量"><span class="nav-number">1.3.</span> <span class="nav-text">开发者数量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">1.4.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#HoloToolkit-Unity-集成"><span class="nav-number">2.</span> <span class="nav-text">HoloToolkit-Unity 集成</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#下载"><span class="nav-number">2.1.</span> <span class="nav-text">下载</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#压包"><span class="nav-number">2.2.</span> <span class="nav-text">压包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#集成HoloToolKit"><span class="nav-number">2.3.</span> <span class="nav-text">集成HoloToolKit</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Camera-配置"><span class="nav-number">3.</span> <span class="nav-text">Camera 配置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Unity工程的配置"><span class="nav-number">4.</span> <span class="nav-text">Unity工程的配置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Hello-HoloLens"><span class="nav-number">5.</span> <span class="nav-text">Hello HoloLens ~</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">YaoJie</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://http-iamyaojie-wang.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://iamyaojie.wang/2017/Hololens-two/';
+          this.page.identifier = '2017/Hololens-two/';
+          this.page.title = '（二）Hololens Unity 开发入门 之 Hello HoloLens~';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://http-iamyaojie-wang.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

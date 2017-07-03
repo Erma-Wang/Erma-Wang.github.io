@@ -1,0 +1,1452 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="iOS入门到懵逼," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="多线程简介多线程的由来一个进程（进程）在执行一个线程（线程中有很多函数或方法（后面简称Function））的时候，其中有一个Function执行的时候需要消耗一些时间，但是这个线程又必须同时执行这个Function之后的Function，问题来了，一个线程中的任何一个Function都必须等待其执行完成后才能执行后面的Function，如果要同时执行两个或者多个Function，那么，就必须多开一">
+<meta name="keywords" content="iOS入门到懵逼">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS多线程技术方案">
+<meta property="og:url" content="http://iamyaojie.wang/2016/iOS-Multithread/index.html">
+<meta property="og:site_name" content="iamYaoJie.Blog">
+<meta property="og:description" content="多线程简介多线程的由来一个进程（进程）在执行一个线程（线程中有很多函数或方法（后面简称Function））的时候，其中有一个Function执行的时候需要消耗一些时间，但是这个线程又必须同时执行这个Function之后的Function，问题来了，一个线程中的任何一个Function都必须等待其执行完成后才能执行后面的Function，如果要同时执行两个或者多个Function，那么，就必须多开一">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/7305b707jw1f115k2b0nsj21kw189tis.jpg">
+<meta property="og:image" content="http://ww3.sinaimg.cn/large/7305b707jw1f115h19x0kj21kw17q7ch.jpg">
+<meta property="og:image" content="http://ww2.sinaimg.cn/large/7305b707jw1f11bymkjvfj21320xkwmi.jpg">
+<meta property="og:image" content="http://ww3.sinaimg.cn/large/7305b707jw1f11f4x6ykjj21bz0kignl.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/7305b707jw1f120xtg8mcj212k0j9dl9.jpg">
+<meta property="og:image" content="http://ww3.sinaimg.cn/large/7305b707jw1f11idu8wybj21go0py7b0.jpg">
+<meta property="og:image" content="http://ww2.sinaimg.cn/large/7305b707jw1f11lae7h57j20ki0bewf1.jpg">
+<meta property="og:image" content="http://ww4.sinaimg.cn/large/7305b707jw1f11laexqhsj20kd0ch751.jpg">
+<meta property="og:image" content="http://ww3.sinaimg.cn/large/7305b707jw1f1bm5mmln5j214x13l4cu.jpg">
+<meta property="og:image" content="http://ww3.sinaimg.cn/large/7305b707jw1f1bx0woba7j216d0c9dic.jpg">
+<meta property="og:updated_time" content="2017-06-28T08:01:47.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS多线程技术方案">
+<meta name="twitter:description" content="多线程简介多线程的由来一个进程（进程）在执行一个线程（线程中有很多函数或方法（后面简称Function））的时候，其中有一个Function执行的时候需要消耗一些时间，但是这个线程又必须同时执行这个Function之后的Function，问题来了，一个线程中的任何一个Function都必须等待其执行完成后才能执行后面的Function，如果要同时执行两个或者多个Function，那么，就必须多开一">
+<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/7305b707jw1f115k2b0nsj21kw189tis.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '9E75IEGIJ7',
+      apiKey: 'bc3270a26f73a83c84dd5a2520a3bbca',
+      indexName: 'index',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"键入您需要搜索的关键字~","hits_empty":"很抱歉，没有找到您需要搜索的内容: ${query}","hits_stats":"${hits} 条搜索记录 ~· 耗时 ${time} 毫秒 ~·"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://iamyaojie.wang/2016/iOS-Multithread/"/>
+
+
+
+
+
+  <title>iOS多线程技术方案 | iamYaoJie.Blog</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-98802769-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?8fb2996831997da6ea3871e646c11808";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">iamYaoJie.Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Keep Blogging</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://iamyaojie.wang/2016/iOS-Multithread/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YaoJie">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="iamYaoJie.Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">iOS多线程技术方案</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-03-01T00:00:00+08:00">
+                2016-03-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS入门到懵逼/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS入门到懵逼</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/iOS-Multithread/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2016/iOS-Multithread/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="多线程简介"><a href="#多线程简介" class="headerlink" title="多线程简介"></a>多线程简介</h1><h2 id="多线程的由来"><a href="#多线程的由来" class="headerlink" title="多线程的由来"></a>多线程的由来</h2><p><strong>一个进程（进程）在执行一个线程（线程中有很多函数或方法（后面简称Function））的时候，其中有一个Function执行的时候需要消耗一些时间，但是这个线程又必须同时执行这个Function之后的Function，问题来了，一个线程中的任何一个Function都必须等待其执行完成后才能执行后面的Function，如果要同时执行两个或者多个Function，那么，就必须多开一个或者多个线程，这就是多线程的产生。我想多线程最开始的诞生就是由这而来吧！</strong></p>
+<a id="more"></a>
+<h2 id="耗时操作的模拟试验"><a href="#耗时操作的模拟试验" class="headerlink" title="耗时操作的模拟试验"></a>耗时操作的模拟试验</h2><h3 id="循环测试"><a href="#循环测试" class="headerlink" title="循环测试"></a>循环测试</h3><p>代码</p>
+<pre><code>int main(int argc, const char * argv[]) {
+@autoreleasepool {
+    NSLog(@&quot;bengin&quot;);
+    for (int i = 0; i &lt; 10000000; i++) {
+    }
+    NSLog(@&quot;end&quot;);
+}
+return 0;
+}
+</code></pre><p>控制台</p>
+<pre><code>2016-02-16 13:51:54.140 Test[1670:603696] bengin
+2016-02-16 13:51:54.160 Test[1670:603696] end
+Program ended with exit code: 0
+</code></pre><p><code>结论一：循环一亿次耗时0.02秒，计算机的运行速度是非常快的</code></p>
+<h3 id="操作栈区"><a href="#操作栈区" class="headerlink" title="操作栈区"></a>操作栈区</h3><p>代码</p>
+<pre><code>int main(int argc, const char * argv[]) {
+@autoreleasepool {
+    NSLog(@&quot;bengin&quot;);
+    for (int i = 0; i &lt; 10000000; i++) {
+        int n = 1;
+    }
+    NSLog(@&quot;end&quot;);
+}
+return 0;
+}
+</code></pre><p>控制台</p>
+<pre><code>2016-02-16 13:57:37.589 Test[1734:631377] bengin
+2016-02-16 13:57:37.612 Test[1734:631377] end
+Program ended with exit code: 0
+</code></pre><p><code>结论二：对栈区操作一亿次，耗时0.023秒</code></p>
+<h3 id="操作常量区"><a href="#操作常量区" class="headerlink" title="操作常量区"></a>操作常量区</h3><p>代码：</p>
+<pre><code>int main(int argc, const char * argv[]) {
+@autoreleasepool {
+    NSLog(@&quot;bengin&quot;);
+    for (int i = 0; i &lt; 10000000; i++) {
+        NSString *str = @&quot;hellow&quot;;
+    }
+    NSLog(@&quot;end&quot;);
+}
+return 0;
+}
+</code></pre><p>控制台</p>
+<pre><code>2016-02-16 14:03:59.003 Test[1763:659287] bengin
+2016-02-16 14:03:59.113 Test[1763:659287] end
+Program ended with exit code: 0
+</code></pre><p><code>结论三：对常量区操作一亿次，耗时0.11秒</code></p>
+<p>###2.4 操作堆区<br>代码</p>
+<pre><code>int main(int argc, const char * argv[]) {
+@autoreleasepool {
+    NSLog(@&quot;bengin&quot;);
+    for (int i = 0; i &lt; 10000000; i++) {
+        NSString *str = [NSString stringWithFormat:@&quot;%d&quot;,i];
+    }
+    NSLog(@&quot;end&quot;);
+}
+return 0;
+}
+</code></pre><p>控制台</p>
+<pre><code>2016-02-16 14:09:03.673 Test[1786:673719] bengin
+2016-02-16 14:09:10.705 Test[1786:673719] end
+Program ended with exit code: 0
+</code></pre><p><code>结论四：对堆区操作一亿次耗时7秒多一些，较慢！</code></p>
+<p>###2.5 I/O操作<br>代码</p>
+<pre><code>int main(int argc, const char * argv[]) {
+@autoreleasepool {
+    NSLog(@&quot;bengin&quot;);
+    for (int i = 0; i &lt; 10000000; i++) {
+        NSLog(@&quot;%d&quot;,i);
+    }
+    NSLog(@&quot;end&quot;);
+}
+return 0;
+}
+</code></pre><p>控制台输出！正在跑中，一亿次！！！先看截图<br>CPU<br><img src="http://ww1.sinaimg.cn/large/7305b707jw1f115k2b0nsj21kw189tis.jpg" alt="1"><br>再看内存</p>
+<p><img src="http://ww3.sinaimg.cn/large/7305b707jw1f115h19x0kj21kw17q7ch.jpg" alt="1"><br>好吧，还在跑，现在已经达到10分钟了，怕心疼本本炸掉！stop。。。<br><code>结论五：I/O操作非常慢，一亿次10分钟也没能跑完！</code></p>
+<p>#<code>最终结论：通过以上结论一、二、三、四、五得出一个结论，各个区的执行效率：栈区&gt;常量区&gt;堆区&gt;I/O操作。同时也说明了一个问题，执行不同的方法会产什么耗时操作。这是，为了解决耗时操作问题，多线程闪亮诞生！</code></p>
+<p>##<a id="3、进程和线程"></a>3、进程和线程<br>先说说进程和线程吧！</p>
+<h3 id="3-1-进程"><a href="#3-1-进程" class="headerlink" title="3.1 进程"></a>3.1 进程</h3><p>####3.1.1 进程的概念：<code>系统中正在运行的应用程序。</code></p>
+<p>####3.1.2 进程的特点：<code>每个进程都运行在其专用且受保护的内存空间，不同的进程之间相互独立，互不干扰。</code></p>
+<p>###3.2 线程</p>
+<p>####3.2.1 线程的概念：<code>线程是进程的执行任务的基本单元，一个进程的所有任务都是在线程中执行的。（每一个进程至少要有一条线程）。</code></p>
+<p>####3.2.2 线程的特点：<code>线程在执行任务的时候是按顺序执行的。如果要让一条线程执行多个任务，那么只能一个一个地并且按顺序执行这些任务。也就是说，在同一时间，一条线程只能执行一个任务。</code><br>我们可以通过Mac中的活动监视器查看进程和线程，下图！<br><img src="http://ww2.sinaimg.cn/large/7305b707jw1f11bymkjvfj21320xkwmi.jpg" alt="1"></p>
+<p>##<a id="4、多线程的概念及原理"></a>4、多线程的概念及原理</p>
+<p>###4.1 多线程概念：<code>1个进程可以开启多条线程，多条线程可以同时执行不同的任务。</code></p>
+<p>###4.2 多线程原理：<br><img src="http://ww3.sinaimg.cn/large/7305b707jw1f11f4x6ykjj21bz0kignl.jpg" alt="1"></p>
+<p>####<code>前提是在单核CPU的情况下，同一时间，CPU只能处理一条线程，也就是说只有一条线程在执行任务。多线程同时执行，那是不可能的！但是是CPU快速地在多条线程之间进行调度和切换执行任务。如果CPU调度线程的速度足够快，就会造成多条线程同时执行任务的”假象”，这种假象，就被美誉为：多线程!</code></p>
+<p>##<a id="5、多线程的优缺点和一个Tip"></a>5、多线程的优缺点和一个Tip</p>
+<p>###5.1 多线程的优点</p>
+<ul>
+<li><code>可以适当提高程序的执行效率</code></li>
+<li><code>也可以适当提高资源的利用率(CPU、内存利用率)</code><br>###5.2 多线程的缺点</li>
+<li><code>开启一条线程需要占用一定的内存空间（默认情况下，每一条线程都占用512KB），如果开启大量的线程，会占用大量的内存空间，从而降低程序的性能。</code></li>
+<li><code>线程越多，CPU在调度和切换线程上的开销就会越大。</code></li>
+<li><code>线程数越多，程序的设计会越复杂。</code><br>###5.3 Tip</li>
+<li><code>开启新的线程就会消耗资源，但是却可以提高用户体验。在保证良好的用户体验的前提下，可以适当地开线程，一般开3-6条。</code></li>
+</ul>
+<p><img src="http://ww1.sinaimg.cn/large/7305b707jw1f120xtg8mcj212k0j9dl9.jpg" alt="1"></p>
+<ul>
+<li><p><code>开启一条新的线程，默认情况下，一条线程都是占用512KB，但是官方的文档里面给出的说明却不是，为了得出真相，下面做个小小的测试！</code><br>代码</p>
+<p>  int main(int argc, const char * argv[]) {<br>  @autoreleasepool {</p>
+<pre><code>/** 操作主线程 */
+NSLog(@&quot;主线程默认 %tu&quot;, [NSThread currentThread].stackSize / 1024);
+// 设置主线程的stackSize
+[NSThread currentThread].stackSize = 1024 * 1024;
+NSLog(@&quot;主线程修改 %tu&quot;, [NSThread currentThread].stackSize / 1024);
+
+/** 操作子线程 */
+NSThread *thread = [[NSThread alloc] init];
+NSLog(@&quot;thread默认 %tu&quot;, thread.stackSize / 1024);
+// 设置子线程的stackSize
+thread.stackSize = 8 * 1024;
+NSLog(@&quot;thread修改 %tu&quot;, thread.stackSize / 1024);
+[thread start];
+</code></pre><p>  }<br>  return 0;<br>  }<br>控制台</p>
+<p>  2016-02-17 08:36:02.652 Test[609:110129] 主线程默认 512<br>  2016-02-17 08:36:02.654 Test[609:110129] 主线程修改 1024<br>  2016-02-17 08:36:02.654 Test[609:110129] thread默认 512<br>  2016-02-17 08:36:02.654 Test[609:110129] thread修改 8</p>
+</li>
+</ul>
+<p><code>结论七：证明了，不管什么线程，默认都是512，最小为8.可能是官方文档没有及时更新吧！</code></p>
+<h2 id="主线程"><a href="#主线程" class="headerlink" title="主线程"></a>主线程</h2><h3 id="主线程的概念："><a href="#主线程的概念：" class="headerlink" title="主线程的概念："></a>主线程的概念：</h3><p><strong>一个应用程序在启动运行后，系统会自动开启1条线程，这条称为”主线程”。</strong></p>
+<h3 id="主线程的作用：主线程的作用主要用于处理UI界面刷新和UI时间！"><a href="#主线程的作用：主线程的作用主要用于处理UI界面刷新和UI时间！" class="headerlink" title="主线程的作用：主线程的作用主要用于处理UI界面刷新和UI时间！"></a>主线程的作用：主线程的作用主要用于处理UI界面刷新和UI时间！</h3><h3 id="结论：主线程上不能执行耗时操作，这样会造成界面卡顿，给用户一种不好的体验。"><a href="#结论：主线程上不能执行耗时操作，这样会造成界面卡顿，给用户一种不好的体验。" class="headerlink" title="结论：主线程上不能执行耗时操作，这样会造成界面卡顿，给用户一种不好的体验。"></a>结论：<code>主线程上不能执行耗时操作，这样会造成界面卡顿，给用户一种不好的体验。</code></h3><h2 id="技术方案"><a href="#技术方案" class="headerlink" title="技术方案"></a>技术方案</h2><p><img src="http://ww3.sinaimg.cn/large/7305b707jw1f11idu8wybj21go0py7b0.jpg" alt="1"></p>
+<hr>
+<h1 id="Pthread"><a href="#Pthread" class="headerlink" title="Pthread"></a>Pthread</h1><h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><pre><code>pthread_create(pthread_t *restrict, const pthread_attr_t *restrict, void *(*)(void *), void *restrict)
+</code></pre><h2 id="参数和返回值"><a href="#参数和返回值" class="headerlink" title="参数和返回值"></a>参数和返回值</h2><ul>
+<li>pthread_t *restrict 线程编号的地址</li>
+<li>const pthread_attr_t *restrict 线程的属性</li>
+<li>void *(*)(void *) 线程要执行的函数void <em>    (\</em>)    (void *)<ul>
+<li>int <em> 指向int类型的指针   void </em> 指向任何类型的指针  有点类似OC中的id</li>
+</ul>
+</li>
+<li><p>void *restrict 要执行的函数的参数</p>
+</li>
+<li><p>返回值  int类型    0是成功  非0 是失败</p>
+</li>
+</ul>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>代码</p>
+<pre><code>#import &lt;Foundation/Foundation.h&gt;
+#import &lt;pthread/pthread.h&gt;
+
+void *demo(void *param) {
+NSString *name = (__bridge NSString *)(param);
+
+NSLog(@&quot;hello %@ %@&quot;,name,[NSThread currentThread]);
+return NULL;
+}
+
+int main(int argc, const char * argv[]) {
+@autoreleasepool {
+    //创建子线程
+    pthread_t pthread; //线程编号
+
+    NSString *test = @&quot;test&quot;;
+    int result =  pthread_create(&amp;pthread, NULL, demo, (__bridge void *)(test));
+    NSLog(@&quot;Began  %@&quot;,[NSThread currentThread]);
+
+    if (result == 0) {
+        NSLog(@&quot;成功&quot;);
+    }else {
+        NSLog(@&quot;失败&quot;);
+    }
+}
+return 0;
+}
+</code></pre><p>控制台</p>
+<pre><code>2016-02-16 22:00:57.401 Test[888:42585] Began  &lt;NSThread: 0x100502d70&gt;{number = 1, name = main}
+2016-02-16 22:00:57.403 Test[888:42615] hello test &lt;NSThread: 0x100102a30&gt;{number = 2, name = (null)}
+2016-02-16 22:00:57.403 Test[888:42585] 成功
+</code></pre><ul>
+<li><strong>bridge  桥接，把OC中的对象，传递给c语言的函数，使用</strong>bridge</li>
+</ul>
+<hr>
+<h1 id="NSThread"><a href="#NSThread" class="headerlink" title="NSThread"></a>NSThread</h1><h2 id="创建一个新的线程"><a href="#创建一个新的线程" class="headerlink" title="创建一个新的线程"></a>创建一个新的线程</h2><h3 id="方式一"><a href="#方式一" class="headerlink" title="方式一"></a>方式一</h3><pre><code>NSThread *thread = [[NSThread alloc] initWithTarget:self selector:@selector(demo) object:nil];
+</code></pre><h3 id="方式二"><a href="#方式二" class="headerlink" title="方式二"></a>方式二</h3><pre><code>[NSThread detachNewThreadSelector:@selector(demo) toTarget:self withObject:nil];
+</code></pre><h3 id="方式三"><a href="#方式三" class="headerlink" title="方式三"></a>方式三</h3><pre><code>[self performSelectorInBackground:@selector(demo) withObject:nil];
+</code></pre><h2 id="线程的状态"><a href="#线程的状态" class="headerlink" title="线程的状态"></a>线程的状态</h2><h3 id="线程状态分为五种"><a href="#线程状态分为五种" class="headerlink" title="线程状态分为五种"></a>线程状态分为五种</h3><ul>
+<li>创建 New</li>
+<li>就绪 Runnable</li>
+<li><p>运行 Running</p>
+<pre><code>- (void)start;
+</code></pre></li>
+<li><p>阻塞（暂停） Blocked</p>
+<pre><code>+ (void)sleepUntilDate:(NSDate *)date;
++ (void)sleepForTimeInterval:(NSTimeInterval)ti;
+</code></pre></li>
+<li><p>死亡 Dead</p>
+<pre><code>+ (void)exit;
+</code></pre></li>
+</ul>
+<h2 id="线程的属性"><a href="#线程的属性" class="headerlink" title="线程的属性"></a>线程的属性</h2><p><strong><code>线程有两个重要的属性：名称和优先级</code></strong></p>
+<h3 id="名称-name"><a href="#名称-name" class="headerlink" title="名称 name"></a>名称 name</h3><p><strong>设置线程名用于记录线程，在出现异常时可以DeBug</strong></p>
+<h3 id="优先级，也叫做“服务质量”。threadPriority，取值0到1"><a href="#优先级，也叫做“服务质量”。threadPriority，取值0到1" class="headerlink" title="优先级，也叫做“服务质量”。threadPriority，取值0到1."></a>优先级，也叫做“服务质量”。threadPriority，取值0到1.</h3><p><strong>优先级或者服务质量高的，可以优先调用，只是说会优先调用，但是不是百分之百的优先调用，这里存在一个概率问题，内核里的算法调度线程的时候，只是把优先级作为一个考虑因素，还有很多个因数会决定哪个线程优先调用。这点得注意注意！！！</strong></p>
+<p>下面是测试代码</p>
+<pre><code>- (void)touchesBegan:(NSSet&lt;UITouch *&gt; *)touches withEvent:(UIEvent *)event {
+//新建状态
+NSThread *test1 = [[NSThread alloc] initWithTarget:self selector:@selector(demo) object:nil];
+test1.name = @&quot;test1&quot;;
+//线程的优先级
+test1.threadPriority = 1.0;
+//就绪状态
+[test1 start];
+
+
+//新建状态
+NSThread *test2= [[NSThread alloc] initWithTarget:self selector:@selector(demo) object:nil];
+test2.name = @&quot;test2&quot;;
+test2.threadPriority = 0;
+//就绪状态
+[test2 start];
+}
+
+//线程执行完成之后会自动销毁
+- (void)demo {
+for (int i = 0; i &lt; 20; i++) {
+    NSLog(@&quot;%d--%@&quot;,i,[NSThread currentThread]);
+}
+}
+</code></pre><p>控制台</p>
+<pre><code>2016-02-16 22:43:28.182 05-线程状态[1241:78688] 0--&lt;NSThread: 0x7fead2017f30&gt;{number = 2, name = test1}
+2016-02-16 22:43:28.182 05-线程状态[1241:78689] 0--&lt;NSThread: 0x7fead050a250&gt;{number = 3, name = test2}
+2016-02-16 22:43:28.182 05-线程状态[1241:78688] 1--&lt;NSThread: 0x7fead2017f30&gt;{number = 2, name = test1}
+2016-02-16 22:43:28.182 05-线程状态[1241:78688] 2--&lt;NSThread: 0x7fead2017f30&gt;{number = 2, name = test1}
+2016-02-16 22:43:28.182 05-线程状态[1241:78689] 1--&lt;NSThread: 0x7fead050a250&gt;{number = 3, name = test2}
+2016-02-16 22:43:28.183 05-线程状态[1241:78688] 3--&lt;NSThread: 0x7fead2017f30&gt;{number = 2, name = test1}
+2016-02-16 22:43:28.183 05-线程状态[1241:78689] 2--&lt;NSThread: 0x7fead050a250&gt;{number = 3, name = test2}
+2016-02-16 22:43:28.183 05-线程状态[1241:78688] 4--&lt;NSThread: 0x7fead2017f30&gt;{number = 2, name = test1}
+2016-02-16 22:43:28.183 05-线程状态[1241:78688] 5--&lt;NSThread: 0x7fead2017f30&gt;{number = 2, name = test1}
+2016-02-16 22:43:28.183 05-线程状态[1241:78689] 3--&lt;NSThread: 0x7fead050a250&gt;{number = 3, name = test2}
+2016-02-16 22:43:28.183 05-线程状态[1241:78688] 6--&lt;NSThread: 0x7fead2017f30&gt;{number = 2, name = test1}
+2016-02-16 22:43:28.183 05-线程状态[1241:78688] 7--&lt;NSThread: 0x7fead2017f30&gt;{number = 2, name = test1}
+2016-02-16 22:43:28.183 05-线程状态[1241:78689] 4--&lt;NSThread: 0x7fead050a250&gt;{number = 3, name = test2}
+2016-02-16 22:43:28.183 05-线程状态[1241:78688] 8--&lt;NSThread: 0x7fead2017f30&gt;{number = 2, name = test1}
+2016-02-16 22:43:28.184 05-线程状态[1241:78688] 9--&lt;NSThread: 0x7fead2017f30&gt;{number = 2, name = test1}
+2016-02-16 22:43:28.184 05-线程状态[1241:78688] 10--&lt;NSThread: 0x7fead2017f30&gt;{number = 2, name = test1}
+2016-02-16 22:43:28.184 05-线程状态[1241:78689] 5--&lt;NSThread: 0x7fead050a250&gt;{number = 3, name = test2}
+2016-02-16 22:43:28.184 05-线程状态[1241:78688] 11--&lt;NSThread: 0x7fead2017f30&gt;{number = 2, name = test1}
+2016-02-16 22:43:28.184 05-线程状态[1241:78689] 6--&lt;NSThread: 0x7fead050a250&gt;{number = 3, name = test2}
+2016-02-16 22:43:28.184 05-线程状态[1241:78688] 12--&lt;NSThread: 0x7fead2017f30&gt;{number = 2, name = test1}
+2016-02-16 22:43:28.184 05-线程状态[1241:78688] 13--&lt;NSThread: 0x7fead2017f30&gt;{number = 2, name = test1}
+2016-02-16 22:43:28.184 05-线程状态[1241:78689] 7--&lt;NSThread: 0x7fead050a250&gt;{number = 3, name = test2}
+2016-02-16 22:43:28.184 05-线程状态[1241:78688] 14--&lt;NSThread: 0x7fead2017f30&gt;{number = 2, name = test1}
+2016-02-16 22:43:28.184 05-线程状态[1241:78688] 15--&lt;NSThread: 0x7fead2017f30&gt;{number = 2, name = test1}
+2016-02-16 22:43:28.185 05-线程状态[1241:78688] 16--&lt;NSThread: 0x7fead2017f30&gt;{number = 2, name = test1}
+2016-02-16 22:43:28.184 05-线程状态[1241:78689] 8--&lt;NSThread: 0x7fead050a250&gt;{number = 3, name = test2}
+2016-02-16 22:43:28.185 05-线程状态[1241:78688] 17--&lt;NSThread: 0x7fead2017f30&gt;{number = 2, name = test1}
+2016-02-16 22:43:28.185 05-线程状态[1241:78688] 18--&lt;NSThread: 0x7fead2017f30&gt;{number = 2, name = test1}
+2016-02-16 22:43:28.185 05-线程状态[1241:78689] 9--&lt;NSThread: 0x7fead050a250&gt;{number = 3, name = test2}
+2016-02-16 22:43:28.185 05-线程状态[1241:78688] 19--&lt;NSThread: 0x7fead2017f30&gt;{number = 2, name = test1}
+2016-02-16 22:43:28.185 05-线程状态[1241:78689] 10--&lt;NSThread: 0x7fead050a250&gt;{number = 3, name = test2}
+2016-02-16 22:43:28.186 05-线程状态[1241:78689] 11--&lt;NSThread: 0x7fead050a250&gt;{number = 3, name = test2}
+2016-02-16 22:43:28.186 05-线程状态[1241:78689] 12--&lt;NSThread: 0x7fead050a250&gt;{number = 3, name = test2}
+2016-02-16 22:43:28.186 05-线程状态[1241:78689] 13--&lt;NSThread: 0x7fead050a250&gt;{number = 3, name = test2}
+2016-02-16 22:43:28.186 05-线程状态[1241:78689] 14--&lt;NSThread: 0x7fead050a250&gt;{number = 3, name = test2}
+2016-02-16 22:43:28.187 05-线程状态[1241:78689] 15--&lt;NSThread: 0x7fead050a250&gt;{number = 3, name = test2}
+2016-02-16 22:43:28.187 05-线程状态[1241:78689] 16--&lt;NSThread: 0x7fead050a250&gt;{number = 3, name = test2}
+2016-02-16 22:43:28.187 05-线程状态[1241:78689] 17--&lt;NSThread: 0x7fead050a250&gt;{number = 3, name = test2}
+2016-02-16 22:43:28.187 05-线程状态[1241:78689] 18--&lt;NSThread: 0x7fead050a250&gt;{number = 3, name = test2}
+2016-02-16 22:43:28.187 05-线程状态[1241:78689] 19--&lt;NSThread: 0x7fead050a250&gt;{number = 3, name = test2}
+</code></pre><p><strong><code>结论六：优先级高，不一定先执行，只能说明先执行的概率要大一些！！！</code></strong></p>
+<hr>
+<h1 id="互斥锁"><a href="#互斥锁" class="headerlink" title="互斥锁"></a>互斥锁</h1><h2 id="访问共享资源引入问题！"><a href="#访问共享资源引入问题！" class="headerlink" title="访问共享资源引入问题！"></a>访问共享资源引入问题！</h2><h3 id="问题？"><a href="#问题？" class="headerlink" title="问题？"></a>问题？</h3><p>不同的线程要访问共享的资源，而且对共享的资源做操作，由于上面<code>结论六</code>得出服务质量和优先级不能决定线程执行的先后顺序，那么问题来了，一个线程对共享资源做了修改，而另外一个线程拿到的是未被修改之前资源，这是这个线程也对该资源做了修改，现在请问，两个线程都对该资源做了不同的修改，那么这个修改应该算谁的？！？！这就是问题所在！！！</p>
+<h3 id="问题分析"><a href="#问题分析" class="headerlink" title="问题分析"></a>问题分析</h3><p><img src="http://ww2.sinaimg.cn/large/7305b707jw1f11lae7h57j20ki0bewf1.jpg" alt="1"></p>
+<h3 id="问题解决"><a href="#问题解决" class="headerlink" title="问题解决"></a>问题解决</h3><p><img src="http://ww4.sinaimg.cn/large/7305b707jw1f11laexqhsj20kd0ch751.jpg" alt="1"><br><strong><em>这个文档里盗的图！</em></strong><br><code>解决方案很简单，就是用一把锁锁住共享资源，等待线程1对其操作完毕后再打开，让线程2来执行，这就是传说中的互斥锁</code>！！！</p>
+<h2 id="互斥锁介绍"><a href="#互斥锁介绍" class="headerlink" title="互斥锁介绍"></a>互斥锁介绍</h2><h3 id="互斥锁代码"><a href="#互斥锁代码" class="headerlink" title="互斥锁代码"></a>互斥锁代码</h3><pre><code>@synchronized(锁对象) { 需要锁定的代码  }
+</code></pre><h3 id="互斥锁的作用"><a href="#互斥锁的作用" class="headerlink" title="互斥锁的作用"></a>互斥锁的作用</h3><p>可以防止因多线程执行顺序不定导致的抢夺资源造成的数据安全的问题</p>
+<h3 id="真相：互斥锁其实就是同步的意思，也就是按顺序执行！"><a href="#真相：互斥锁其实就是同步的意思，也就是按顺序执行！" class="headerlink" title="真相：互斥锁其实就是同步的意思，也就是按顺序执行！"></a>真相：互斥锁其实就是同步的意思，也就是按顺序执行！</h3><h2 id="互斥锁原理"><a href="#互斥锁原理" class="headerlink" title="互斥锁原理"></a>互斥锁原理</h2><p>每个NSObject对象内部都有一把锁，当线程要进入synchronized到对象的时候就要判断，锁是否被打开，如果打开，进入执行，如果锁住，继续等待，这就是互斥锁的原理！</p>
+<h2 id="互斥锁和自旋锁"><a href="#互斥锁和自旋锁" class="headerlink" title="互斥锁和自旋锁"></a>互斥锁和自旋锁</h2><p><strong>自旋锁就是atomic！</strong></p>
+<h3 id="原子属性和非原子属性（nonatomic-和-atomic）"><a href="#原子属性和非原子属性（nonatomic-和-atomic）" class="headerlink" title="原子属性和非原子属性（nonatomic 和 atomic）"></a>原子属性和非原子属性（nonatomic 和 atomic）</h3><ul>
+<li>nonatomic:非原子属性，不会为 setter 方法加锁。</li>
+<li>atomic: 原子属性，为 setter 方法加锁(默认就是atomic)。<ul>
+<li>通过给 setter 加锁，可以保证同一时间只有一个线程能够执行写入操作(setter)，但是同一时间允许多个线程执行读取操作(getter)。atomic本身就有一把自旋锁。<br>这个特点叫做”单写多读”: 单个线程写入，多个线程读取。</li>
+<li>atomic 只能保证写入数据的时候是安全的，但不能保证同时读写的时候是安全的。所以，不常使用！</li>
+</ul>
+</li>
+</ul>
+<h3 id="nonatomic-和-atomic-的对比"><a href="#nonatomic-和-atomic-的对比" class="headerlink" title="nonatomic 和 atomic 的对比"></a>nonatomic 和 atomic 的对比</h3><p>tomic：线程安全(执行setter方法的时候)，需要消耗大量的资源。<br>nonatomic：非线程安全，适合内存小的移动设备。</p>
+<h3 id="互斥锁和自旋锁的区别"><a href="#互斥锁和自旋锁的区别" class="headerlink" title="互斥锁和自旋锁的区别"></a>互斥锁和自旋锁的区别</h3><h4 id="互斥锁-1"><a href="#互斥锁-1" class="headerlink" title="互斥锁"></a>互斥锁</h4><p><strong>如果发现其它线程正在执行锁定代码，线程会进入休眠(阻塞状态)，等其它线程时间片到了打开锁后，线程就会被唤醒(执行)。</strong></p>
+<h4 id="自旋锁"><a href="#自旋锁" class="headerlink" title="自旋锁"></a>自旋锁</h4><p><strong>如果发现有其它线程正在执行锁定代码，线程会以死循环的方式，一直等待锁定的代码执行完成。</strong></p>
+<hr>
+<h1 id="GCD"><a href="#GCD" class="headerlink" title="GCD"></a>GCD</h1><h2 id="GCD介绍"><a href="#GCD介绍" class="headerlink" title="GCD介绍"></a>GCD介绍</h2><p>全称Grand Central Dispatch,可翻译为”牛逼的中枢调度器”<br>纯C语言开发，是苹果公司为多核的并行运算提出的解决方案，会自动利用更多的CPU内核（比如双核、四核），可以自动管理线程的生命周期（创建线程、调度任务、销毁线程）。</p>
+<h2 id="GCD的两个核心"><a href="#GCD的两个核心" class="headerlink" title="GCD的两个核心"></a>GCD的两个核心</h2><h3 id="任务"><a href="#任务" class="headerlink" title="任务"></a>任务</h3><ul>
+<li><strong>执行的操作,在GCD中，任务是通过 block来封装的。并且任务的block没有参数也没有返回值。</strong></li>
+</ul>
+<h3 id="队列"><a href="#队列" class="headerlink" title="队列"></a>队列</h3><ul>
+<li><strong>存放任务</strong></li>
+</ul>
+<p>包括</p>
+<ul>
+<li>串行队列</li>
+<li>并发队列</li>
+<li>主队列</li>
+<li>全局队列</li>
+</ul>
+<p>队列的类型<br><img src="http://ww3.sinaimg.cn/large/7305b707jw1f1bm5mmln5j214x13l4cu.jpg" alt="1"></p>
+<h2 id="函数-1"><a href="#函数-1" class="headerlink" title="函数"></a>函数</h2><h3 id="GCD函数"><a href="#GCD函数" class="headerlink" title="GCD函数"></a>GCD函数</h3><p>同步 dispatch_sync<br>同步：任务会在当前线程执行，因为同步函数不具备开新线程的能力。</p>
+<pre><code>void dispatch_sync(dispatch_queue_t queue, dispatch_block_t block);
+</code></pre><p>异步 dispatch_async<br>异步：任务会在子线程执行，因为异步函数具备开新线程的能力。</p>
+<pre><code>void dispatch_async(dispatch_queue_t queue, dispatch_block_t block);
+</code></pre><p>###3 GCD使用步骤:</p>
+<ul>
+<li>创建队列，或则获取队列</li>
+<li>创建任务</li>
+<li>将任务添加到队列中<ul>
+<li>GCD会自动将队列中的任务取出，放到对应的线程中执行</li>
+<li>任务取出遵循队列的FIFO原则：先进先出，后进后出</li>
+</ul>
+</li>
+</ul>
+<p>示例代码<br>    // 1. 获取全局队列<br>    dispatch_queue_t queue = dispatch_get_global_queue(0, 0);<br>    // 2. 创建任务<br>    dispatch_block_t task = ^ {<br>        NSLog(@”hello %@”, [NSThread currentThread]);<br>    };<br>    // 3. 将任务添加到队列，并且指定执行任务的函数<br>    dispatch_async(queue, task);</p>
+<p>通常写成一句代码<br>    dispatch_async(dispatch_get_global_queue(0, 0), ^{<br>            NSLog(@”hello %@”, [NSThread currentThread]);<br>        });</p>
+<h2 id="串行队列和并发队列"><a href="#串行队列和并发队列" class="headerlink" title="串行队列和并发队列"></a>串行队列和并发队列</h2><h3 id="串行队列-Serial-Dispatch-Queue"><a href="#串行队列-Serial-Dispatch-Queue" class="headerlink" title="串行队列 (Serial Dispatch Queue)"></a>串行队列 (Serial Dispatch Queue)</h3><h4 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h4><ul>
+<li><code>先进先出，按照顺序执行,并且一次只能调用一个任务</code></li>
+<li><code>无论队列中所指定的执行任务的函数是同步还是异步，都必须等待前一个任务执行完毕才可以调用后面的人</code></li>
+</ul>
+<h4 id="创建一个串行队列"><a href="#创建一个串行队列" class="headerlink" title="创建一个串行队列"></a>创建一个串行队列</h4><p>方法一<br>    dispatch_queue_t queue = dispatch_queue_create(“test”, DISPATCH_QUEUE_SERIAL);<br>方法二<br>    dispatch_queue_t queue = dispatch_queue_create(“test”, NULL);</p>
+<h4 id="串行队列，同步执行"><a href="#串行队列，同步执行" class="headerlink" title="串行队列，同步执行"></a>串行队列，同步执行</h4><p>代码：</p>
+<pre><code>// 1、创建串行队列
+dispatch_queue_t queue = dispatch_queue_create(&quot;test&quot;, DISPATCH_QUEUE_SERIAL);
+// 2、将任务添加到队列，并且指定同步执行
+for (int i = 0; i &lt; 10; i++) {
+    dispatch_sync(queue, ^{
+        NSLog(@&quot;%@--%d&quot;,[NSThread currentThread],i);
+    });
+}
+</code></pre><p>打印结果：</p>
+<p>2016-02-25 16:31:07.849 test[1924:376468] <nsthread: 0x7ff040404370="">{number = 1, name = main}–0<br>2016-02-25 16:31:07.849 test[1924:376468] <nsthread: 0x7ff040404370="">{number = 1, name = main}–1<br>2016-02-25 16:31:07.849 test[1924:376468] <nsthread: 0x7ff040404370="">{number = 1, name = main}–2<br>2016-02-25 16:31:07.849 test[1924:376468] <nsthread: 0x7ff040404370="">{number = 1, name = main}–3<br>2016-02-25 16:31:07.849 test[1924:376468] <nsthread: 0x7ff040404370="">{number = 1, name = main}–4<br>2016-02-25 16:31:07.849 test[1924:376468] <nsthread: 0x7ff040404370="">{number = 1, name = main}–5<br>2016-02-25 16:31:07.850 test[1924:376468] <nsthread: 0x7ff040404370="">{number = 1, name = main}–6<br>2016-02-25 16:31:07.850 test[1924:376468] <nsthread: 0x7ff040404370="">{number = 1, name = main}–7<br>2016-02-25 16:31:07.850 test[1924:376468] <nsthread: 0x7ff040404370="">{number = 1, name = main}–8<br>2016-02-25 16:31:07.850 test[1924:376468] <nsthread: 0x7ff040404370="">{number = 1, name = main}–9</nsthread:></nsthread:></nsthread:></nsthread:></nsthread:></nsthread:></nsthread:></nsthread:></nsthread:></nsthread:></p>
+<p><code>结论：串行队列，同步执行，不开新线程，按顺序执行</code></p>
+<h4 id="串行队列，异步执行"><a href="#串行队列，异步执行" class="headerlink" title="串行队列，异步执行"></a>串行队列，异步执行</h4><p>代码：</p>
+<pre><code>// 1、创建串行队列
+dispatch_queue_t queue = dispatch_queue_create(&quot;test&quot;, DISPATCH_QUEUE_SERIAL);
+// 2、将任务添加到队列，并且指定同步执行
+for (int i = 0; i &lt; 10; i++) {
+    dispatch_async(queue, ^{
+        NSLog(@&quot;%@--%d&quot;,[NSThread currentThread],i);
+    });
+}
+</code></pre><p>打印结果：</p>
+<p>2016-02-25 17:08:32.167 test[1959:391722] <nsthread: 0x7fbb98d24fa0="">{number = 2, name = (null)}–0<br>2016-02-25 17:08:32.168 test[1959:391722] <nsthread: 0x7fbb98d24fa0="">{number = 2, name = (null)}–1<br>2016-02-25 17:08:32.168 test[1959:391722] <nsthread: 0x7fbb98d24fa0="">{number = 2, name = (null)}–2<br>2016-02-25 17:08:32.168 test[1959:391722] <nsthread: 0x7fbb98d24fa0="">{number = 2, name = (null)}–3<br>2016-02-25 17:08:32.168 test[1959:391722] <nsthread: 0x7fbb98d24fa0="">{number = 2, name = (null)}–4<br>2016-02-25 17:08:32.168 test[1959:391722] <nsthread: 0x7fbb98d24fa0="">{number = 2, name = (null)}–5<br>2016-02-25 17:08:32.169 test[1959:391722] <nsthread: 0x7fbb98d24fa0="">{number = 2, name = (null)}–6<br>2016-02-25 17:08:32.169 test[1959:391722] <nsthread: 0x7fbb98d24fa0="">{number = 2, name = (null)}–7<br>2016-02-25 17:08:32.169 test[1959:391722] <nsthread: 0x7fbb98d24fa0="">{number = 2, name = (null)}–8<br>2016-02-25 17:08:32.169 test[1959:391722] <nsthread: 0x7fbb98d24fa0="">{number = 2, name = (null)}–9</nsthread:></nsthread:></nsthread:></nsthread:></nsthread:></nsthread:></nsthread:></nsthread:></nsthread:></nsthread:></p>
+<p><code>结论：串行队列，异步执行，开启一条新的线程，按顺序执行</code></p>
+<h3 id="并发队列-Concurrent-Dispatch-Queue"><a href="#并发队列-Concurrent-Dispatch-Queue" class="headerlink" title="并发队列 (Concurrent Dispatch Queue)"></a>并发队列 (Concurrent Dispatch Queue)</h3><p>特点</p>
+<ul>
+<li>并发同时调度队列中的任务去执行</li>
+<li>如果当前调度的任务是同步执行的，会等待当前任务执行完毕后，再调度后续的任务</li>
+<li>如果当前调度的任务是异步执行的，同时底层线程池有可用的线程资源，就不会等待当前任务，直接调度任务到新线程去执行。</li>
+</ul>
+<h4 id="创建并发队列"><a href="#创建并发队列" class="headerlink" title="创建并发队列"></a>创建并发队列</h4><pre><code>dispatch_queue_t q = dispatch_queue_create(&quot;test&quot;, DISPATCH_QUEUE_CONCURRENT);
+</code></pre><h4 id="并发队列，同步执行"><a href="#并发队列，同步执行" class="headerlink" title="并发队列，同步执行"></a>并发队列，同步执行</h4><p>代码：</p>
+<pre><code>// 1. 创建并发队列
+dispatch_queue_t queue = dispatch_queue_create(&quot;test&quot;, DISPATCH_QUEUE_CONCURRENT);
+// 2. 将任务添加到队列, 并且指定同步执行
+for (int i = 0; i &lt; 10; i++) {
+    dispatch_sync(queue, ^{
+        NSLog(@&quot;%@ %d&quot;, [NSThread currentThread], i);
+    });
+}
+</code></pre><p>输出：</p>
+<p>2016-02-25 17:18:38.039 test[1979:399667] <nsthread: 0x7ffef86024b0="">{number = 1, name = main} 0<br>2016-02-25 17:18:38.040 test[1979:399667] <nsthread: 0x7ffef86024b0="">{number = 1, name = main} 1<br>2016-02-25 17:18:38.040 test[1979:399667] <nsthread: 0x7ffef86024b0="">{number = 1, name = main} 2<br>2016-02-25 17:18:38.040 test[1979:399667] <nsthread: 0x7ffef86024b0="">{number = 1, name = main} 3<br>2016-02-25 17:18:38.040 test[1979:399667] <nsthread: 0x7ffef86024b0="">{number = 1, name = main} 4<br>2016-02-25 17:18:38.040 test[1979:399667] <nsthread: 0x7ffef86024b0="">{number = 1, name = main} 5<br>2016-02-25 17:18:38.040 test[1979:399667] <nsthread: 0x7ffef86024b0="">{number = 1, name = main} 6<br>2016-02-25 17:18:38.040 test[1979:399667] <nsthread: 0x7ffef86024b0="">{number = 1, name = main} 7<br>2016-02-25 17:18:38.040 test[1979:399667] <nsthread: 0x7ffef86024b0="">{number = 1, name = main} 8<br>2016-02-25 17:18:38.041 test[1979:399667] <nsthread: 0x7ffef86024b0="">{number = 1, name = main} 9</nsthread:></nsthread:></nsthread:></nsthread:></nsthread:></nsthread:></nsthread:></nsthread:></nsthread:></nsthread:></p>
+<p><code>结论:并发队列，同步执行，不开线程，顺序执行</code></p>
+<h4 id="并发队列，异步执行"><a href="#并发队列，异步执行" class="headerlink" title="并发队列，异步执行"></a>并发队列，异步执行</h4><p>代码：</p>
+<pre><code>// 1. 创建并发队列
+dispatch_queue_t queue = dispatch_queue_create(&quot;test&quot;, DISPATCH_QUEUE_CONCURRENT);
+// 2. 将任务添加到队列, 并且指定同步执行
+for (int i = 0; i &lt; 10; i++) {
+    dispatch_async(queue, ^{
+        NSLog(@&quot;%@ %d&quot;, [NSThread currentThread], i);
+    });
+}
+</code></pre><p>输出：</p>
+<p>2016-02-25 17:22:59.357 test[1992:403694] <nsthread: 0x7fe531c1a9b0="">{number = 7, name = (null)} 6<br>2016-02-25 17:22:59.356 test[1992:403684] <nsthread: 0x7fe531d18fa0="">{number = 3, name = (null)} 1<br>2016-02-25 17:22:59.356 test[1992:403689] <nsthread: 0x7fe534300610="">{number = 5, name = (null)} 3<br>2016-02-25 17:22:59.356 test[1992:403683] <nsthread: 0x7fe531e94d80="">{number = 2, name = (null)} 0<br>2016-02-25 17:22:59.356 test[1992:403692] <nsthread: 0x7fe531e9df80="">{number = 6, name = (null)} 4<br>2016-02-25 17:22:59.356 test[1992:403693] <nsthread: 0x7fe531d18f40="">{number = 8, name = (null)} 5<br>2016-02-25 17:22:59.356 test[1992:403695] <nsthread: 0x7fe5343015e0="">{number = 9, name = (null)} 7<br>2016-02-25 17:22:59.357 test[1992:403688] <nsthread: 0x7fe531c16e30="">{number = 4, name = (null)} 2<br>2016-02-25 17:22:59.357 test[1992:403694] <nsthread: 0x7fe531c1a9b0="">{number = 7, name = (null)} 9<br>2016-02-25 17:22:59.357 test[1992:403696] <nsthread: 0x7fe531c237a0="">{number = 10, name = (null)} 8</nsthread:></nsthread:></nsthread:></nsthread:></nsthread:></nsthread:></nsthread:></nsthread:></nsthread:></nsthread:></p>
+<p><code>结论：开启足够多的线程，不按照顺序执行</code><br>CPU在调度的时候以最高效的方式调度和执行任务，所以会开启多条线程，因为并发，执行顺序不一定</p>
+<h2 id="主队列"><a href="#主队列" class="headerlink" title="主队列"></a>主队列</h2><h3 id="主队列-1"><a href="#主队列-1" class="headerlink" title="主队列"></a>主队列</h3><p>主队列是系统提供的，无需自己创建，可以通过dispatch_get_main_queue()函数来获取。<br>特点</p>
+<ul>
+<li>添加到主队列的任务只能由主线程来执行。</li>
+<li><p>先进先出的，只有当主线程的代码执行完毕后，主队列才会调度任务到主线程执行<br>主队列 异步执行<br>代码</p>
+<pre><code>// 1. 获取主队列
+dispatch_queue_t q = dispatch_get_main_queue();
+// 2. 将任务添加到主队列, 并且指定异步执行
+for (int i = 0; i &lt; 10; i++) {
+dispatch_async(q, ^{
+    NSLog(@&quot;%@ %d&quot;, [NSThread currentThread], i);
+});
+}
+// 先执行完这句代码, 才会执行主队列中的任务
+NSLog(@&quot;hello %@&quot;, [NSThread currentThread]);
+</code></pre></li>
+</ul>
+<p>打印</p>
+<p>2016-02-25 21:10:43.293 test[773:786816] hello <nsthread: 0x7ff158c05940="">{number = 1, name = main}<br>2016-02-25 21:10:43.295 test[773:786816] <nsthread: 0x7ff158c05940="">{number = 1, name = main} 0<br>2016-02-25 21:10:43.295 test[773:786816] <nsthread: 0x7ff158c05940="">{number = 1, name = main} 1<br>2016-02-25 21:10:43.296 test[773:786816] <nsthread: 0x7ff158c05940="">{number = 1, name = main} 2<br>2016-02-25 21:10:43.296 test[773:786816] <nsthread: 0x7ff158c05940="">{number = 1, name = main} 3<br>2016-02-25 21:10:43.296 test[773:786816] <nsthread: 0x7ff158c05940="">{number = 1, name = main} 4<br>2016-02-25 21:10:43.296 test[773:786816] <nsthread: 0x7ff158c05940="">{number = 1, name = main} 5<br>2016-02-25 21:10:43.296 test[773:786816] <nsthread: 0x7ff158c05940="">{number = 1, name = main} 6<br>2016-02-25 21:10:43.296 test[773:786816] <nsthread: 0x7ff158c05940="">{number = 1, name = main} 7<br>2016-02-25 21:10:43.296 test[773:786816] <nsthread: 0x7ff158c05940="">{number = 1, name = main} 8<br>2016-02-25 21:10:43.296 test[773:786816] <nsthread: 0x7ff158c05940="">{number = 1, name = main} 9</nsthread:></nsthread:></nsthread:></nsthread:></nsthread:></nsthread:></nsthread:></nsthread:></nsthread:></nsthread:></nsthread:></p>
+<p>打印结果得出的一些结论</p>
+<ul>
+<li>在主线程顺序执行，不开启新的线程</li>
+<li>主队列的特点：只有当主线程空闲时，主队列才会调度任务到主线程执行</li>
+<li>主队列就算是异步执行也不会开启新的线程</li>
+<li>主队列相当于一个全局的串行队列</li>
+<li>主队列和串行队列的区别<ul>
+<li>串行队列:必须等待一个任务执行完毕，才会调度下一个任务。</li>
+<li>主队列:如果主线程上有代码执行，主队列就不调度任务。</li>
+</ul>
+</li>
+</ul>
+<h3 id="主队列-同步执行（死锁）"><a href="#主队列-同步执行（死锁）" class="headerlink" title="主队列 同步执行（死锁）"></a>主队列 同步执行（死锁）</h3><p>代码</p>
+<pre><code>    NSLog(@&quot;begin&quot;);
+// 1. 获取主队列
+dispatch_queue_t q = dispatch_get_main_queue();
+// 2. 将任务添加到主队列, 并且指定同步执行
+// 死锁
+for (int i = 0; i &lt; 10; i++) {
+    dispatch_sync(q, ^{
+        NSLog(@&quot;%@ %d&quot;, [NSThread currentThread], i);
+    });
+}
+NSLog(@&quot;end&quot;);
+</code></pre><p>打印</p>
+<pre><code>2016-02-25 21:19:25.986 test[791:790967] begin
+</code></pre><p>打印结果可以看出，不是想要的结果，这时候发生了死锁<br><strong>在主线程执行，主队列同步执行任务，会发生死锁，主线程和主队列同步任务相互等待，造成死锁</strong></p>
+<p>解决办法<br>代码</p>
+<pre><code>    NSLog(@&quot;begin&quot;);
+dispatch_async(dispatch_get_global_queue(0, 0), ^{
+    NSLog(@&quot;--- %@&quot;, [NSThread currentThread]);
+    // 1. 获取主队列
+    dispatch_queue_t q = dispatch_get_main_queue();
+    // 2. 将任务添加到主队列, 并且指定同步执行
+    // 死锁
+    for (int i = 0; i &lt; 10; i++) {
+        dispatch_sync(q, ^{
+            NSLog(@&quot;%@ %d&quot;, [NSThread currentThread], i);
+        });
+    }
+});
+NSLog(@&quot;end&quot;);
+</code></pre><p>打印</p>
+<p>2016-02-25 21:23:23.205 test[803:794826] begin<br>2016-02-25 21:23:23.206 test[803:794826] end<br>2016-02-25 21:23:23.206 test[803:794866] — <nsthread: 0x7f8830514cb0="">{number = 2, name = (null)}<br>2016-02-25 21:23:23.209 test[803:794826] <nsthread: 0x7f8830507dd0="">{number = 1, name = main} 0<br>2016-02-25 21:23:23.209 test[803:794826] <nsthread: 0x7f8830507dd0="">{number = 1, name = main} 1<br>2016-02-25 21:23:23.209 test[803:794826] <nsthread: 0x7f8830507dd0="">{number = 1, name = main} 2<br>2016-02-25 21:23:23.209 test[803:794826] <nsthread: 0x7f8830507dd0="">{number = 1, name = main} 3<br>2016-02-25 21:23:23.209 test[803:794826] <nsthread: 0x7f8830507dd0="">{number = 1, name = main} 4<br>2016-02-25 21:23:23.210 test[803:794826] <nsthread: 0x7f8830507dd0="">{number = 1, name = main} 5<br>2016-02-25 21:23:23.210 test[803:794826] <nsthread: 0x7f8830507dd0="">{number = 1, name = main} 6<br>2016-02-25 21:23:23.210 test[803:794826] <nsthread: 0x7f8830507dd0="">{number = 1, name = main} 7<br>2016-02-25 21:23:23.210 test[803:794826] <nsthread: 0x7f8830507dd0="">{number = 1, name = main} 8<br>2016-02-25 21:23:23.210 test[803:794826] <nsthread: 0x7f8830507dd0="">{number = 1, name = main} 9</nsthread:></nsthread:></nsthread:></nsthread:></nsthread:></nsthread:></nsthread:></nsthread:></nsthread:></nsthread:></nsthread:></p>
+<p>####打印结果可以看出，当我们将主队列同步执行任务放到子线程去执行，就不会出现死锁。由于将主队列同步放到了子线程中执行，主队列同步任务无法阻塞主线程执行代码，因此主线程可以将主线程上的代码执行完毕。当主线程执行完毕之后，就会执行主队列里面的任务。</p>
+<h2 id="全局队列"><a href="#全局队列" class="headerlink" title="全局队列"></a>全局队列</h2><p><code>全局队列是系统提供的，无需自己创建，可以直接通过dispatch_get_global_queue(long identifier, unsigned long flags);函数来获取。</code></p>
+<h3 id="全局队列-异步执行"><a href="#全局队列-异步执行" class="headerlink" title="全局队列 异步执行"></a>全局队列 异步执行</h3><p>代码</p>
+<pre><code>    // 1. 获取全局队列
+dispatch_queue_t q = dispatch_get_global_queue(0, 0);
+// 2. 将任务添加到全局队列, 异步执行
+for (int i = 0; i &lt; 10; i++) {
+    dispatch_async(q, ^{
+        NSLog(@&quot;%d %@&quot;, i, [NSThread currentThread]);
+    });
+}
+</code></pre><p>打印输出</p>
+<p>2016-02-25 21:29:06.978 test[816:799523] 1 <nsthread: 0x7fd428e15760="">{number = 3, name = (null)}<br>2016-02-25 21:29:06.978 test[816:799530] 4 <nsthread: 0x7fd428d2fbb0="">{number = 6, name = (null)}<br>2016-02-25 21:29:06.978 test[816:799522] 0 <nsthread: 0x7fd428f094e0="">{number = 2, name = (null)}<br>2016-02-25 21:29:06.978 test[816:799529] 3 <nsthread: 0x7fd428c0e1b0="">{number = 5, name = (null)}<br>2016-02-25 21:29:06.978 test[816:799532] 6 <nsthread: 0x7fd428f06740="">{number = 7, name = (null)}<br>2016-02-25 21:29:06.978 test[816:799533] 7 <nsthread: 0x7fd428d37be0="">{number = 8, name = (null)}<br>2016-02-25 21:29:06.978 test[816:799531] 5 <nsthread: 0x7fd428e0c490="">{number = 9, name = (null)}<br>2016-02-25 21:29:06.978 test[816:799526] 2 <nsthread: 0x7fd428d3e4b0="">{number = 4, name = (null)}<br>2016-02-25 21:29:06.979 test[816:799534] 8 <nsthread: 0x7fd428d36ab0="">{number = 10, name = (null)}<br>2016-02-25 21:29:06.979 test[816:799523] 9 <nsthread: 0x7fd428e15760="">{number = 3, name = (null)}</nsthread:></nsthread:></nsthread:></nsthread:></nsthread:></nsthread:></nsthread:></nsthread:></nsthread:></nsthread:></p>
+<p>特点：</p>
+<ul>
+<li>全局队列的工作特性跟并发队列一致。 实际上，全局队列就是系统为了方便程序员，专门提供的一种特殊的并发队列。</li>
+<li>全局队列和并发队列的区别：<ul>
+<li>全局队列没有名称，无论ARC还是MRC都不需要考虑内存释放，日常开发，建议使用全局队列</li>
+<li>并发队列有名称，如果在MRC开发中，需要使用dispatch_release来释放相应的对象，dispatch_barrier 必须使用自定义的并发队列，开发第三方框架，建议使用并发队列<br>函数<br>dispatch_get_global_queue(long identifier, unsigned long flags);<br>这个函数中有两个参数:<br>第一个参数: identifier<br>iOS7.0，表示的是优先级:<br>DISPATCH_QUEUE_PRIORITY_HIGH = 2; 高优先级<br>DISPATCH_QUEUE_PRIORITY_DEFAULT = 0; 默认优先级<br>DISPATCH_QUEUE_PRIORITY_LOW = -2; 低优先级<br>DISPATCH_QUEUE_PRIORITY_BACKGROUND = INT16_MIN; 后台优先级<br>iOS8.0开始，推荐使用服务质量(QOS):<br>QOS_CLASS_USER_INTERACTIVE  = 0x21; 用户交互<br>QOS_CLASS_USER_INITIATED    = 0x19; 用户期望<br>QOS_CLASS_DEFAULT            = 0x15; 默认<br>QOS_CLASS_UTILITY            = 0x11; 实用工具<br>QOS_CLASS_BACKGROUND        = 0x09; 后台<br>QOS_CLASS_UNSPECIFIED       = 0x00; 未指定<br>通过对比可知: 第一个参数传入0，可以同时适配iOS7及iOS7以后的版本。<br>服务质量和优先级是一一对应的:<br>DISPATCH_QUEUE_PRIORITY_HIGH:          QOS_CLASS_USER_INITIATED<br>DISPATCH_QUEUE_PRIORITY_DEFAULT:      QOS_CLASS_DEFAULT<br>DISPATCH_QUEUE_PRIORITY_LOW:           QOS_CLASS_UTILITY<br>DISPATCH_QUEUE_PRIORITY_BACKGROUND:   QOS_CLASS_BACKGROUND<br>第二个参数: flags<br>为未来保留使用的，始终传入0。<br>Reserved for future use.  </li>
+</ul>
+</li>
+</ul>
+<h2 id="GCD总结"><a href="#GCD总结" class="headerlink" title="GCD总结"></a>GCD总结</h2><h3 id="开不开线程，由执行任务的函数决定"><a href="#开不开线程，由执行任务的函数决定" class="headerlink" title="开不开线程，由执行任务的函数决定"></a>开不开线程，由执行任务的函数决定</h3><ul>
+<li>同步执行不开线程</li>
+<li>异步执行开线程</li>
+</ul>
+<h3 id="异步执行任务，开几条线程由队列决定"><a href="#异步执行任务，开几条线程由队列决定" class="headerlink" title="异步执行任务，开几条线程由队列决定"></a>异步执行任务，开几条线程由队列决定</h3><ul>
+<li>串行队列，只会开一条线程，因为一条就足够了</li>
+<li>并发队列，可以开多条线程，具体开几条由线程池决定</li>
+</ul>
+<p><code>对主队列而言，不管是同步执行还是异步执行，都不会开线程。</code></p>
+<p>最后盗图总结一张<br><img src="http://ww3.sinaimg.cn/large/7305b707jw1f1bx0woba7j216d0c9dic.jpg" alt="1"></p>
+<hr>
+<h1 id="NSOperation"><a href="#NSOperation" class="headerlink" title="NSOperation"></a>NSOperation</h1><h2 id="NSOperation简介"><a href="#NSOperation简介" class="headerlink" title="NSOperation简介"></a>NSOperation简介</h2><h3 id="NSOperation与GCD的区别："><a href="#NSOperation与GCD的区别：" class="headerlink" title="NSOperation与GCD的区别："></a>NSOperation与GCD的区别：</h3><ul>
+<li>OC语言中基于 GCD 的面向对象的封装;</li>
+<li>使用起来比 GCD 更加简单;</li>
+<li>提供了一些用 GCD 不好实现的功能;</li>
+<li>苹果推荐使用，使用 NSOperation 程序员不用关心线程的生命周期</li>
+</ul>
+<h3 id="NSOperation的特点"><a href="#NSOperation的特点" class="headerlink" title="NSOperation的特点"></a>NSOperation的特点</h3><ul>
+<li>NSOperation 是一个抽象类，抽象类不能直接使用,必须使用它的子类</li>
+<li>抽象类的用处是定义子类共有的属性和方法</li>
+</ul>
+<h2 id="核心概念"><a href="#核心概念" class="headerlink" title="核心概念"></a>核心概念</h2><p>####将操作添加到队列，异步执行。相对于GCD创建任务，将任务添加到队列。</p>
+<p>####将NSOperation添加到NSOperationQueue就可以实现多线程编程</p>
+<h2 id="操作步骤"><a href="#操作步骤" class="headerlink" title="操作步骤"></a>操作步骤</h2><ul>
+<li>先将需要执行的操作封装到一个NSOperation对象中</li>
+<li>然后将NSOperation对象添加到NSOperationQueue中</li>
+<li>系统会自动将NSOperationQueue中的NSOperation取出来</li>
+<li>将取出的NSOperation封装的操作放到一条新线程中执行</li>
+</ul>
+<h2 id="NSInvocationOperation"><a href="#NSInvocationOperation" class="headerlink" title="NSInvocationOperation"></a>NSInvocationOperation</h2><h3 id="No1"><a href="#No1" class="headerlink" title="No1."></a>No1.</h3><p>代码</p>
+<pre><code>- (void)viewDidLoad {
+[super viewDidLoad];
+//创建操作，然后调用操作的start方法
+NSInvocationOperation *op = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(demo) object:nil];
+NSLog(@&quot;%d&quot;,op.isFinished);
+[op start];
+NSLog(@&quot;%d&quot;,op.isFinished);
+}
+
+- (void)demo {
+NSLog(@&quot;hello %@&quot;,[NSThread currentThread]);
+}
+</code></pre><p>打印输出</p>
+<p>2016-02-25 22:12:30.054 test[892:834660] 0<br>2016-02-25 22:12:30.054 test[892:834660] hello <nsthread: 0x7fad12704f80="">{number = 1, name = main}<br>2016-02-25 22:12:30.054 test[892:834660] 1</nsthread:></p>
+<p>结论：<code>[op start]在主线程中调用的，所以执行的线程也会是在主线程执行！
+重复调用start也只会执行一次，因为NSOperation会有一个属性去记住，是否已经完成了该操作！</code></p>
+<h3 id="No2"><a href="#No2" class="headerlink" title="No2."></a>No2.</h3><p>代码</p>
+<pre><code>- (void)viewDidLoad {
+[super viewDidLoad];
+//    创建操作，将操作添加到NSOperationQueue中，然后就会异步的自动执行
+NSInvocationOperation *op = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(demo) object:nil];
+//队列
+NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+//把操作添加到队列
+[queue addOperation:op];
+}
+
+- (void)demo {
+NSLog(@&quot;hello %@&quot;,[NSThread currentThread]);
+}
+</code></pre><p>打印</p>
+<p>2016-02-25 22:21:44.999 test[912:842412] hello <nsthread: 0x7fab92610080="">{number = 2, name = (null)}</nsthread:></p>
+<p>将操作添加到NSOperationQueue中，然后就会异步的自动执行</p>
+<h2 id="NSBlockOperation"><a href="#NSBlockOperation" class="headerlink" title="NSBlockOperation"></a>NSBlockOperation</h2><p><strong>NSBlockOperation 中使用block的方式让所有代码逻辑在一起，使用起来更加简便。</strong></p>
+<h3 id="NO1"><a href="#NO1" class="headerlink" title="NO1."></a>NO1.</h3><p>代码</p>
+<pre><code>//创建操作
+NSBlockOperation *op = [NSBlockOperation blockOperationWithBlock:^{
+    NSLog(@&quot;hello %@&quot;,[NSThread currentThread]);
+}];
+//更新op的状态，执行main方法，不会开新线程
+[op start];
+</code></pre><p>输出</p>
+<p>2016-02-25 22:25:30.442 test[923:846208] hello <nsthread: 0x7fd410d055a0="">{number = 1, name = main}</nsthread:></p>
+<h3 id="NO2"><a href="#NO2" class="headerlink" title="NO2."></a>NO2.</h3><p>代码</p>
+<pre><code>//    创建队列，创建操作，将操作添加到队列中执行
+NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+NSBlockOperation *op = [NSBlockOperation blockOperationWithBlock:^{
+    NSLog(@&quot;hello %@&quot;,[NSThread currentThread]);
+}];
+[queue addOperation:op];
+</code></pre><p>输出<br>2016-02-25 22:26:48.064 test[934:848038] hello <nsthread: 0x7fc6bbb24c80="">{number = 2, name = (null)}</nsthread:></p>
+<h3 id="NO3"><a href="#NO3" class="headerlink" title="NO3."></a>NO3.</h3><p>代码</p>
+<pre><code>NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+
+[queue addOperationWithBlock:^{
+    NSLog(@&quot;hello %@&quot;,[NSThread currentThread]);
+
+}];
+</code></pre><p>输出</p>
+<pre><code>2016-02-25 22:27:56.445 test[945:850128] hello &lt;NSThread: 0x7f98dbc2cae0&gt;{number = 2, name = (null)}
+</code></pre><p><strong>创建队列，添加block形式的操作</strong></p>
+<hr>
+<h1 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h1><h2 id="线程之间的通信问题"><a href="#线程之间的通信问题" class="headerlink" title="线程之间的通信问题"></a>线程之间的通信问题</h2><h3 id="技术方案：NSOperation"><a href="#技术方案：NSOperation" class="headerlink" title="技术方案：NSOperation"></a>技术方案：NSOperation</h3><pre><code>[self.queue addOperationWithBlock:^{
+    NSLog(@&quot;异步下载图片&quot;);
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        NSLog(@&quot;回到主线程，更新UI&quot;);
+    }];
+}];
+</code></pre><h3 id="技术方案：GCD"><a href="#技术方案：GCD" class="headerlink" title="技术方案：GCD"></a>技术方案：GCD</h3><pre><code>dispatch_async(dispatch_get_global_queue(0, 0), ^{
+      NSLog(@&quot;下载图片---%@&quot;,[NSThread currentThread]);
+    dispatch_async(dispatch_get_main_queue(), ^{
+NSLog(@&quot;回到主线程刷新图片的显示 -%@&quot;,[NSThread currentThread]);
+        });
+    });
+</code></pre><p>这文章写了好久，，过年一直到现在，终于写完。。。</p>
+<p><strong>转载请注明来自<a href="http://iamyaojie.wang/">吃饭睡觉撸码的博客</a> 并包含相关链接。</strong></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/wechat-reward-image.jpeg" alt="YaoJie WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/alipay-reward-image.jpeg" alt="YaoJie Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS入门到懵逼/" rel="tag"># iOS入门到懵逼</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/NSTimer-CADisplayLink-GCD/" rel="next" title="NSTimer CADisplayLink GCD">
+                <i class="fa fa-chevron-left"></i> NSTimer CADisplayLink GCD
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/LaGou-Intelligent-crawler/" rel="prev" title="放养的小爬虫--拉钩网智能小爬虫">
+                放养的小爬虫--拉钩网智能小爬虫 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="YaoJie" />
+          <p class="site-author-name" itemprop="name">YaoJie</p>
+           
+              <p class="site-description motion-element" itemprop="description">放下,是一种修行  拿起,是一种历练</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/iamyaojie" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/1929754375" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#多线程简介"><span class="nav-number">1.</span> <span class="nav-text">多线程简介</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#多线程的由来"><span class="nav-number">1.1.</span> <span class="nav-text">多线程的由来</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#耗时操作的模拟试验"><span class="nav-number">1.2.</span> <span class="nav-text">耗时操作的模拟试验</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#循环测试"><span class="nav-number">1.2.1.</span> <span class="nav-text">循环测试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#操作栈区"><span class="nav-number">1.2.2.</span> <span class="nav-text">操作栈区</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#操作常量区"><span class="nav-number">1.2.3.</span> <span class="nav-text">操作常量区</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-进程"><span class="nav-number">1.2.4.</span> <span class="nav-text">3.1 进程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#主线程"><span class="nav-number">1.3.</span> <span class="nav-text">主线程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#主线程的概念："><span class="nav-number">1.3.1.</span> <span class="nav-text">主线程的概念：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#主线程的作用：主线程的作用主要用于处理UI界面刷新和UI时间！"><span class="nav-number">1.3.2.</span> <span class="nav-text">主线程的作用：主线程的作用主要用于处理UI界面刷新和UI时间！</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#结论：主线程上不能执行耗时操作，这样会造成界面卡顿，给用户一种不好的体验。"><span class="nav-number">1.3.3.</span> <span class="nav-text">结论：主线程上不能执行耗时操作，这样会造成界面卡顿，给用户一种不好的体验。</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#技术方案"><span class="nav-number">1.4.</span> <span class="nav-text">技术方案</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Pthread"><span class="nav-number">2.</span> <span class="nav-text">Pthread</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#函数"><span class="nav-number">2.1.</span> <span class="nav-text">函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参数和返回值"><span class="nav-number">2.2.</span> <span class="nav-text">参数和返回值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用"><span class="nav-number">2.3.</span> <span class="nav-text">使用</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#NSThread"><span class="nav-number">3.</span> <span class="nav-text">NSThread</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#创建一个新的线程"><span class="nav-number">3.1.</span> <span class="nav-text">创建一个新的线程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#方式一"><span class="nav-number">3.1.1.</span> <span class="nav-text">方式一</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方式二"><span class="nav-number">3.1.2.</span> <span class="nav-text">方式二</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方式三"><span class="nav-number">3.1.3.</span> <span class="nav-text">方式三</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#线程的状态"><span class="nav-number">3.2.</span> <span class="nav-text">线程的状态</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#线程状态分为五种"><span class="nav-number">3.2.1.</span> <span class="nav-text">线程状态分为五种</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#线程的属性"><span class="nav-number">3.3.</span> <span class="nav-text">线程的属性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#名称-name"><span class="nav-number">3.3.1.</span> <span class="nav-text">名称 name</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#优先级，也叫做“服务质量”。threadPriority，取值0到1"><span class="nav-number">3.3.2.</span> <span class="nav-text">优先级，也叫做“服务质量”。threadPriority，取值0到1.</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#互斥锁"><span class="nav-number">4.</span> <span class="nav-text">互斥锁</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#访问共享资源引入问题！"><span class="nav-number">4.1.</span> <span class="nav-text">访问共享资源引入问题！</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#问题？"><span class="nav-number">4.1.1.</span> <span class="nav-text">问题？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#问题分析"><span class="nav-number">4.1.2.</span> <span class="nav-text">问题分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#问题解决"><span class="nav-number">4.1.3.</span> <span class="nav-text">问题解决</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#互斥锁介绍"><span class="nav-number">4.2.</span> <span class="nav-text">互斥锁介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#互斥锁代码"><span class="nav-number">4.2.1.</span> <span class="nav-text">互斥锁代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#互斥锁的作用"><span class="nav-number">4.2.2.</span> <span class="nav-text">互斥锁的作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#真相：互斥锁其实就是同步的意思，也就是按顺序执行！"><span class="nav-number">4.2.3.</span> <span class="nav-text">真相：互斥锁其实就是同步的意思，也就是按顺序执行！</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#互斥锁原理"><span class="nav-number">4.3.</span> <span class="nav-text">互斥锁原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#互斥锁和自旋锁"><span class="nav-number">4.4.</span> <span class="nav-text">互斥锁和自旋锁</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#原子属性和非原子属性（nonatomic-和-atomic）"><span class="nav-number">4.4.1.</span> <span class="nav-text">原子属性和非原子属性（nonatomic 和 atomic）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#nonatomic-和-atomic-的对比"><span class="nav-number">4.4.2.</span> <span class="nav-text">nonatomic 和 atomic 的对比</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#互斥锁和自旋锁的区别"><span class="nav-number">4.4.3.</span> <span class="nav-text">互斥锁和自旋锁的区别</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#互斥锁-1"><span class="nav-number">4.4.3.1.</span> <span class="nav-text">互斥锁</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#自旋锁"><span class="nav-number">4.4.3.2.</span> <span class="nav-text">自旋锁</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#GCD"><span class="nav-number">5.</span> <span class="nav-text">GCD</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#GCD介绍"><span class="nav-number">5.1.</span> <span class="nav-text">GCD介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GCD的两个核心"><span class="nav-number">5.2.</span> <span class="nav-text">GCD的两个核心</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务"><span class="nav-number">5.2.1.</span> <span class="nav-text">任务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#队列"><span class="nav-number">5.2.2.</span> <span class="nav-text">队列</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数-1"><span class="nav-number">5.3.</span> <span class="nav-text">函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#GCD函数"><span class="nav-number">5.3.1.</span> <span class="nav-text">GCD函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#串行队列和并发队列"><span class="nav-number">5.4.</span> <span class="nav-text">串行队列和并发队列</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#串行队列-Serial-Dispatch-Queue"><span class="nav-number">5.4.1.</span> <span class="nav-text">串行队列 (Serial Dispatch Queue)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#特点"><span class="nav-number">5.4.1.1.</span> <span class="nav-text">特点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#创建一个串行队列"><span class="nav-number">5.4.1.2.</span> <span class="nav-text">创建一个串行队列</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#串行队列，同步执行"><span class="nav-number">5.4.1.3.</span> <span class="nav-text">串行队列，同步执行</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#串行队列，异步执行"><span class="nav-number">5.4.1.4.</span> <span class="nav-text">串行队列，异步执行</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#并发队列-Concurrent-Dispatch-Queue"><span class="nav-number">5.4.2.</span> <span class="nav-text">并发队列 (Concurrent Dispatch Queue)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#创建并发队列"><span class="nav-number">5.4.2.1.</span> <span class="nav-text">创建并发队列</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#并发队列，同步执行"><span class="nav-number">5.4.2.2.</span> <span class="nav-text">并发队列，同步执行</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#并发队列，异步执行"><span class="nav-number">5.4.2.3.</span> <span class="nav-text">并发队列，异步执行</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#主队列"><span class="nav-number">5.5.</span> <span class="nav-text">主队列</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#主队列-1"><span class="nav-number">5.5.1.</span> <span class="nav-text">主队列</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#主队列-同步执行（死锁）"><span class="nav-number">5.5.2.</span> <span class="nav-text">主队列 同步执行（死锁）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#全局队列"><span class="nav-number">5.6.</span> <span class="nav-text">全局队列</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#全局队列-异步执行"><span class="nav-number">5.6.1.</span> <span class="nav-text">全局队列 异步执行</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GCD总结"><span class="nav-number">5.7.</span> <span class="nav-text">GCD总结</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#开不开线程，由执行任务的函数决定"><span class="nav-number">5.7.1.</span> <span class="nav-text">开不开线程，由执行任务的函数决定</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#异步执行任务，开几条线程由队列决定"><span class="nav-number">5.7.2.</span> <span class="nav-text">异步执行任务，开几条线程由队列决定</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#NSOperation"><span class="nav-number">6.</span> <span class="nav-text">NSOperation</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#NSOperation简介"><span class="nav-number">6.1.</span> <span class="nav-text">NSOperation简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#NSOperation与GCD的区别："><span class="nav-number">6.1.1.</span> <span class="nav-text">NSOperation与GCD的区别：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NSOperation的特点"><span class="nav-number">6.1.2.</span> <span class="nav-text">NSOperation的特点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#核心概念"><span class="nav-number">6.2.</span> <span class="nav-text">核心概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#操作步骤"><span class="nav-number">6.3.</span> <span class="nav-text">操作步骤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NSInvocationOperation"><span class="nav-number">6.4.</span> <span class="nav-text">NSInvocationOperation</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#No1"><span class="nav-number">6.4.1.</span> <span class="nav-text">No1.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#No2"><span class="nav-number">6.4.2.</span> <span class="nav-text">No2.</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NSBlockOperation"><span class="nav-number">6.5.</span> <span class="nav-text">NSBlockOperation</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#NO1"><span class="nav-number">6.5.1.</span> <span class="nav-text">NO1.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NO2"><span class="nav-number">6.5.2.</span> <span class="nav-text">NO2.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NO3"><span class="nav-number">6.5.3.</span> <span class="nav-text">NO3.</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#案例"><span class="nav-number">7.</span> <span class="nav-text">案例</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#线程之间的通信问题"><span class="nav-number">7.1.</span> <span class="nav-text">线程之间的通信问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#技术方案：NSOperation"><span class="nav-number">7.1.1.</span> <span class="nav-text">技术方案：NSOperation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#技术方案：GCD"><span class="nav-number">7.1.2.</span> <span class="nav-text">技术方案：GCD</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">YaoJie</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://http-iamyaojie-wang.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://iamyaojie.wang/2016/iOS-Multithread/';
+          this.page.identifier = '2016/iOS-Multithread/';
+          this.page.title = 'iOS多线程技术方案';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://http-iamyaojie-wang.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

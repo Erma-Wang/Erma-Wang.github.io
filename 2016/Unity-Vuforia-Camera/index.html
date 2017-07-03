@@ -1,0 +1,904 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Unity,Vuforia,iOS," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="项目一直在赶进度，写博的时间越来越少了~从事Unity开发也快两个月了，AR方向~ 使用的是高通家的SDK Vuforia。。。从工程融合一直到对unity和Vuforia的深层次的开发，新东西，毕竟坑多。。国内做AR开发的没有自家的SDK一般都是用国外的SDK或则国内其他家的一些SDK吧~ 使用这些SDK做AR开发都有共同的一个特性，都喜欢在Unity里面做开发。Unity之前一直是游戏引擎，">
+<meta name="keywords" content="Unity,Vuforia,iOS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vuforia unity开发摄像头问题">
+<meta property="og:url" content="http://iamyaojie.wang/2016/Unity-Vuforia-Camera/index.html">
+<meta property="og:site_name" content="iamYaoJie.Blog">
+<meta property="og:description" content="项目一直在赶进度，写博的时间越来越少了~从事Unity开发也快两个月了，AR方向~ 使用的是高通家的SDK Vuforia。。。从工程融合一直到对unity和Vuforia的深层次的开发，新东西，毕竟坑多。。国内做AR开发的没有自家的SDK一般都是用国外的SDK或则国内其他家的一些SDK吧~ 使用这些SDK做AR开发都有共同的一个特性，都喜欢在Unity里面做开发。Unity之前一直是游戏引擎，">
+<meta property="og:image" content="http://ww2.sinaimg.cn/large/7305b707jw1f5k6vrp92xj219w0rfwmc.jpg">
+<meta property="og:image" content="http://ww3.sinaimg.cn/large/7305b707jw1f5k71nr1fgj20ku112wg3.jpg">
+<meta property="og:updated_time" content="2017-06-28T08:01:47.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Vuforia unity开发摄像头问题">
+<meta name="twitter:description" content="项目一直在赶进度，写博的时间越来越少了~从事Unity开发也快两个月了，AR方向~ 使用的是高通家的SDK Vuforia。。。从工程融合一直到对unity和Vuforia的深层次的开发，新东西，毕竟坑多。。国内做AR开发的没有自家的SDK一般都是用国外的SDK或则国内其他家的一些SDK吧~ 使用这些SDK做AR开发都有共同的一个特性，都喜欢在Unity里面做开发。Unity之前一直是游戏引擎，">
+<meta name="twitter:image" content="http://ww2.sinaimg.cn/large/7305b707jw1f5k6vrp92xj219w0rfwmc.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '9E75IEGIJ7',
+      apiKey: 'bc3270a26f73a83c84dd5a2520a3bbca',
+      indexName: 'index',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"键入您需要搜索的关键字~","hits_empty":"很抱歉，没有找到您需要搜索的内容: ${query}","hits_stats":"${hits} 条搜索记录 ~· 耗时 ${time} 毫秒 ~·"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://iamyaojie.wang/2016/Unity-Vuforia-Camera/"/>
+
+
+
+
+
+  <title>Vuforia unity开发摄像头问题 | iamYaoJie.Blog</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-98802769-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?8fb2996831997da6ea3871e646c11808";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">iamYaoJie.Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Keep Blogging</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://iamyaojie.wang/2016/Unity-Vuforia-Camera/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YaoJie">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="iamYaoJie.Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Vuforia unity开发摄像头问题</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-07-06T00:00:00+08:00">
+                2016-07-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/AR-VR技术篇章/" itemprop="url" rel="index">
+                    <span itemprop="name">AR/VR技术篇章</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/Unity-Vuforia-Camera/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2016/Unity-Vuforia-Camera/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>项目一直在赶进度，写博的时间越来越少了~从事Unity开发也快两个月了，AR方向~ 使用的是高通家的SDK Vuforia。。。从工程融合一直到对unity和Vuforia的深层次的开发，新东西，毕竟坑多。。国内做AR开发的没有自家的SDK一般都是用国外的SDK或则国内其他家的一些SDK吧~ 使用这些SDK做AR开发都有共同的一个特性，都喜欢在Unity里面做开发。Unity之前一直是游戏引擎，直到Unity5.0版本出来后Unity官方有一个方向转变，不仅仅是游戏引擎而且Unity可以做应用级别的开发，但是Unity应用级的开发是一个刚刚起步的开发，Unity里支持的东西不够全面，扩张性不够强，脚本语言的控制和原生设备的兼容性也不够，就是因为这些原因，有了工程融合，iOS、Android的工程和Unity的工程融合在一起开发，使得Unity的支持面更广，扩张性更强，很多Unity做不到的，或则难做的，就可以让原生来开发，这时候~unity就是一个万金油~</p>
+</blockquote>
+<a id="more"></a>
+<hr>
+<p><strong> 好了，本文主要讲解的是Unity对Vuforia的开发中在原生调用摄像头上遇到的坑~Unity中调用设备摄像头打开或则关闭，或则开关扫描识别问题等等一些情况~ 下面先说说趟过的坑，再说说解决办法，或则目前没有解决的问题 </strong></p>
+<hr>
+<h2 id="坑"><a href="#坑" class="headerlink" title="坑"></a>坑</h2><p>先说说情况，移动端App的iOS的项目中有三个界面，其中一个就是扫描界面，扫面界面当让是Unity对Vuforia的开发导出的工程融合在原生的项目中的~当我程序退出扫描界面后Unity和Vuforia应该处于暂停状态OnPause，笔者研究了一段时间，在iOS中使用UnityInterface.h中暴露的暂停接口根本就没有让扫描暂停~如下图</p>
+<p><img src="http://ww2.sinaimg.cn/large/7305b707jw1f5k6vrp92xj219w0rfwmc.jpg" alt="1"></p>
+<p>笔者尝试了一次又一次的interface中的方法，相机就根本不能暂停，，原来童话里都是骗人的~可能 有人会想到暂停不了也没有什么大不了的 吧~ 我研究了一下国内的App，是有几款App没有暂停~例如幻视，，问题又来了，，既然相机不能暂停就不让他暂停呗~ 可是我们的项目中有这样一个需求，见下图~</p>
+<p><img src="http://ww3.sinaimg.cn/large/7305b707jw1f5k71nr1fgj20ku112wg3.jpg" alt=""></p>
+<p>拍照功能~扫描界面不能暂停Camera，其他界面现在要调用Camera，，做过移动端开发的都知道，，Camera是实例化出来的，而且是单例，，如果再一次实例化这时候，程序 ~ 崩~</p>
+<p>所以不把 摄像头暂停肯定不行~ 这时候笔者通过UnityInterface.h 的方法是Camera 暂停了，，这时候~ 新的问题又出来了，，通过这样的方法使Camera暂停了，可是Vuforia还是在继续调用摄像头再继续扫面，，，虽然Camera 是关闭了，界面上看不到，这时候其实Vuforia还是在调用摄像头继续扫面，这时候~ 笔者想到的唯一办法就是 通过Unity内部去控制Vuforia，再向原生暴露需要调用的接口~ 所以有了以下方法~</p>
+<h2 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h2><figure class="highlight csharp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">// 关闭相机</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">CloseCameraDevice</span> (<span class="params"></span>)</span></div><div class="line">&#123;</div><div class="line">	CameraDevice.Instance.Stop();</div><div class="line">	CameraDevice.Instance.Deinit();</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 打开相机</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">OpenCameraDevice</span> (<span class="params"></span>)</span></div><div class="line">&#123;</div><div class="line">	CameraDevice.Instance.Init(CameraDevice.CameraDirection.CAMERA_DEFAULT);</div><div class="line">	CameraDevice.Instance.Start();</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 关闭识别</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">CloseCloudReco</span> (<span class="params"></span>)</span></div><div class="line">&#123;</div><div class="line">	CloudRecoBehaviour cloudRecoBehaviour = GameObject.FindObjectOfType(<span class="keyword">typeof</span>(CloudRecoBehaviour)) <span class="keyword">as</span> CloudRecoBehaviour;</div><div class="line">	cloudRecoBehaviour.CloudRecoEnabled = <span class="literal">false</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 打开识别</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">OpenCloudReco</span> (<span class="params"></span>)</span></div><div class="line">&#123;</div><div class="line">	CloudRecoBehaviour cloudRecoBehaviour = GameObject.FindObjectOfType(<span class="keyword">typeof</span>(CloudRecoBehaviour)) <span class="keyword">as</span> CloudRecoBehaviour;</div><div class="line">	cloudRecoBehaviour.CloudRecoEnabled = <span class="literal">true</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>上面这些方法是在Unity里面实现的，写在一个脚本里，挂在一个GameObject上供原生调用~</p>
+<h2 id="后来解决的坑"><a href="#后来解决的坑" class="headerlink" title="后来解决的坑~"></a>后来解决的坑~</h2><p>Android在扫描界面打开闪关灯，因为扫描界面Unity调用了Camera，安坐的闪关灯是通过实例化相机来打开的~这时候Android拿不到Camera，因为Unity把Camera暂用了，，在扫描界面不能打开闪关灯~ 解决方法~如下</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">OpenFlash</span> (<span class="params"></span>) </span>&#123;</div><div class="line">	CameraDevice.Instance.SetFlashTorchMode (<span class="literal">true</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">CloseFlash</span> (<span class="params"></span>) </span>&#123;</div><div class="line">	CameraDevice.Instance.SetFlashTorchMode (<span class="literal">false</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/wechat-reward-image.jpeg" alt="YaoJie WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/alipay-reward-image.jpeg" alt="YaoJie Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Unity/" rel="tag"># Unity</a>
+          
+            <a href="/tags/Vuforia/" rel="tag"># Vuforia</a>
+          
+            <a href="/tags/iOS/" rel="tag"># iOS</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/iOS-Unity-Engineering-integration/" rel="next" title="unity3D-iOS工程整合爬过的坑~">
+                <i class="fa fa-chevron-left"></i> unity3D-iOS工程整合爬过的坑~
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/Unity-Camera-Full-Screen/" rel="prev" title="Unity打开摄像头占满全屏">
+                Unity打开摄像头占满全屏 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="YaoJie" />
+          <p class="site-author-name" itemprop="name">YaoJie</p>
+           
+              <p class="site-description motion-element" itemprop="description">放下,是一种修行  拿起,是一种历练</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/iamyaojie" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/1929754375" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#坑"><span class="nav-number">1.</span> <span class="nav-text">坑</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解决办法"><span class="nav-number">2.</span> <span class="nav-text">解决办法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#后来解决的坑"><span class="nav-number">3.</span> <span class="nav-text">后来解决的坑~</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">YaoJie</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://http-iamyaojie-wang.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://iamyaojie.wang/2016/Unity-Vuforia-Camera/';
+          this.page.identifier = '2016/Unity-Vuforia-Camera/';
+          this.page.title = 'Vuforia unity开发摄像头问题';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://http-iamyaojie-wang.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,936 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Python小爬虫,爬虫,Python," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="笔者声明：只用于学习交流,不用于其他途径。源代码已上传github。githu地址：https://github.com/Erma-Wang/Spider    重要的事情说三遍~~~！！！只用于学习交流，私自用于其他途径，后果自负！！！github源代码地址https://github.com/iamyaojie/Spider(注意，本仓库还有其他的小爬虫，本文章讲解的是DouBanSpide">
+<meta name="keywords" content="Python小爬虫,爬虫,Python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="放养的小爬虫--豆瓣电影入门级爬虫(mongodb使用教程~)">
+<meta property="og:url" content="http://iamyaojie.wang/2016/DouBan-Crawler/index.html">
+<meta property="og:site_name" content="iamYaoJie.Blog">
+<meta property="og:description" content="笔者声明：只用于学习交流,不用于其他途径。源代码已上传github。githu地址：https://github.com/Erma-Wang/Spider    重要的事情说三遍~~~！！！只用于学习交流，私自用于其他途径，后果自负！！！github源代码地址https://github.com/iamyaojie/Spider(注意，本仓库还有其他的小爬虫，本文章讲解的是DouBanSpide">
+<meta property="og:image" content="http://ww4.sinaimg.cn/large/7305b707jw1f24qu6dhryj217c168n3a.jpg">
+<meta property="og:image" content="http://ww3.sinaimg.cn/large/7305b707jw1f25z8kxib4j20vg0k675t.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/7305b707jw1f25z8m862oj21kw0yz4e5.jpg">
+<meta property="og:image" content="http://ww3.sinaimg.cn/large/7305b707jw1f25z8llv5rj21kw10m4bc.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/7305b707jw1f26mxz1vxyj21bm0xqqkf.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/7305b707jw1f26n1nr72ej210y0oajva.jpg">
+<meta property="og:image" content="http://ww2.sinaimg.cn/large/7305b707jw1f26n6atbqsj21kw10njwr.jpg">
+<meta property="og:updated_time" content="2017-06-28T08:01:47.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="放养的小爬虫--豆瓣电影入门级爬虫(mongodb使用教程~)">
+<meta name="twitter:description" content="笔者声明：只用于学习交流,不用于其他途径。源代码已上传github。githu地址：https://github.com/Erma-Wang/Spider    重要的事情说三遍~~~！！！只用于学习交流，私自用于其他途径，后果自负！！！github源代码地址https://github.com/iamyaojie/Spider(注意，本仓库还有其他的小爬虫，本文章讲解的是DouBanSpide">
+<meta name="twitter:image" content="http://ww4.sinaimg.cn/large/7305b707jw1f24qu6dhryj217c168n3a.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '9E75IEGIJ7',
+      apiKey: 'bc3270a26f73a83c84dd5a2520a3bbca',
+      indexName: 'index',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"键入您需要搜索的关键字~","hits_empty":"很抱歉，没有找到您需要搜索的内容: ${query}","hits_stats":"${hits} 条搜索记录 ~· 耗时 ${time} 毫秒 ~·"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://iamyaojie.wang/2016/DouBan-Crawler/"/>
+
+
+
+
+
+  <title>放养的小爬虫--豆瓣电影入门级爬虫(mongodb使用教程~) | iamYaoJie.Blog</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-98802769-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?8fb2996831997da6ea3871e646c11808";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">iamYaoJie.Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Keep Blogging</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://iamyaojie.wang/2016/DouBan-Crawler/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YaoJie">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="iamYaoJie.Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">放养的小爬虫--豆瓣电影入门级爬虫(mongodb使用教程~)</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-03-24T00:00:00+08:00">
+                2016-03-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/人生苦短，我用Python/" itemprop="url" rel="index">
+                    <span itemprop="name">人生苦短，我用Python</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/DouBan-Crawler/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2016/DouBan-Crawler/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>笔者声明：只用于学习交流,不用于其他途径。源代码已上传github。githu地址：<a href="https://github.com/Erma-Wang/Spider" target="_blank" rel="external">https://github.com/Erma-Wang/Spider</a>  </p>
+</blockquote>
+<p>重要的事情说三遍~~~！！！只用于学习交流，私自用于其他途径，后果自负！！！<br>github源代码地址<a href="https://github.com/iamyaojie/Spider" target="_blank" rel="external">https://github.com/iamyaojie/Spider</a>(注意，本仓库还有其他的小爬虫，本文章讲解的是DouBanSpider···)，别忘了给个star哦 ! @、@</p>
+<a id="more"></a>
+<hr>
+<p>###<strong>开篇之前~闲聊几句~</strong>  </p>
+<p>笔者是iOS开发从业者，但是我相信很多小伙伴也和我一样，并不是Python开发者，却对爬虫技术(scrapy)颇感兴趣儿~之前写过一些iOS的博客，最近在写爬虫技术分享的博客的时候，发现很多小伙伴对爬虫技术比对iOS兴趣点来的大~这时候，我就在想，为什么叻</p>
+<p>我认为<code>爬虫技术基本原理就三点~下载数据~匹配数据~保存数据~</code>,本来一件很简单的事儿，却有这么多的爬虫爱好者去研究~去探索~并且还诞生了伟大的框架<code>scrapy</code>、<code>pyspider</code>，但是个人认为其是一种<code>工具</code>。这么多的非python开发者对爬虫技术(scrapy、pyspider)感兴趣，我想是因为爬虫技术属于<code>逆向工程</code>吧~人们一直以来对正向的思维，正向的发展，正向的软件开发等等一切事物运筹帷幄，却很少有人对一件事物，一件物品，一个软件，甚至一个网站开发出来后反向对到其制作过程，制作工序，制作原料作其推导~古文说<code>以古为镜，可以知兴替</code>,我想，对一件已经制作出来的物品，推导其制作过程，比制作这件物品更来得有兴趣吧~</p>
+<hr>
+<p>###<strong>总结几点~</strong><br>之前在上一篇博客中有些小伙伴给我了一些不错的idea~  </p>
+<ul>
+<li>有读者建议我在之前的爬虫上加上代理，这点儿，笔者还是以不加代理的风格继续写爬虫，因为毕竟加上代理我会担心一些不好的小伙伴拿笔者写好的爬虫去做了不好的事儿，请谅解~如有个人特殊需求，上github上自行fork修改~</li>
+<li>之前的JDSpider具有时效性~因为毕竟京东也不是傻子，规则会经常变更~</li>
+<li>之前有效换提出能不能抓取AJAX的url，额~对于这样高深的技术，超出笔者能力范围~目前为止，唯一的办法就是抓包工具抓包，人工手动分析~</li>
+<li>有一些idea还在研究中，比如说爬取淘宝数据~这个有难度，是真心有难度~</li>
+<li>最后，笔者所写爬虫技术含量并不高，只是入门级别的爬虫，只用于爬虫爱好者交流分享摆了~适合于爬虫初学者，大多为scrapy。。。</li>
+</ul>
+<hr>
+<p>#开篇<br>笔者在之前的博客里写过京东的Spider，首先非常感谢小伙伴对我的支持~在此，笔者写了一个入门级别的小爬虫，给一些想学scrapy但是还没有开始学习scrapy的小伙伴讲解一些scrapy的一些基础知识吧~本文虽然对于scrapy来说完全算是入门级别，但是您应该具有一定的网页编程基础和网络基础知识。本文中主要讲解mongodb的基本使用，附带一个实战小爬虫~</p>
+<p><strong>还是一样，scrapy不做详细解释~有疑问，找度娘~</strong></p>
+<p>#抓取目标url和目标数据item</p>
+<p>##目标url：<a href="https://movie.douban.com/top250" target="_blank" rel="external">https://movie.douban.com/top250</a></p>
+<p>##目标数据 item<br>标题：title = Field()<br>电影信息：movieInfo = Field()<br>评分：star = Field()<br>经典名言：quote = Field()  </p>
+<p>#目标网站分析与思路分析（爬虫常规思路~）<br>先看看目标网站吧~是的，网上很多用豆瓣做爬虫教程，因为比较好爬取吧~笔者在这也用豆瓣爬虫来作为演示~<br><img src="http://ww4.sinaimg.cn/large/7305b707jw1f24qu6dhryj217c168n3a.jpg" alt="1"></p>
+<p>##一、抓取li标签构建数组~<br>是的，和常规网站一样一个li标签代表一个小模块的整合~思路先把每个li抓取出来放入一个数组中，这也是常规思路，先看关键代码吧~</p>
+<p>###实例化选择器<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">selector = Selector(response)</div></pre></td></tr></table></figure></p>
+<p>###抓取li标签构建Movies数组<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Movies = selector.xpath(<span class="string">'//div[@class="info"]'</span>)</div></pre></td></tr></table></figure></p>
+<p>##二、遍历数组取出each~<br>for in循环取出~没啥说的</p>
+<p>##三、选择器匹配数据~<br>抓取数据~<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">title = eachMovie.xpath(<span class="string">'div[@class="hd"]/a/span[@class="title"]/text()'</span>).extract()</div><div class="line">movieInfo = eachMovie.xpath(<span class="string">'div[@class="bd"]/p/text()'</span>).extract()</div><div class="line">star = eachMovie.xpath(<span class="string">'div[@class="bd"]/div[@class="star"]/span[@class="rating_num"]/text()'</span>).extract()</div><div class="line">quote = eachMovie.xpath(<span class="string">'div[@class="bd"]/p[@class="quote"]/span/text()'</span>).extract()</div></pre></td></tr></table></figure></p>
+<p>##四、传值给item~<br>熟悉MVC的小伙伴在学习scrapy的时候都应该知道~item在这里就相当于MVC里面的Model。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">item[<span class="string">'title'</span>] = title</div><div class="line">item[<span class="string">'movieInfo'</span>] = <span class="string">';'</span>.join(movieInfo)</div><div class="line">item[<span class="string">'star'</span>] = star</div><div class="line">item[<span class="string">'quote'</span>] = quote</div></pre></td></tr></table></figure></p>
+<p>##五、翻页~<br>抓取下一页href的url，递归调用Request<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">nextLink = selector.xpath(<span class="string">'//span[@class="next"]/link/@href'</span>).extract()</div><div class="line"><span class="keyword">if</span> nextLink:</div><div class="line">	nextLink = nextLink[<span class="number">0</span>]</div><div class="line">	print(nextLink)</div><div class="line">	<span class="keyword">yield</span> Request(self.url + nextLink,callback=self.parse)</div></pre></td></tr></table></figure></p>
+<hr>
+<p>#Ok~数据抓取下来了，现在考虑一个问题~保存~<br>本博客主要讲解的是mongodb和scrapy配合使用~下面看看代码怎么写的吧~</p>
+<p>##首先在setting里面作配置~</p>
+<p>###设置传输的管道~为什么是管道叻~笔者英语不咋滴~喜欢这么翻译pipeline~<br>ITEM_PIPELINES = [‘DouBanSpider.pipelines.DoubanspiderPipeline’]</p>
+<p>###设置mongodb地址~<br>MONGODB_HOST = ‘127.0.0.1’</p>
+<p>###设置端口号~也就是port~默认为27017~<br>MONGODB_PORT = 27017</p>
+<p>###设置数据库名字~<br>MONGODB_DBNAME = ‘DouBan’</p>
+<p>###设置存放本次数据的表名~<br>MONGODB_DOCNAME = ‘DouBanDy’</p>
+<hr>
+<p>##OK~配置好setting后再配置Pipeline吧~<br>我们借助pymongo这个模块来配置Pipeline吧~导入pymongo模块后~<br>只做关键两步讲解~</p>
+<p>###链接数据库~<br>client = pymongo.MongoClient(host=host,port=port)</p>
+<p>###指向数据库里面要存放数据的表名~<br>tdb = client[dbName]</p>
+<p>###向指定的表里添加数据~两句关键代码~<br>self.post = tdb[settings[‘MONGODB_DOCNAME’]]<br>self.post.insert(dyInfo)</p>
+<hr>
+<p>好吧~看看效果吧~</p>
+<p>#爬虫启动~<br><img src="http://ww3.sinaimg.cn/large/7305b707jw1f25z8kxib4j20vg0k675t.jpg" alt="1"></p>
+<p>#开始爬取~<br><img src="http://ww1.sinaimg.cn/large/7305b707jw1f25z8m862oj21kw0yz4e5.jpg" alt="1"></p>
+<p>#再看看数据库~<br><img src="http://ww3.sinaimg.cn/large/7305b707jw1f25z8llv5rj21kw10m4bc.jpg" alt="1"></p>
+<hr>
+<p>#最后对mongodb的使用做个简单的介绍~<br>mongodb属于非关系型数据库~是一个基于分布式文件存储的数据库。由C++语言编写。。。好吧~这些废话我不在这里说了~自己百度百科吧~我写博客写你能在其他地方都能找到的理论性的知识~简单的说说使用mongodb的安装和使用吧~</p>
+<p>##mongodb的安装~<br>网上有一大把一大把mongodb的安装教程~自己搜索去吧~笔者是通过brew安装的mongodb，因为笔者使用的Mac，尝试过很多种安装mongodb的方法都未成功~最后，尝试了brew安装成功~如果读者使用的是Mac，请尝试尝试brew安装吧~  </p>
+<p>##启动mongodb服务~<br>在控制台输入 <code>mongod</code>，这个指令是启动mongod的服务，当出现下图，表示成功~<br><img src="http://ww1.sinaimg.cn/large/7305b707jw1f26mxz1vxyj21bm0xqqkf.jpg" alt=""></p>
+<p>##启动mongodb数据库~<br>启动mongodb服务后重新打开一个新的控制台窗口~启动mongodb数据库~在新的控制台窗口输入<code>mongo</code>，这时候会出现下面的界面~表示成功~<br><img src="http://ww1.sinaimg.cn/large/7305b707jw1f26n1nr72ej210y0oajva.jpg" alt=""></p>
+<p>##使用Robmongo管理数据库~<br>在Mac上最好用的就是Robmongo把~界面还行~基本的功能也有~</p>
+<p>###创建mongodb的链接~<br><img src="http://ww2.sinaimg.cn/large/7305b707jw1f26n6atbqsj21kw10njwr.jpg" alt=""></p>
+<p>###创建成功后就可以用上文中的小爬虫对mongodb添加数据了~</p>
+<hr>
+<p>#小爬虫使用小提示~</p>
+<ul>
+<li>scrapy crawl YourSpiderName，，最后加的是爬虫name，而不是项目名字~</li>
+<li>需要的环境自己配置，跑不起来报错，请百度，爬虫笔者已经亲测，可以跑~</li>
+<li>本爬虫没有设置代理，因为用于学习交流吧~</li>
+<li>本爬虫已经更改请求头里的USER_AGENT，请改为自己的吧</li>
+<li>最后项目已经上传到github，github源代码地址<a href="https://github.com/iamyaojie/Spider" target="_blank" rel="external">https://github.com/iamyaojie/Spider</a>(注意，本仓库还有其他的小爬虫，本文章讲解的是JDSpider···)，别忘了给个star哦@、@</li>
+<li>还要了解更多的小爬虫的朋友们可以关注本博，并在本博的spider中找到其他的小爬虫，笔者会定时更新小爬虫的~</li>
+</ul>
+<p>##本文和本爬虫只用于学习交流，不用于其他途径，后果自负~！~！<br><strong>转载请注明来自<a href="http://iamyaojie.wang/">吃饭睡觉撸码的博客</a> 并包含相关链接。</strong></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/wechat-reward-image.jpeg" alt="YaoJie WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/alipay-reward-image.jpeg" alt="YaoJie Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Python小爬虫/" rel="tag"># Python小爬虫</a>
+          
+            <a href="/tags/爬虫/" rel="tag"># 爬虫</a>
+          
+            <a href="/tags/Python/" rel="tag"># Python</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/Jingdong-Orienteering/" rel="next" title="放养的小爬虫--京东定向爬虫(AJAX获取价格数据)">
+                <i class="fa fa-chevron-left"></i> 放养的小爬虫--京东定向爬虫(AJAX获取价格数据)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/iOS-Unity-Engineering-integration/" rel="prev" title="unity3D-iOS工程整合爬过的坑~">
+                unity3D-iOS工程整合爬过的坑~ <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="YaoJie" />
+          <p class="site-author-name" itemprop="name">YaoJie</p>
+           
+              <p class="site-description motion-element" itemprop="description">放下,是一种修行  拿起,是一种历练</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/iamyaojie" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/1929754375" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">YaoJie</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://http-iamyaojie-wang.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://iamyaojie.wang/2016/DouBan-Crawler/';
+          this.page.identifier = '2016/DouBan-Crawler/';
+          this.page.title = '放养的小爬虫--豆瓣电影入门级爬虫(mongodb使用教程~)';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://http-iamyaojie-wang.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
