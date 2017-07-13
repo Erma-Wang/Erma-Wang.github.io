@@ -105,21 +105,21 @@
 
 
 
-<meta name="description" content="报错Mac OSX 10.12.5 安装 MySQL 5.7.18 (傻瓜安装，Next Next … )，安装完成后给了随机密码。  网上有教程配置好系统环境变量，开启终端直接登录输入 1mysql -u root -p 输入正确密码或者不正确密码，报错如下 ~ 12ERROR 1045 (28000): Access denied for user &amp;apos;erma&amp;apos;@&amp;apos">
+<meta name="description" content="12ERROR 1045 (28000): Access denied for user &amp;apos;erma&amp;apos;@&amp;apos;localhost&amp;apos; (using password: NO)ERROR 1045 (28000): Access denied for user &amp;apos;root&amp;apos;@&amp;apos;localhost&amp;apos; (using passwor">
 <meta name="keywords" content="MySQL,开发环境">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Mac OSX MySQL5.7 登录报错 (ERROR 1045 (28000))">
 <meta property="og:url" content="http://iamyaojie.wang/2017/Mysql5-7Error/index.html">
 <meta property="og:site_name" content="iamYaoJie.Blog">
-<meta property="og:description" content="报错Mac OSX 10.12.5 安装 MySQL 5.7.18 (傻瓜安装，Next Next … )，安装完成后给了随机密码。  网上有教程配置好系统环境变量，开启终端直接登录输入 1mysql -u root -p 输入正确密码或者不正确密码，报错如下 ~ 12ERROR 1045 (28000): Access denied for user &amp;apos;erma&amp;apos;@&amp;apos">
+<meta property="og:description" content="12ERROR 1045 (28000): Access denied for user &amp;apos;erma&amp;apos;@&amp;apos;localhost&amp;apos; (using password: NO)ERROR 1045 (28000): Access denied for user &amp;apos;root&amp;apos;@&amp;apos;localhost&amp;apos; (using passwor">
 <meta property="og:image" content="http://iamyaojie.wang/2017/Mysql5-7Error/PasswordTip.png">
 <meta property="og:image" content="http://iamyaojie.wang/2017/Mysql5-7Error/CloseMysql.png">
 <meta property="og:image" content="http://iamyaojie.wang/2017/Mysql5-7Error/NOmy-defaultcnf.png">
 <meta property="og:image" content="http://iamyaojie.wang/2017/Mysql5-7Error/newMycnf.png">
-<meta property="og:updated_time" content="2017-07-13T03:44:54.000Z">
+<meta property="og:updated_time" content="2017-07-13T03:51:11.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mac OSX MySQL5.7 登录报错 (ERROR 1045 (28000))">
-<meta name="twitter:description" content="报错Mac OSX 10.12.5 安装 MySQL 5.7.18 (傻瓜安装，Next Next … )，安装完成后给了随机密码。  网上有教程配置好系统环境变量，开启终端直接登录输入 1mysql -u root -p 输入正确密码或者不正确密码，报错如下 ~ 12ERROR 1045 (28000): Access denied for user &amp;apos;erma&amp;apos;@&amp;apos">
+<meta name="twitter:description" content="12ERROR 1045 (28000): Access denied for user &amp;apos;erma&amp;apos;@&amp;apos;localhost&amp;apos; (using password: NO)ERROR 1045 (28000): Access denied for user &amp;apos;root&amp;apos;@&amp;apos;localhost&amp;apos; (using passwor">
 <meta name="twitter:image" content="http://iamyaojie.wang/2017/Mysql5-7Error/PasswordTip.png">
 
 
@@ -427,7 +427,9 @@
       
 
       
-        <h1 id="报错"><a href="#报错" class="headerlink" title="报错"></a>报错</h1><p>Mac OSX 10.12.5 安装 MySQL 5.7.18 (傻瓜安装，Next Next … )，安装完成后给了随机密码。</p>
+        <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ERROR 1045 (28000): Access denied for user &apos;erma&apos;@&apos;localhost&apos; (using password: NO)</div><div class="line">ERROR 1045 (28000): Access denied for user &apos;root&apos;@&apos;localhost&apos; (using password: YES)</div></pre></td></tr></table></figure>
+<a id="more"></a>
+<h1 id="报错"><a href="#报错" class="headerlink" title="报错"></a>报错</h1><p>Mac OSX 10.12.5 安装 MySQL 5.7.18 (傻瓜安装，Next Next … )，安装完成后给了随机密码。</p>
 <p><img src="/2017/Mysql5-7Error/PasswordTip.png" alt=""></p>
 <p>网上有教程配置好系统环境变量，开启终端直接登录输入</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mysql -u root -p</div></pre></td></tr></table></figure>
